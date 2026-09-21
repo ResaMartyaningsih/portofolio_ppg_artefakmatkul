@@ -8,6 +8,18 @@ import {
   ChevronLeft, RefreshCw, Info
 } from "lucide-react";
 
+// Add the missing category strings to your union type
+export type category =
+  | "Praktik PPL"
+  | "Projek Kepemimpinan"
+  | "Gelar Karya & Seminar"
+  | "Video Pembelajaran"
+  | "Praktik Mengajar"
+  | "Budaya Sekolah"
+  | "Bimbingan & Diskusi"
+  | "Semester I"
+  | "Semester II";
+
 type Semester = "Semester I" | "Semester II";
 
 type Project = {
@@ -22,11 +34,11 @@ type Project = {
   link?: string;
 };
 
-type GalleryCategory = "Semua" | "Praktik PPL" | "Projek Kepemimpinan" | "Gelar Karya & Seminar" | "Video Pembelajaran";
+type GalleryCategory = "Semua" | "Praktik PPL" | "Projek Kepemimpinan" | "Gelar Karya & Seminar" | "Video Pembelajaran" | "Semester I" | "Semester II";
 
 type GalleryItem = {
   id: string;
-  category: "Praktik PPL" | "Projek Kepemimpinan" | "Gelar Karya & Seminar" | "Video Pembelajaran";
+  category: category;
   type: "photo" | "video";
   title: string;
   date: string;
@@ -37,6 +49,7 @@ type GalleryItem = {
   description: string;
   reflection: string;
   tags: string[];
+  driveLink?: string;
 };
 
 // Catatan: Tautan Google Drive / LMS artefak mata kuliah Anda
