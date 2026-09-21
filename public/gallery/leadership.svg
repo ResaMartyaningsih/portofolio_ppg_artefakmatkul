@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="leadBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#141a29"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </linearGradient>
+    <linearGradient id="fuchsiaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#leadBg)"/>
+  
+  <!-- Collaboration Circle & Network Nodes -->
+  <g transform="translate(400, 210)">
+    <!-- Connecting rings -->
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.4"/>
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#c084fc" stroke-width="1" opacity="0.3"/>
+    
+    <!-- Central Node (Teacher Leader) -->
+    <circle cx="0" cy="0" r="44" fill="#581c87" stroke="#d8b4fe" stroke-width="3"/>
+    <text x="0" y="8" fill="#ffffff" font-family="sans-serif" font-size="24" text-anchor="middle">★</text>
+    
+    <!-- Orbiting Nodes (Students & Community) -->
+    <!-- Node 1 -->
+    <line x1="0" y1="0" x2="-120" y2="-70" stroke="#a855f7" stroke-width="2" opacity="0.6"/>
+    <circle cx="-120" cy="-70" r="30" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+    <text x="-120" y="-65" fill="#c7d2fe" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Siswa</text>
+    
+    <!-- Node 2 -->
+    <line x1="0" y1="0" x2="120" y2="-70" stroke="#c084fc" stroke-width="2" opacity="0.6"/>
+    <circle cx="120" cy="-70" r="30" fill="#1e1b4b" stroke="#c084fc" stroke-width="2"/>
+    <text x="120" y="-65" fill="#f5d0fe" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Guru</text>
+
+    <!-- Node 3 -->
+    <line x1="0" y1="0" x2="-100" y2="90" stroke="#f472b6" stroke-width="2" opacity="0.6"/>
+    <circle cx="-100" cy="90" r="28" fill="#1e1b4b" stroke="#f472b6" stroke-width="2"/>
+    <text x="-100" y="95" fill="#fbcfe8" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Mitra</text>
+
+    <!-- Node 4 -->
+    <line x1="0" y1="0" x2="100" y2="90" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
+    <circle cx="100" cy="90" r="28" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="100" y="95" fill="#bae6fd" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Karya</text>
+  </g>
+
+  <!-- Banner Info -->
+  <g transform="translate(150, 390)">
+    <rect width="500" height="65" rx="16" fill="#0f172a" stroke="#7e22ce" stroke-width="1.5"/>
+    <text x="250" y="28" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Projek Kepemimpinan Komunitas Sekolah</text>
+    <text x="250" y="48" fill="#a855f7" font-family="sans-serif" font-size="12" text-anchor="middle">Inisiatif Peer-Mentoring Coding &amp; Pemetaan Aset Belajar</text>
+  </g>
+</svg>

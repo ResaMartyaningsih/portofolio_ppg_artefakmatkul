@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="codeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+  
+  <!-- Computer Screen Mockup in Lab -->
+  <g transform="translate(180, 80)">
+    <rect width="440" height="260" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <rect x="15" y="15" width="410" height="230" rx="10" fill="#020617"/>
+    <!-- Window buttons -->
+    <circle cx="35" cy="35" r="5" fill="#f43f5e"/>
+    <circle cx="50" cy="35" r="5" fill="#eab308"/>
+    <circle cx="65" cy="35" r="5" fill="#22c55e"/>
+    <text x="85" y="39" fill="#64748b" font-family="monospace" font-size="12">python_praktikum_ppl.py</text>
+    <!-- Code lines -->
+    <rect x="35" y="60" width="120" height="8" rx="4" fill="#818cf8"/>
+    <rect x="35" y="80" width="200" height="8" rx="4" fill="#64748b" opacity="0.6"/>
+    <rect x="55" y="100" width="160" height="8" rx="4" fill="#38bdf8"/>
+    <rect x="75" y="120" width="180" height="8" rx="4" fill="#a855f7"/>
+    <rect x="75" y="140" width="110" height="8" rx="4" fill="#4ade80"/>
+    <rect x="55" y="160" width="140" height="8" rx="4" fill="#f472b6"/>
+    <rect x="35" y="185" width="260" height="8" rx="4" fill="#818cf8"/>
+    
+    <!-- Monitor Stand -->
+    <path d="M 195,260 L 245,260 L 255,300 L 185,300 Z" fill="#1e293b"/>
+    <rect x="150" y="300" width="140" height="12" rx="6" fill="#334155"/>
+  </g>
+
+  <!-- Teacher / Student Interaction Accent -->
+  <g transform="translate(60, 340)">
+    <rect width="260" height="60" rx="14" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5" opacity="0.9"/>
+    <circle cx="35" cy="30" r="16" fill="#6366f1"/>
+    <text x="35" y="35" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">✓</text>
+    <text x="65" y="26" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Praktikum Mandiri Lab</text>
+    <text x="65" y="44" fill="#94a3b8" font-family="sans-serif" font-size="11">Scaffolding &amp; Peer Debugging</text>
+  </g>
+  
+  <g transform="translate(480, 340)">
+    <rect width="260" height="60" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" opacity="0.9"/>
+    <circle cx="35" cy="30" r="16" fill="#0284c7"/>
+    <text x="35" y="36" fill="#ffffff" font-family="sans-serif" font-size="16" text-anchor="middle">&lt;/&gt;</text>
+    <text x="65" y="26" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Logika &amp; Struktur Python</text>
+    <text x="65" y="44" fill="#94a3b8" font-family="sans-serif" font-size="11">Diferensiasi Proses SMK</text>
+  </g>
+</svg>

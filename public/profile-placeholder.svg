@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+  <circle cx="200" cy="200" r="160" fill="url(#glowGrad)"/>
+
+  <!-- Code / Tech Graphic Elements in Background -->
+  <g opacity="0.15" stroke="#ffffff" stroke-width="1.5">
+    <path d="M 60,120 L 40,150 L 60,180" fill="none"/>
+    <path d="M 340,120 L 360,150 L 340,180" fill="none"/>
+    <circle cx="330" cy="80" r="6" fill="#818cf8"/>
+    <circle cx="70" cy="280" r="4" fill="#c084fc"/>
+    <line x1="80" y1="90" x2="130" y2="90" stroke-dasharray="4 4"/>
+    <line x1="270" y1="310" x2="320" y2="310" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- Educator Avatar Silhouette -->
+  <!-- Shoulders / Body -->
+  <path d="M 100,360 C 100,285 145,260 200,260 C 255,260 300,285 300,360 Z" fill="#1e293b"/>
+  <!-- Blazer / Collar Lapel -->
+  <path d="M 140,360 L 175,275 L 200,320 L 225,275 L 260,360 Z" fill="#0f172a"/>
+  <path d="M 185,285 L 200,340 L 215,285" fill="url(#primaryGrad)"/>
+  
+  <!-- Neck -->
+  <rect x="182" y="210" width="36" height="50" rx="8" fill="#fbcfe8" opacity="0.9"/>
+
+  <!-- Head / Face -->
+  <ellipse cx="200" cy="175" rx="55" ry="65" fill="#fed7aa"/>
+  
+  <!-- Hijab / Hair Professional Styling -->
+  <path d="M 140,180 C 135,115 160,85 200,85 C 240,85 265,115 260,180 C 255,245 235,265 200,265 C 165,265 145,245 140,180 Z" fill="url(#primaryGrad)"/>
+  <!-- Face Oval Opening for Hijab Style -->
+  <ellipse cx="200" cy="180" rx="38" ry="48" fill="#ffedd5"/>
+
+  <!-- Subtle Facial Features -->
+  <!-- Eyes with friendly expression -->
+  <ellipse cx="186" cy="175" rx="4" ry="4.5" fill="#334155"/>
+  <ellipse cx="214" cy="175" rx="4" ry="4.5" fill="#334155"/>
+  <circle cx="185" cy="173" r="1.5" fill="#ffffff"/>
+  <circle cx="213" cy="173" r="1.5" fill="#ffffff"/>
+  <!-- Friendly Smile -->
+  <path d="M 191,198 Q 200,206 209,198" fill="none" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Modern Glasses (representing Tech / Informatics Teacher) -->
+  <rect x="172" y="166" width="24" height="18" rx="5" fill="none" stroke="#6366f1" stroke-width="2.5"/>
+  <rect x="204" y="166" width="24" height="18" rx="5" fill="none" stroke="#6366f1" stroke-width="2.5"/>
+  <line x1="196" y1="174" x2="204" y2="174" stroke="#6366f1" stroke-width="2.5"/>
+
+  <!-- Graduation / Educator Cap Badge Accent -->
+  <g transform="translate(290, 70)" filter="url(#glow)">
+    <circle cx="20" cy="20" r="26" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+    <path d="M 10,20 L 20,14 L 30,20 L 20,26 Z" fill="#818cf8"/>
+    <path d="M 15,23 L 15,28 C 15,31 25,31 25,28 L 25,23" fill="none" stroke="#818cf8" stroke-width="2"/>
+    <path d="M 30,20 L 32,27" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
