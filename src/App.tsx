@@ -34,7 +34,7 @@ type Project = {
   link?: string;
 };
 
-type GalleryCategory = "Semua" | "Praktik PPL" | "Projek Kepemimpinan" | "Gelar Karya & Seminar" | "Video Pembelajaran" | "Semester I" | "Semester II";
+type GalleryCategory = "Semua" | "Praktik Mengajar" | "Budaya Sekolah" | "Projek Kepemimpinan" | "Video Pembelajaran" | "Semester I" | "Semester II";
 
 type GalleryItem = {
   id: string;
@@ -1241,7 +1241,7 @@ function App() {
 
               {/* Category Filter */}
               <div className="flex flex-wrap gap-2 shrink-0 self-start md:self-end">
-                {(["Semua", "Praktik PPL", "Projek Kepemimpinan", "Gelar Karya & Seminar", "Video Pembelajaran"] as const).map(cat => (
+                {(["Semua", "Praktik Mengajar","Budaya Sekolah" ,"Projek Kepemimpinan", "Video Pembelajaran"] as const).map(cat => (
                   <button
                     key={cat}
                     onClick={() => setGalleryCategory(cat)}
