@@ -844,7 +844,7 @@ function App() {
 
                   {/* Name and Tagline Under Photo Frame */}
                   <div className="mt-3">
-                    <h2 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight">Resa Martyaningsih, S.Pd.</h2>
+                    <h2 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight">Resa Martyaningsih, S.Kom.</h2>
                     <p className="text-xs font-medium text-indigo-300 mt-0.5">Guru Informatika · Fasilitator Pembelajaran</p>
                   </div>
                 </div>
@@ -1438,7 +1438,7 @@ function App() {
       {/* FOOTER */}
       <footer className="border-t border-white/10 px-6 py-8 bg-zinc-950">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 text-sm text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Resa Martyaningsih, S.Pd. · Portofolio PPG Prajabatan Informatika UNY.</p>
+          <p>© {new Date().getFullYear()} Resa Martyaningsih, S.Kom. · Portofolio PPG Prajabatan Informatika UNY.</p>
           <p className="text-zinc-500">Reflect · Adapt · Teach · Keep Learning.</p>
         </div>
       </footer>
