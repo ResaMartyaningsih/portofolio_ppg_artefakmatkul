@@ -590,7 +590,7 @@ function App() {
   const [profileImage, setProfileImage] = useState<string>(() => {
     const saved = localStorage.getItem("resa_profile_pic");
     if (saved && saved !== "/profile.jpg") return saved;
-    return "/Profil.png";
+    return "/profil_formal.jpg";
   });
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [tempPhotoUrl, setTempPhotoUrl] = useState("");
@@ -658,7 +658,7 @@ function App() {
   const closeMenu = () => setMenuOpen(false);
 
   const handleSavePhotoUrl = (url: string) => {
-    const target = url.trim() || "/Profil.png";
+    const target = url.trim() || "/profil_formal.jpg";
     setProfileImage(target);
     localStorage.setItem("resa_profile_pic", target);
     setShowPhotoModal(false);
@@ -812,7 +812,7 @@ function App() {
                           className="size-full object-cover object-top transition duration-500 group-hover:scale-105"
                           onError={(e) => {
                             if (e.currentTarget.src !== window.location.origin + "/profile-placeholder.svg") {
-                              e.currentTarget.src = "Profil.png";
+                              e.currentTarget.src = "profil_formal.jpg";
                             }
                           }}
                         />
