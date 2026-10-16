@@ -1,12 +1,21 @@
 import { FormEvent, useMemo, useState, useEffect } from "react";
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
-  ArrowUpRight, Check, ChevronRight, Code2, ExternalLink,
+  ArrowUpRight, ArrowRight, Check, ChevronRight, Code2, ExternalLink,
   GraduationCap, Layers3, Mail, Menu, Send, Sparkles, X,
   Camera, Compass, Target, BookOpen, Heart, Award, Play,
   Maximize2, User, MapPin, Calendar, CheckCircle2, Film,
   ChevronLeft, RefreshCw, Info
 } from "lucide-react";
+
+import { PraktikMandiriHub } from "./components/praktik-mandiri/PraktikMandiriHub";
+import { SubpageNav } from "./components/praktik-mandiri/SubpageNav";
+import { SubpageRancangan } from "./components/praktik-mandiri/SubpageRancangan";
+import { SubpageMateri } from "./components/praktik-mandiri/SubpageMateri";
+import { SubpageMedia } from "./components/praktik-mandiri/SubpageMedia";
+import { SubpageVideo } from "./components/praktik-mandiri/SubpageVideo";
+import { SubpageNonmengajar } from "./components/praktik-mandiri/SubpageNonmengajar";
+import { SubpagePenilaian } from "./components/praktik-mandiri/SubpagePenilaian";
 
 // Add the missing category strings to your union type
 export type category =
@@ -483,7 +492,7 @@ const galleryItems: GalleryItem[] = [
     category: "Budaya Sekolah",
     type: "photo",
     title: "Tradisi Salim & Pembiasaan Karakter Hormat di Pagi Hari",
-    date: "Februari 2026",
+    date: "Agustus - Oktober 2026",
     semester: "Semester II",
     location: "Pintu Masuk SMAN 3 Yogyakarta",
     thumbnail: "/dokumentasi/semester2/ds24.jpeg",
@@ -496,22 +505,22 @@ const galleryItems: GalleryItem[] = [
     id: "ds25",
     category: "Budaya Sekolah",
     type: "photo",
-    title: "Gelar Karya P5: Stand Kewirausahaan Kreatif Peserta Didik",
-    date: "Februari 2026",
+    title: "Festival Makan Ikan oleh Dinas Kelautan & Perikanan DIY",
+    date: "26 Agustus 2026",
     semester: "Semester II",
     location: "Halaman Kampus SMAN 3 Yogyakarta",
     thumbnail: "/dokumentasi/semester2/ds25.jpeg",
     mediaUrl: "/dokumentasi/semester2/ds25.jpeg",
-    description: "Pendampingan dan apresiasi pada festival bazar kewirausahaan Projek Penguatan Profil Pelajar Pancasila (P5) karya kolaboratif siswa.",
-    reflection: "Projek P5 melatih kepemimpinan murid (student agency), kreativitas ekonomi, dan kerja sama tim dalam menghasilkan produk nyata.",
-    tags: ["Gelar Karya P5", "Kewirausahaan", "Profil Pelajar Pancasila"]
+    description: "Acara Festival Makan Ikan yang diselenggarakan oleh Dinas Kelautan dan Perikanan DIY",
+    reflection: "Melalui kegiatan Festival Makan Ikan dan Lomba Memasak Ikan Tuna, pembelajaran tidak hanya berfokus pada transfer pengetahuan gizi, tetapi juga menjadi wadah pembentukan karakter (student agency), kreativitas, dan kolaborasi nyata siswa dalam menyelesaikan tantangan berbasis proyek.",
+    tags: ["Festival", "Kewirausahaan", "Profil Pelajar Pancasila"]
   },
   {
     id: "ds26",
     category: "Budaya Sekolah",
     type: "photo",
     title: "Jalan Sehat & Senam Bugar Bersama Komunitas Padmanaba",
-    date: "Maret 2026",
+    date: "20 September 2026",
     semester: "Semester II",
     location: "Kawasan SMAN 3 Yogyakarta",
     thumbnail: "/dokumentasi/semester2/ds26.jpeg",
@@ -519,6 +528,20 @@ const galleryItems: GalleryItem[] = [
     description: "Mengikuti rangkaian kegiatan kebugaran jasmani bersama kepala sekolah, dewan guru, karyawan, dan seluruh peserta didik SMAN 3 Yogyakarta.",
     reflection: "Keterlibatan guru dalam agenda non-akademik mempererat rasa kekeluargaan dan menciptakan kedekatan emosional yang melampaui batas ruang kelas.",
     tags: ["Jalan Sehat", "Kebugaran", "Komunitas Sekolah", "Padmanaba"]
+  },
+  {
+    id: "ds27",
+    category: "Bimbingan & Diskusi",
+    type: "photo",
+    title: "Konsultasi Reflektif & Bimbingan Keprofesian bersama Guru Pamong",
+    date: "Agustus - Oktober 2026",
+    semester: "Semester II",
+    location: "Ruang Kerja Guru SMAN 3 Yogyakarta",
+    thumbnail: "/dokumentasi/semester2/ds27.jpeg",
+    mediaUrl: "/dokumentasi/semester2/ds27.jpeg",
+    description: "Sesi dialog profesional terstruktur bersama Guru Pamong mengevaluasi ketercapaian siklus mengajar mandiri dan merumuskan intervensi perbaikan KBM.",
+    reflection: "Bimbingan berkala bersama Guru Pamong membantu melihat area perbaikan pedagogik dan memperkaya wawasan metodologis guru calon profesional.",
+    tags: ["Bimbingan Guru Pamong", "Refleksi Klinis", "PPL II Mandiri"]
   },
 
   // VIDEO PEMBELAJARAN
@@ -530,7 +553,7 @@ const galleryItems: GalleryItem[] = [
     date: "November 2026",
     semester: "Semester I",
     location: "Laboratorium Komputer SMAN 3 Yogyakarta",
-    thumbnail: "https://drive.google.com/file/d/1Kk6vlD7RvTH29VevfUQdy5fWjbOkSJwh/view?usp=sharing",
+    thumbnail: "/dokumentasi/semester1/ds6.jpg",
     mediaUrl: "https://drive.google.com/file/d/1Kk6vlD7RvTH29VevfUQdy5fWjbOkSJwh/view?usp=sharing",
     driveLink: "https://drive.google.com/file/d/1Kk6vlD7RvTH29VevfUQdy5fWjbOkSJwh/view?usp=sharing",
     description: "Rekaman video pelaksanaan praktik mengajar terbimbing di laboratorium komputer SMAN 3 Yogyakarta. Mendemonstrasikan apersepsi kontekstual materi IoT, demonstrasi simulasi, pendampingan kelompok, dan asesmen formatif interaktif.",
@@ -541,13 +564,13 @@ const galleryItems: GalleryItem[] = [
     id: "vid-2",
     category: "Video Pembelajaran",
     type: "video",
-    title: "Video 2 Praktik Pembelajaran Terbimbing (PPL I) - Lab Informatika",
-    date: "Februari 2026",
-    semester: "Semester I",
+    title: "Video 2 Praktik Pembelajaran Mandiri (PPL II) - Lab Informatika",
+    date: "Oktober 2026",
+    semester: "Semester II",
     location: "Laboratorium Komputer SMAN 3 Yogyakarta",
-    thumbnail: "https://drive.google.com/file/d/1ZJgBLvhTwkjyUKV8pE3dsDe7Qzt40GWv/view?usp=sharing",
-    mediaUrl: "https://drive.google.com/file/d/1ZJgBLvhTwkjyUKV8pE3dsDe7Qzt40GWv/view?usp=sharing",
-    driveLink: "https://drive.google.com/file/d/1ZJgBLvhTwkjyUKV8pE3dsDe7Qzt40GWv/view?usp=sharing",
+    thumbnail: "/dokumentasi/semester2/ds22.jpeg",
+    mediaUrl: "https://drive.google.com/file/d/1NRh5Bbh-PnXsLHqT3Vt96xhnGNipoAuF/view?usp=sharing",
+    driveLink: "https://drive.google.com/file/d/1NRh5Bbh-PnXsLHqT3Vt96xhnGNipoAuF/view?usp=sharing",
     description: "Dokumentasi video pembelajaran mandiri dengan fokus diferensiasi proses dan scaffolding bertahap pada materi pemrograman dan pemecahan masalah algoritma.",
     reflection: "Video memperlihatkan transisi dari pembelajaran terpusat pada guru menuju peran guru sebagai fasilitator yang berkeliling mendampingi siswa secara personal dan suportif.",
     tags: ["Video PPL 2", "Pembelajaran Mandiri", "Diferensiasi", "Scaffolding"]
@@ -579,8 +602,9 @@ function App() {
   const [semester, setSemester] = useState<"All" | Semester>("All");
   const [selected, setSelected] = useState<Project | null>(null);
 
-  // State Galeri
-  const [galleryCategory, setGalleryCategory] = useState<GalleryCategory>("Semua");
+  // State Galeri (Dua Tab Interaktif: Semester 1 & Semester 2)
+  const [galleryTab, setGalleryTab] = useState<"Semester 1" | "Semester 2">("Semester 1");
+  const [gallerySubFilter, setGallerySubFilter] = useState<string>("Semua");
   const [selectedGallery, setSelectedGallery] = useState<GalleryItem | null>(null);
 
   // State About Tabs
@@ -598,30 +622,114 @@ function App() {
   const [sent, setSent] = useState(false);
   const [formError, setFormError] = useState("");
 
+  // Routing / View state for Praktik Mengajar Mandiri
+  const [viewMode, setViewMode] = useState<string>(() => {
+    const hash = typeof window !== "undefined" ? window.location.hash.replace("#", "") : "";
+    if (
+      hash === "praktik-mandiri" ||
+      hash.startsWith("analisis-")
+    ) {
+      return hash;
+    }
+    return "home";
+  });
+
+  const navigateToView = (targetView: string, sectionHash?: string) => {
+    setViewMode(targetView);
+    if (targetView === "home") {
+      window.location.hash = sectionHash || "#home";
+      if (sectionHash && sectionHash !== "#home") {
+        setTimeout(() => {
+          const el = document.getElementById(sectionHash.replace("#", ""));
+          el?.scrollIntoView({ behavior: "smooth" });
+        }, 80);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } else {
+      window.location.hash = `#${targetView}`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (
+        hash === "praktik-mandiri" ||
+        hash === "analisis-rancangan" ||
+        hash === "analisis-materi" ||
+        hash === "analisis-media" ||
+        hash === "analisis-video" ||
+        hash === "analisis-nonmengajar" ||
+        hash === "analisis-penilaian"
+      ) {
+        setViewMode(hash);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (!hash || ["home", "about", "projects", "skills", "gallery", "contact"].includes(hash)) {
+        setViewMode("home");
+      }
+    };
+
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
   const visibleProjects = useMemo(
     () => semester === "All" ? projects : projects.filter(p => p.semester === semester),
     [semester]
   );
 
-  const categoryCounts = useMemo(() => {
+  // Data Galeri per Semester (Dua Tab Interaktif)
+  const semesterCounts = useMemo(() => {
     return {
-      "Semua": galleryItems.length,
-      "Semester I": galleryItems.filter(g => g.semester === "Semester I").length,
-      "Semester II": galleryItems.filter(g => g.semester === "Semester II").length,
-      "Praktik Mengajar": galleryItems.filter(g => g.category === "Praktik Mengajar").length,
-      "Budaya Sekolah": galleryItems.filter(g => g.category === "Budaya Sekolah").length,
-      "Bimbingan & Diskusi": galleryItems.filter(g => g.category === "Bimbingan & Diskusi").length,
-      "Video Pembelajaran": galleryItems.filter(g => g.type === "video" || g.category === "Video Pembelajaran").length,
+      "Semester 1": galleryItems.filter(g => g.semester === "Semester I").length,
+      "Semester 2": galleryItems.filter(g => g.semester === "Semester II").length,
     };
   }, []);
 
+  const currentSemesterItems = useMemo(() => {
+    const target = galleryTab === "Semester 1" ? "Semester I" : "Semester II";
+    return galleryItems.filter(item => item.semester === target);
+  }, [galleryTab]);
+
+  const currentSubCategories = useMemo(() => {
+    const isSem1 = galleryTab === "Semester 1";
+    const semItems = isSem1
+      ? galleryItems.filter(g => g.semester === "Semester I")
+      : galleryItems.filter(g => g.semester === "Semester II");
+
+    const allCount = semItems.length;
+    const pmCount = semItems.filter(g => g.category === "Praktik Mengajar").length;
+    const bsCount = semItems.filter(g => g.category === "Budaya Sekolah").length;
+    const bdCount = semItems.filter(g => g.category === "Bimbingan & Diskusi").length;
+    const vidCount = semItems.filter(g => g.type === "video" || g.category === "Video Pembelajaran").length;
+
+    return [
+      { label: "Semua", value: "Semua", count: allCount },
+      {
+        label: isSem1 ? "Praktik Mengajar (Terbimbing)" : "Praktik Mengajar (Mandiri)",
+        value: "Praktik Mengajar",
+        count: pmCount
+      },
+      {
+        label: isSem1 ? "Observasi Lingkungan & Budaya" : "Kegiatan Nonmengajar",
+        value: "Budaya Sekolah",
+        count: bsCount
+      },
+      { label: "Bimbingan & Diskusi", value: "Bimbingan & Diskusi", count: bdCount },
+      { label: "Video Pembelajaran", value: "Video Pembelajaran", count: vidCount },
+    ];
+  }, [galleryTab]);
+
   const visibleGallery = useMemo(() => {
-    if (galleryCategory === "Semua") return galleryItems;
-    if (galleryCategory === "Semester I") return galleryItems.filter(g => g.semester === "Semester I");
-    if (galleryCategory === "Semester II") return galleryItems.filter(g => g.semester === "Semester II");
-    if (galleryCategory === "Video Pembelajaran") return galleryItems.filter(g => g.type === "video" || g.category === "Video Pembelajaran");
-    return galleryItems.filter(g => g.category === galleryCategory);
-  }, [galleryCategory]);
+    if (gallerySubFilter === "Semua") return currentSemesterItems;
+    if (gallerySubFilter === "Video Pembelajaran") {
+      return currentSemesterItems.filter(g => g.type === "video" || g.category === "Video Pembelajaran");
+    }
+    return currentSemesterItems.filter(g => g.category === gallerySubFilter);
+  }, [currentSemesterItems, gallerySubFilter]);
 
   const currentGalleryIndex = useMemo(
     () => visibleGallery.findIndex(item => item.id === selectedGallery?.id),
@@ -629,16 +737,34 @@ function App() {
   );
 
   const handlePrevGallery = () => {
+    if (visibleGallery.length === 0) return;
     if (currentGalleryIndex > 0) {
       setSelectedGallery(visibleGallery[currentGalleryIndex - 1]);
+    } else {
+      setSelectedGallery(visibleGallery[visibleGallery.length - 1]);
     }
   };
 
   const handleNextGallery = () => {
+    if (visibleGallery.length === 0) return;
     if (currentGalleryIndex >= 0 && currentGalleryIndex < visibleGallery.length - 1) {
       setSelectedGallery(visibleGallery[currentGalleryIndex + 1]);
+    } else {
+      setSelectedGallery(visibleGallery[0]);
     }
   };
+
+  // Keyboard navigation untuk modal perbesaran foto / video
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedGallery) return;
+      if (e.key === "Escape") setSelectedGallery(null);
+      if (e.key === "ArrowLeft") handlePrevGallery();
+      if (e.key === "ArrowRight") handleNextGallery();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedGallery, currentGalleryIndex, visibleGallery]);
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -693,7 +819,15 @@ function App() {
       {/* Navigation Bar */}
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
         <nav className="glass mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 shadow-2xl shadow-black/30 border border-white/10">
-          <a href="#home" onClick={closeMenu} className="flex items-center gap-3 group" aria-label="Resa Martyaningsih home">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateToView("home", "#home");
+            }}
+            className="flex items-center gap-3 group"
+            aria-label="Resa Martyaningsih home"
+          >
             <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-sm font-bold text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition">RM</span>
             <div className="hidden sm:block text-left">
               <span className="block font-display text-sm font-semibold text-white leading-tight">Resa Martyaningsih</span>
@@ -701,21 +835,103 @@ function App() {
             </div>
           </a>
 
-          <div className="hidden items-center gap-7 text-sm font-medium text-zinc-400 md:flex">
-            {[
-              { label: "About", href: "#about" },
-              { label: "Projects", href: "#projects" },
-              { label: "Skills", href: "#skills" },
-              { label: "Galeri & Rekap", href: "#gallery" },
-              { label: "Contact", href: "#contact" }
-            ].map(item => (
-              <a key={item.label} className="transition duration-200 hover:text-white" href={item.href}>{item.label}</a>
-            ))}
+          <div className="hidden items-center gap-5 text-sm font-medium text-zinc-400 lg:flex">
+            <a
+              href="#about"
+              onClick={(e) => {
+                if (viewMode !== "home") {
+                  e.preventDefault();
+                  navigateToView("home", "#about");
+                }
+              }}
+              className="transition duration-200 hover:text-white"
+            >
+              About
+            </a>
+
+            <a
+              href="#projects"
+              onClick={(e) => {
+                if (viewMode !== "home") {
+                  e.preventDefault();
+                  navigateToView("home", "#projects");
+                }
+              }}
+              className="transition duration-200 hover:text-white"
+            >
+              Projects
+            </a>
+
+            {/* MENU UTAMA BARU: PRAKTIK MENGAJAR MANDIRI */}
+            <a
+              href="#praktik-mandiri"
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToView("praktik-mandiri");
+              }}
+              className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-semibold transition duration-200 ${viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-")
+                ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-md shadow-indigo-500/25"
+                : "border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 hover:text-white hover:border-indigo-400"
+                }`}
+            >
+              <Sparkles size={13} className={viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-") ? "text-white" : "text-indigo-400"} />
+              <span>Praktik Mengajar Mandiri</span>
+            </a>
+
+            <a
+              href="#skills"
+              onClick={(e) => {
+                if (viewMode !== "home") {
+                  e.preventDefault();
+                  navigateToView("home", "#skills");
+                }
+              }}
+              className="transition duration-200 hover:text-white"
+            >
+              Skills
+            </a>
+
+            <a
+              href="#gallery"
+              onClick={(e) => {
+                if (viewMode !== "home") {
+                  e.preventDefault();
+                  navigateToView("home", "#gallery");
+                }
+              }}
+              className="transition duration-200 hover:text-white"
+            >
+              Galeri &amp; Rekap
+            </a>
+
+            <a
+              href="#contact"
+              onClick={(e) => {
+                if (viewMode !== "home") {
+                  e.preventDefault();
+                  navigateToView("home", "#contact");
+                }
+              }}
+              className="transition duration-200 hover:text-white"
+            >
+              Contact
+            </a>
           </div>
 
-          <a href="#contact" className="hidden rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:bg-zinc-200 md:block">Let's connect</a>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              if (viewMode !== "home") {
+                e.preventDefault();
+                navigateToView("home", "#contact");
+              }
+            }}
+            className="hidden rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:bg-zinc-200 sm:block"
+          >
+            Let's connect
+          </a>
 
-          <button className="rounded-xl p-2 text-zinc-300 hover:text-white md:hidden" onClick={() => setMenuOpen(v => !v)} aria-label={menuOpen ? "Tutup menu" : "Buka menu"}>
+          <button className="rounded-xl p-2 text-zinc-300 hover:text-white lg:hidden" onClick={() => setMenuOpen(v => !v)} aria-label={menuOpen ? "Tutup menu" : "Buka menu"}>
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </nav>
@@ -724,722 +940,1013 @@ function App() {
         <AnimatePresence>
           {menuOpen && (
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              className="glass mx-auto mt-2 max-w-6xl rounded-2xl p-4 md:hidden border border-white/15 shadow-2xl">
-              {[
-                { label: "About", href: "#about" },
-                { label: "Projects", href: "#projects" },
-                { label: "Skills", href: "#skills" },
-                { label: "Galeri & Rekap Foto/Video", href: "#gallery" },
-                { label: "Contact", href: "#contact" }
-              ].map(item => (
-                <a key={item.label} href={item.href} onClick={closeMenu} className="block rounded-xl px-4 py-3 text-zinc-300 hover:bg-white/5 hover:text-white font-medium">{item.label}</a>
-              ))}
+              className="glass mx-auto mt-2 max-w-6xl rounded-2xl p-4 lg:hidden border border-white/15 shadow-2xl space-y-1">
+              <a
+                href="#about"
+                onClick={(e) => {
+                  if (viewMode !== "home") {
+                    e.preventDefault();
+                    navigateToView("home", "#about");
+                  } else {
+                    closeMenu();
+                  }
+                }}
+                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+              >
+                About
+              </a>
+
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  if (viewMode !== "home") {
+                    e.preventDefault();
+                    navigateToView("home", "#projects");
+                  } else {
+                    closeMenu();
+                  }
+                }}
+                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+              >
+                Projects
+              </a>
+
+              {/* MENU UTAMA BARU DI MOBILE */}
+              <a
+                href="#praktik-mandiri"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToView("praktik-mandiri");
+                }}
+                className={`flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-sm transition ${viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-")
+                  ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-indigo-500/20"
+                  : "border border-indigo-500/30 bg-indigo-500/10 text-indigo-300"
+                  }`}
+              >
+                <span className="flex items-center gap-2">
+                  <Sparkles size={15} />
+                  <span>Praktik Mengajar Mandiri</span>
+                </span>
+                <span className="text-[10px] bg-white/20 px-2.5 py-0.5 rounded-full font-bold">6 Analisis</span>
+              </a>
+
+              <a
+                href="#skills"
+                onClick={(e) => {
+                  if (viewMode !== "home") {
+                    e.preventDefault();
+                    navigateToView("home", "#skills");
+                  } else {
+                    closeMenu();
+                  }
+                }}
+                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+              >
+                Skills
+              </a>
+
+              <a
+                href="#gallery"
+                onClick={(e) => {
+                  if (viewMode !== "home") {
+                    e.preventDefault();
+                    navigateToView("home", "#gallery");
+                  } else {
+                    closeMenu();
+                  }
+                }}
+                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+              >
+                Galeri &amp; Rekap Foto/Video
+              </a>
+
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  if (viewMode !== "home") {
+                    e.preventDefault();
+                    navigateToView("home", "#contact");
+                  } else {
+                    closeMenu();
+                  }
+                }}
+                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+              >
+                Contact
+              </a>
             </motion.div>
           )}
         </AnimatePresence>
       </header>
 
       <main>
-        {/* HERO SECTION */}
-        <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-32">
-          <div className="grid-bg absolute inset-0 -z-20" />
-          <div className="absolute left-1/2 top-0 -z-10 size-[45rem] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
-          <motion.div style={{ y }} className="absolute right-[-12rem] top-1/3 -z-10 size-[28rem] rounded-full bg-fuchsia-500/10 blur-3xl pointer-events-none" />
+        {viewMode === "home" ? (
+          <>
+            {/* HERO SECTION */}
+            <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-32">
+              <div className="grid-bg absolute inset-0 -z-20" />
+              <div className="absolute left-1/2 top-0 -z-10 size-[45rem] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
+              <motion.div style={{ y }} className="absolute right-[-12rem] top-1/3 -z-10 size-[28rem] rounded-full bg-fuchsia-500/10 blur-3xl pointer-events-none" />
 
-          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
+              <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
 
-            {/* Left Column: Headline & Intro */}
-            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-indigo-300 backdrop-blur-md">
-                <Sparkles size={15} className="text-indigo-300" />
-                <span>PPG Prajabatan · Pendidikan Informatika UNY</span>
-              </div>
-
-              <h1 className="max-w-5xl font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.06] tracking-tight text-white">
-                Mendidik melalui <span className="bg-gradient-to-r from-indigo-300 via-purple-200 to-fuchsia-300 bg-clip-text text-transparent">Informatika.</span>
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-400">
-                Resa Martyaningsih, S.Kom. — calon guru Informatika profesional yang mengintegrasikan computational thinking, pedagogi berpusat pada murid, growth mindset dalam coding, dan refleksi berkelanjutan berbasis data.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#projects" className="group inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10">
-                  <span>Explore Work</span>
-                  <ArrowUpRight size={17} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-                <a href="#gallery" className="inline-flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-5 py-3 font-semibold text-indigo-200 transition hover:bg-indigo-500/20 hover:border-indigo-400">
-                  <Film size={17} />
-                  <span>Galeri Kegiatan</span>
-                </a>
-                <a href="#about" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/5">
-                  <span>Profil &amp; Visi</span>
-                  <ChevronRight size={17} />
-                </a>
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-zinc-400">
-                <span className="flex items-center gap-2">
-                  <GraduationCap size={16} className="text-indigo-400" />
-                  Universitas Negeri Yogyakarta
-                </span>
-                <span className="flex items-center gap-2">
-                  <Code2 size={16} className="text-indigo-400" />
-                  Python · Computational Thinking · DUP
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Hero Profile Picture Frame & Showcase */}
-            <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .15 }}
-              className="relative mx-auto w-full max-w-md">
-              <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-fuchsia-500/15 blur-2xl pointer-events-none" />
-
-              <div className="glass relative rounded-[2.2rem] p-6 shadow-glow border border-white/15">
-
-                {/* Profile Photo Frame with Glowing Border */}
-                <div className="relative mb-5 text-center">
-                  <div className="relative mx-auto w-44 sm:w-52 group">
-                    {/* Outer Ambient Glow Ring */}
-                    <div className="absolute -inset-1 rounded-[2.2rem] bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 opacity-70 blur-md transition duration-500 group-hover:opacity-100" />
-
-                    {/* Outer Multi-layered Border Frame */}
-                    <div className="relative overflow-hidden rounded-[2.1rem] border-2 border-indigo-300/40 bg-zinc-900 p-1.5 shadow-2xl shadow-black/50">
-                      <div className="relative aspect-square overflow-hidden rounded-[1.8rem] bg-zinc-950">
-                        <img
-                          src={profileImage}
-                          alt="Foto Profil Resa Martyaningsih"
-                          className="size-full object-cover object-top transition duration-500 group-hover:scale-105"
-                          onError={(e) => {
-                            if (e.currentTarget.src !== window.location.origin + "/profile-placeholder.svg") {
-                              e.currentTarget.src = "profil_formal.jpg";
-                            }
-                          }}
-                        />
-
-                        {/* Floating Status Badge inside Photo */}
-                        <div className="absolute inset-x-2 bottom-2 flex items-center justify-between rounded-xl bg-zinc-950/80 px-2.5 py-1.5 backdrop-blur-md border border-white/10 text-[11px]">
-                          <div className="flex items-center gap-1.5">
-                            <span className="relative flex h-2 w-2">
-                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                            </span>
-                            <span className="font-medium text-emerald-300">PPG Calon Guru</span>
-                          </div>
-                          <button
-                            onClick={() => {
-                              setTempPhotoUrl(profileImage === "/profile.jpg" ? "" : profileImage);
-                              setShowPhotoModal(true);
-                            }}
-                            className="flex items-center gap-1 rounded px-1.5 py-0.5 text-zinc-300 hover:text-white hover:bg-white/10 transition"
-                            title="Klik untuk mengganti tautan foto profil"
-                          >
-                            <Camera size={12} className="text-indigo-300" />
-                            <span>Ganti</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                {/* Left Column: Headline & Intro */}
+                <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}>
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-indigo-300 backdrop-blur-md">
+                    <Sparkles size={15} className="text-indigo-300" />
+                    <span>PPG Prajabatan · Pendidikan Informatika UNY</span>
                   </div>
 
-                  {/* Name and Tagline Under Photo Frame */}
-                  <div className="mt-3">
-                    <h2 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight">Resa Martyaningsih, S.Kom.</h2>
-                    <p className="text-xs font-medium text-indigo-300 mt-0.5">Guru Informatika · Fasilitator Pembelajaran</p>
-                  </div>
-                </div>
+                  <h1 className="max-w-5xl font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.06] tracking-tight text-white">
+                    Mendidik melalui <span className="bg-gradient-to-r from-indigo-300 via-purple-200 to-fuchsia-300 bg-clip-text text-transparent">Informatika.</span>
+                  </h1>
 
-                {/* Focus Pillars */}
-                <div className="border-t border-white/10 pt-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <p className="text-xs font-semibold uppercase tracking-[.2em] text-zinc-400">Pedagogical Focus</p>
-                    <Layers3 size={16} className="text-indigo-300" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      ["01", "Understand learners", "Profiling & kesiapan"],
-                      ["02", "Design access", "DUP & diferensiasi"],
-                      ["03", "Build confidence", "Growth mindset & CASEL"],
-                      ["04", "Improve continuously", "Refleksi data & PTK"]
-                    ].map(([n, t, d]) => (
-                      <div key={n} className="rounded-xl border border-white/10 bg-black/30 p-2.5 transition hover:border-indigo-400/30">
-                        <span className="font-mono text-[10px] font-bold text-indigo-300">{n}</span>
-                        <p className="text-xs font-semibold text-zinc-200 leading-tight mt-0.5">{t}</p>
-                        <p className="text-[10px] text-zinc-400 leading-snug mt-1">{d}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                  <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-400">
+                    Resa Martyaningsih, S.Kom. — calon guru Informatika profesional yang mengintegrasikan computational thinking, pedagogi berpusat pada murid, growth mindset dalam coding, dan refleksi berkelanjutan berbasis data.
+                  </p>
 
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ABOUT SECTION (Profil Pribadi, Visi & Misi, Nilai Inti) */}
-        <section id="about" className="px-6 py-28 border-t border-white/5">
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
-              <SectionHeading
-                kicker="01 · About"
-                title="Profil, Visi & Filosofi Pendidik"
-                copy="Memadukan kompetensi teknis teknologi informasi dengan kepekaan pedagogik untuk menumbuhkan potensi setiap peserta didik."
-              />
-
-              {/* Navigation Tabs inside About */}
-              <div className="flex items-center gap-1.5 rounded-2xl border border-white/10 bg-black/40 p-1.5 shrink-0 self-start md:self-end">
-                {[
-                  { id: "profil", label: "Profil Pribadi", icon: User },
-                  { id: "visi-misi", label: "Visi & Misi", icon: Target },
-                  { id: "nilai", label: "Filosofi Mengajar", icon: Heart }
-                ].map(tab => {
-                  const Icon = tab.icon;
-                  const isActive = aboutTab === tab.id;
-                  return (
+                  <div className="mt-8 flex flex-wrap gap-3">
                     <button
-                      key={tab.id}
-                      onClick={() => setAboutTab(tab.id as typeof aboutTab)}
-                      className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition duration-200 ${isActive
-                        ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
-                        : "text-zinc-400 hover:text-white hover:bg-white/5"
-                        }`}
+                      onClick={() => navigateToView("praktik-mandiri")}
+                      className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-5 py-3 font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:scale-[1.02]"
                     >
-                      <Icon size={15} />
-                      <span>{tab.label}</span>
+                      <Sparkles size={17} />
+                      <span>Praktik Mengajar Mandiri</span>
                     </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* TAB CONTENT: PROFIL PRIBADI */}
-            {aboutTab === "profil" && (
-              <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
-                className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
-
-                {/* Left Card: Biodata & Refleksi Personal */}
-                <div className="glass rounded-3xl p-6 sm:p-8 space-y-6 border border-white/10">
-                  <div className="flex items-start gap-4">
-                    <div className="grid size-12 place-items-center rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
-                      <User size={24} />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-2xl font-bold text-white">Resa Martyaningsih, S.Kom.</h3>
-                      <p className="text-sm text-indigo-300">Calon Guru Profesional · Mahasiswa PPG Prajabatan Informatik</p>
-                    </div>
+                    <a href="#projects" className="group inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10">
+                      <span>Explore Work</span>
+                      <ArrowUpRight size={17} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                    <a href="#gallery" className="inline-flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-5 py-3 font-semibold text-indigo-200 transition hover:bg-indigo-500/20 hover:border-indigo-400">
+                      <Film size={17} />
+                      <span>Galeri Kegiatan</span>
+                    </a>
+                    <a href="#about" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/5">
+                      <span>Profil &amp; Visi</span>
+                      <ChevronRight size={17} />
+                    </a>
                   </div>
 
-                  <p className="text-base sm:text-lg leading-relaxed text-zinc-300">
-                    Saya merupakan lulusan kependidikan bidang Informatika yang berdedikasi untuk menciptakan pengalaman belajar komputasi yang menyenangkan, inklusif, dan relevan. Bagi saya, pembelajaran Informatika bukan sekadar transfer sintaks pemrograman, melainkan wahana melatih kemampuan bernalar kritis, memecahkan masalah (*problem solving*), dan membangun karakter tangguh.
-                  </p>
-
-                  <p className="text-base leading-relaxed text-zinc-400">
-                    Selama menjalani perkuliahan dan PPL di PPG Prajabatan Universitas Negeri Yogyakarta, saya mendalami perancangan modul ajar berbasis <strong>Desain Universal untuk Pembelajaran (DUP)</strong>, asesmen diagnostik, serta integrasi <strong>Pembelajaran Sosial Emosional (CASEL)</strong> agar siswa tidak merasa terintimidasi oleh baris kode maupun eror logika.
-                  </p>
-
-                  {/* Biodata Quick Facts */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 text-sm">
-                    <div className="flex items-center gap-2.5 text-zinc-400">
-                      <GraduationCap size={16} className="text-indigo-400 shrink-0" />
-                      <span><strong>LPTK:</strong> UNY (PPG Prajabatan)</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-zinc-400">
-                      <Award size={16} className="text-indigo-400 shrink-0" />
-                      <span><strong>Keahlian:</strong> Informatika &amp; Pemrograman</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-zinc-400">
-                      <MapPin size={16} className="text-indigo-400 shrink-0" />
-                      <span><strong>Domisili:</strong> Gunungkidul, D.I. Yogyakarta, Indonesia</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-zinc-400">
-                      <Mail size={16} className="text-indigo-400 shrink-0" />
-                      <span className="truncate"><strong>Email:</strong> resamartyaningsih.2025@student.uny.ac.id</span>
-                    </div>
+                  <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-zinc-400">
+                    <span className="flex items-center gap-2">
+                      <GraduationCap size={16} className="text-indigo-400" />
+                      Universitas Negeri Yogyakarta
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <Code2 size={16} className="text-indigo-400" />
+                      Python · Computational Thinking · DUP
+                    </span>
                   </div>
-                </div>
+                </motion.div>
 
-                {/* Right Card: Kompetensi & Minat Utama */}
-                <div className="space-y-4">
-                  <div className="glass rounded-3xl p-6 border border-white/10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <BookOpen size={20} className="text-indigo-300" />
-                      <h4 className="font-display text-lg font-bold text-white">Kompetensi Pedagogik Unggulan</h4>
-                    </div>
-                    <ul className="space-y-3 text-sm text-zinc-300">
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                        <span><strong>Asesmen Diagnostik &amp; Profiling:</strong> Mengidentifikasi modalitas belajar, kesiapan logika, dan minat coding siswa sebelum memulai modul.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                        <span><strong>Desain Universal untuk Pembelajaran (DUP):</strong> Menyediakan ragam cara representasi materi (visual flowchart, starter code, studi kasus) dan opsi penugasan.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                        <span><strong>Pola Pikir Bertumbuh (Growth Mindset):</strong> Membiasakan <em>The Power of Yet</em> agar pesan error menjadi teman belajar, bukan kegagalan.</span>
-                      </li>
-                      <li className="flex items-start gap-2.5">
-                        <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                        <span><strong>Penelitian Tindakan Kelas (PTK):</strong> Siklus terukur <em>Plan-Do-Observe-Reflect</em> untuk menyelesaikan kendala belajar siswa di kelas riil.</span>
-                      </li>
-                    </ul>
-                  </div>
+                {/* Right Column: Hero Profile Picture Frame & Showcase */}
+                <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .15 }}
+                  className="relative mx-auto w-full max-w-md">
+                  <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-fuchsia-500/15 blur-2xl pointer-events-none" />
 
-                  <div className="glass rounded-3xl p-6 border border-white/10 bg-gradient-to-br from-indigo-950/30 to-purple-950/20">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-indigo-300">Komitmen Pendidik</span>
-                      <Sparkles size={16} className="text-indigo-300" />
-                    </div>
-                    <p className="text-sm italic leading-relaxed text-zinc-300">
-                      "Guru bukan sekadar penyampai materi kurikulum, melainkan arsitek ekosistem belajar yang menuntun kodrat alam dan zaman anak dengan cinta kasih dan rasa aman."
-                    </p>
-                  </div>
-                </div>
+                  <div className="glass relative rounded-[2.2rem] p-6 shadow-glow border border-white/15">
 
-              </motion.div>
-            )}
+                    {/* Profile Photo Frame with Glowing Border */}
+                    <div className="relative mb-5 text-center">
+                      <div className="relative mx-auto w-44 sm:w-52 group">
+                        {/* Outer Ambient Glow Ring */}
+                        <div className="absolute -inset-1 rounded-[2.2rem] bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 opacity-70 blur-md transition duration-500 group-hover:opacity-100" />
 
-            {/* TAB CONTENT: VISI & MISI */}
-            {aboutTab === "visi-misi" && (
-              <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
-                className="space-y-8">
+                        {/* Outer Multi-layered Border Frame */}
+                        <div className="relative overflow-hidden rounded-[2.1rem] border-2 border-indigo-300/40 bg-zinc-900 p-1.5 shadow-2xl shadow-black/50">
+                          <div className="relative aspect-square overflow-hidden rounded-[1.8rem] bg-zinc-950">
+                            <img
+                              src={profileImage}
+                              alt="Foto Profil Resa Martyaningsih"
+                              className="size-full object-cover object-top transition duration-500 group-hover:scale-105"
+                              onError={(e) => {
+                                if (e.currentTarget.src !== window.location.origin + "/profile-placeholder.svg") {
+                                  e.currentTarget.src = "profil_formal.jpg";
+                                }
+                              }}
+                            />
 
-                {/* Visi Card */}
-                <div className="relative overflow-hidden rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/60 via-zinc-900/90 to-purple-950/50 p-7 sm:p-10 shadow-2xl">
-                  <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                    <Compass size={180} />
-                  </div>
-                  <div className="relative max-w-3xl">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-300">
-                      <Target size={14} /> Visi Pendidik Informatika
-                    </div>
-                    <h3 className="mt-4 font-display text-2xl sm:text-4xl font-bold leading-tight text-white">
-                      "Mewujudkan pembelajaran Informatika yang transformatif, inklusif, dan humanis guna menuntun kodrat peserta didik menjadi pemecah masalah (*problem solver*) yang bernalar kritis, kreatif, berkarakter luhur, dan berdaya saing di era kecerdasan digital."
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Misi Section */}
-                <div>
-                  <h4 className="font-display text-xl font-bold text-white mb-5 flex items-center gap-2">
-                    <Compass size={20} className="text-indigo-400" />
-                    <span>Misi Strategis &amp; Aksi Konkret Pembelajaran</span>
-                  </h4>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {[
-                      {
-                        num: "01",
-                        title: "Pembelajaran Bermakna & Computational Thinking",
-                        desc: "Menyajikan konsep algoritma, pemrograman, dan literasi digital yang berakar pada konteks kehidupan nyata siswa, sehingga materi tidak dirasakan abstrak melainkan aplikatif.",
-                        tag: "Kontekstual"
-                      },
-                      {
-                        num: "02",
-                        title: "Inklusivitas & Diferensiasi Melalui DUP",
-                        desc: "Menerapkan prinsip Desain Universal untuk Pembelajaran agar setiap siswa—dengan keragaman kesiapan awal dan modalitas belajarnya—memiliki akses dan tantangan yang berkeadilan.",
-                        tag: "Inklusif & Adaptif"
-                      },
-                      {
-                        num: "03",
-                        title: "Penguatan Karakter, Growth Mindset & CASEL",
-                        desc: "Membangun ruang kelas yang aman secara sosial-emosional, di mana kesalahan sintaks (*syntax error*) dipandang sebagai peluang belajar dan melatih ketangguhan mental siswa.",
-                        tag: "Sosial Emosional"
-                      },
-                      {
-                        num: "04",
-                        title: "Refleksi Berkelanjutan & Riset PTK Berbasis Data",
-                        desc: "Membiasakan evaluasi diri berbasis bukti (*evidence-based teaching*) melalui Penelitian Tindakan Kelas (PTK) demi perbaikan kualitas proses pembelajaran secara berkelanjutan.",
-                        tag: "Continuous Learning"
-                      }
-                    ].map(item => (
-                      <div key={item.num} className="glass rounded-2xl p-6 border border-white/10 hover:border-indigo-400/30 transition duration-300">
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-sm font-bold text-indigo-400">{item.num}</span>
-                          <span className="rounded-md bg-white/5 px-2.5 py-0.5 text-xs text-zinc-400">{item.tag}</span>
+                            {/* Floating Status Badge inside Photo */}
+                            <div className="absolute inset-x-2 bottom-2 flex items-center justify-between rounded-xl bg-zinc-950/80 px-2.5 py-1.5 backdrop-blur-md border border-white/10 text-[11px]">
+                              <div className="flex items-center gap-1.5">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                                </span>
+                                <span className="font-medium text-emerald-300">PPG Calon Guru</span>
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setTempPhotoUrl(profileImage === "/profile.jpg" ? "" : profileImage);
+                                  setShowPhotoModal(true);
+                                }}
+                                className="flex items-center gap-1 rounded px-1.5 py-0.5 text-zinc-300 hover:text-white hover:bg-white/10 transition"
+                                title="Klik untuk mengganti tautan foto profil"
+                              >
+                                <Camera size={12} className="text-indigo-300" />
+                                <span>Ganti</span>
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <h5 className="mt-3 font-display text-lg font-bold text-white leading-snug">{item.title}</h5>
-                        <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.desc}</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-              </motion.div>
-            )}
-
-            {/* TAB CONTENT: FILOSOFI & NILAI INTI */}
-            {aboutTab === "nilai" && (
-              <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
-                className="space-y-6">
-                <div className="grid gap-6 sm:grid-cols-3">
-                  {[
-                    {
-                      title: "Reflective",
-                      subtitle: "Belajar dari Pengalaman & Data",
-                      desc: "Setiap sesi mengajar dan praktikum coding dievaluasi melalui jurnal reflektif dan asesmen formatif. Data pembelajaran menjadi kompas perbaikan siklus berikutnya.",
-                      badge: "Siklus PTK"
-                    },
-                    {
-                      title: "Adaptive",
-                      subtitle: "Menyesuaikan dengan Kebutuhan",
-                      desc: "Tidak ada satu metode yang cocok untuk semua siswa. Scaffolding, starter code, dan tantangan bertingkat dirancang sesuai peta kesiapan (*learning readiness*) masing-masing siswa.",
-                      badge: "Diferensiasi"
-                    },
-                    {
-                      title: "Inclusive",
-                      subtitle: "Akses Belajar yang Adil",
-                      desc: "Informatika untuk semua. Setiap murid berhak mengeksplorasi potensi logika komputasinya tanpa diskriminasi, didukung lingkungan kelas yang empatik dan bebas perundungan.",
-                      badge: "DUP & CASEL"
-                    }
-                  ].map(val => (
-                    <div key={val.title} className="glass rounded-3xl p-6 border border-white/10 hover:border-indigo-400/40 transition duration-300 flex flex-col justify-between">
-                      <div>
-                        <span className="inline-block rounded-lg bg-indigo-500/10 px-2.5 py-1 text-xs font-semibold text-indigo-300 mb-3 border border-indigo-500/20">{val.badge}</span>
-                        <h4 className="font-display text-2xl font-bold text-white">{val.title}</h4>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mt-1">{val.subtitle}</p>
-                        <p className="mt-4 text-sm leading-relaxed text-zinc-400">{val.desc}</p>
+                      {/* Name and Tagline Under Photo Frame */}
+                      <div className="mt-3">
+                        <h2 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight">Resa Martyaningsih, S.Kom.</h2>
+                        <p className="text-xs font-medium text-indigo-300 mt-0.5">Guru Informatika · Fasilitator Pembelajaran</p>
                       </div>
                     </div>
-                  ))}
-                </div>
 
-                <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 text-zinc-400 text-sm sm:text-base leading-relaxed">
-                  <p>
-                    <strong>Fondasi Semester I</strong> membangun pemahaman tentang filosofi pendidikan Ki Hajar Dewantara, keberagaman peserta didik, prinsip asesmen, PPL Terbimbing, serta pembudayaan Growth Mindset dalam mengatasi coding anxiety.
-                  </p>
-                  <p className="mt-3">
-                    <strong>Semester II</strong> memperluas wawasan melalui integrasi Pembelajaran Sosial Emosional, asesmen multimoda lanjut, PPL Mandiri, Projek Kepemimpinan komunitas sekolah, serta Pengembangan Keprofesian Berkelanjutan melalui PTK.
-                  </p>
-                </div>
-              </motion.div>
-            )}
-
-          </div>
-        </section>
-
-        {/* PROJECTS SECTION */}
-        <section id="projects" className="border-y border-white/5 bg-white/[0.015] px-6 py-28">
-          <div className="mx-auto max-w-6xl">
-            <SectionHeading
-              kicker="02 · Selected work"
-              title="Projects & learning artifacts"
-              copy="Kumpulan karya yang merepresentasikan perjalanan dari analisis masalah, desain pembelajaran, praktik, hingga rencana perbaikan berbasis data."
-            />
-
-            <div className="mt-10 flex flex-wrap gap-2">
-              {(["All", "Semester I", "Semester II"] as const).map(c => (
-                <button
-                  key={c}
-                  onClick={() => setSemester(c)}
-                  className={`rounded-full px-4 py-2 text-sm transition font-medium ${semester === c
-                    ? "bg-white text-zinc-950 font-semibold"
-                    : "border border-white/10 text-zinc-400 hover:text-white"
-                    }`}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
-
-            <motion.div layout className="mt-8 grid gap-5 md:grid-cols-2">
-              <AnimatePresence mode="popLayout">
-                {visibleProjects.map((project) => (
-                  <motion.article
-                    layout
-                    key={project.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: .98 }}
-                    className="group glass flex flex-col justify-between rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-xl hover:shadow-indigo-500/5 border border-white/10"
-                  >
-                    <div>
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-xs font-semibold uppercase tracking-[.18em] text-indigo-300">{project.eyebrow}</p>
-                          <h3 className="mt-3 font-display text-2xl font-semibold text-white">{project.title}</h3>
-                        </div>
-                        <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.02] px-2.5 py-1 text-xs text-zinc-400">{project.semester}</span>
+                    {/* Focus Pillars */}
+                    <div className="border-t border-white/10 pt-4">
+                      <div className="mb-3 flex items-center justify-between">
+                        <p className="text-xs font-semibold uppercase tracking-[.2em] text-zinc-400">Pedagogical Focus</p>
+                        <Layers3 size={16} className="text-indigo-300" />
                       </div>
-                      <p className="mt-4 leading-7 text-zinc-400">{project.description}</p>
-                      <div className="mt-5 flex flex-wrap gap-2">
-                        {project.tags.map(tag => (
-                          <span key={tag} className="rounded-lg bg-white/5 px-2.5 py-1 text-xs text-zinc-400">{tag}</span>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          ["01", "Understand learners", "Profiling & kesiapan"],
+                          ["02", "Design access", "DUP & diferensiasi"],
+                          ["03", "Build confidence", "Growth mindset & CASEL"],
+                          ["04", "Improve continuously", "Refleksi data & PTK"]
+                        ].map(([n, t, d]) => (
+                          <div key={n} className="rounded-xl border border-white/10 bg-black/30 p-2.5 transition hover:border-indigo-400/30">
+                            <span className="font-mono text-[10px] font-bold text-indigo-300">{n}</span>
+                            <p className="text-xs font-semibold text-zinc-200 leading-tight mt-0.5">{t}</p>
+                            <p className="text-[10px] text-zinc-400 leading-snug mt-1">{d}</p>
+                          </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
-                      <p className="max-w-[240px] text-sm leading-6 text-zinc-500 sm:max-w-xs">
-                        <span className="text-zinc-300">Fokus:</span> {project.focus}
-                      </p>
-                      <div className="flex items-center gap-2 shrink-0">
-                        {project.link && (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 px-3.5 py-2 text-xs font-semibold text-indigo-200 transition duration-200 hover:border-indigo-400 hover:bg-indigo-600 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 active:scale-95"
-                            aria-label={`Buka link artefak ${project.title}`}
-                            title={`Buka tautan ${project.title}`}
-                          >
-                            <span>Buka Link</span>
-                            <ExternalLink size={14} />
-                          </a>
-                        )}
+                  </div>
+                </motion.div>
+              </div>
+            </section>
+
+            {/* ABOUT SECTION (Profil Pribadi, Visi & Misi, Nilai Inti) */}
+            <section id="about" className="px-6 py-28 border-t border-white/5">
+              <div className="mx-auto max-w-6xl">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
+                  <SectionHeading
+                    kicker="01 · About"
+                    title="Profil, Visi & Filosofi Pendidik"
+                    copy="Memadukan kompetensi teknis teknologi informasi dengan kepekaan pedagogik untuk menumbuhkan potensi setiap peserta didik."
+                  />
+
+                  {/* Navigation Tabs inside About */}
+                  <div className="flex items-center gap-1.5 rounded-2xl border border-white/10 bg-black/40 p-1.5 shrink-0 self-start md:self-end">
+                    {[
+                      { id: "profil", label: "Profil Pribadi", icon: User },
+                      { id: "visi-misi", label: "Visi & Misi", icon: Target },
+                      { id: "nilai", label: "Filosofi Mengajar", icon: Heart }
+                    ].map(tab => {
+                      const Icon = tab.icon;
+                      const isActive = aboutTab === tab.id;
+                      return (
                         <button
-                          onClick={() => setSelected(project)}
-                          className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-zinc-300 transition duration-200 hover:bg-white hover:text-zinc-950 active:scale-95"
-                          aria-label={`Lihat detail ${project.title}`}
-                          title="Lihat detail lengkap"
+                          key={tab.id}
+                          onClick={() => setAboutTab(tab.id as typeof aboutTab)}
+                          className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition duration-200 ${isActive
+                            ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
+                            : "text-zinc-400 hover:text-white hover:bg-white/5"
+                            }`}
                         >
-                          <span>Detail</span>
-                          <ArrowUpRight size={14} />
+                          <Icon size={15} />
+                          <span>{tab.label}</span>
                         </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* TAB CONTENT: PROFIL PRIBADI */}
+                {aboutTab === "profil" && (
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
+                    className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+
+                    {/* Left Card: Biodata & Refleksi Personal */}
+                    <div className="glass rounded-3xl p-6 sm:p-8 space-y-6 border border-white/10">
+                      <div className="flex items-start gap-4">
+                        <div className="grid size-12 place-items-center rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
+                          <User size={24} />
+                        </div>
+                        <div>
+                          <h3 className="font-display text-2xl font-bold text-white">Resa Martyaningsih, S.Kom.</h3>
+                          <p className="text-sm text-indigo-300">Calon Guru Profesional · Mahasiswa PPG Prajabatan Informatik</p>
+                        </div>
+                      </div>
+
+                      <p className="text-base sm:text-lg leading-relaxed text-zinc-300">
+                        Saya merupakan lulusan kependidikan bidang Informatika yang berdedikasi untuk menciptakan pengalaman belajar komputasi yang menyenangkan, inklusif, dan relevan. Bagi saya, pembelajaran Informatika bukan sekadar transfer sintaks pemrograman, melainkan wahana melatih kemampuan bernalar kritis, memecahkan masalah (*problem solving*), dan membangun karakter tangguh.
+                      </p>
+
+                      <p className="text-base leading-relaxed text-zinc-400">
+                        Selama menjalani perkuliahan dan PPL di PPG Prajabatan Universitas Negeri Yogyakarta, saya mendalami perancangan modul ajar berbasis <strong>Desain Universal untuk Pembelajaran (DUP)</strong>, asesmen diagnostik, serta integrasi <strong>Pembelajaran Sosial Emosional (CASEL)</strong> agar siswa tidak merasa terintimidasi oleh baris kode maupun eror logika.
+                      </p>
+
+                      {/* Biodata Quick Facts */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 text-sm">
+                        <div className="flex items-center gap-2.5 text-zinc-400">
+                          <GraduationCap size={16} className="text-indigo-400 shrink-0" />
+                          <span><strong>LPTK:</strong> UNY (PPG Prajabatan)</span>
+                        </div>
+                        <div className="flex items-center gap-2.5 text-zinc-400">
+                          <Award size={16} className="text-indigo-400 shrink-0" />
+                          <span><strong>Keahlian:</strong> Informatika &amp; Pemrograman</span>
+                        </div>
+                        <div className="flex items-center gap-2.5 text-zinc-400">
+                          <MapPin size={16} className="text-indigo-400 shrink-0" />
+                          <span><strong>Domisili:</strong> Gunungkidul, D.I. Yogyakarta, Indonesia</span>
+                        </div>
+                        <div className="flex items-center gap-2.5 text-zinc-400">
+                          <Mail size={16} className="text-indigo-400 shrink-0" />
+                          <span className="truncate"><strong>Email:</strong> resamartyaningsih.2025@student.uny.ac.id</span>
+                        </div>
                       </div>
                     </div>
-                  </motion.article>
-                ))}
-              </AnimatePresence>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* SKILLS SECTION */}
-        <section id="skills" className="px-6 py-28">
-          <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[.9fr_1.1fr]">
-            <SectionHeading
-              kicker="03 · Skills"
-              title="Technical skills meet teaching craft."
-              copy="Keahlian teknis saya menjadi lebih bermakna ketika dipakai untuk merancang pengalaman belajar yang manusiawi, terukur, dan relevan."
-            />
-            <div className="flex content-start flex-wrap gap-3">
-              {skills.map((skill, i) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * .025 }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-zinc-300 transition hover:border-indigo-300/30 hover:bg-indigo-300/5 font-medium"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* NEW SECTION: GALERI & REKAP FOTO / VIDEO */}
-        <section id="gallery" className="border-y border-white/5 bg-white/[0.01] px-6 py-28">
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
-              <SectionHeading
-                kicker="04 · Galeri &amp; Dokumentasi"
-                title="Rekap Foto, Video &amp; Aktivitas"
-                copy="Dokumentasi visual pengalaman nyata selama mengikuti PPG Prajabatan Informatika: aktivitas di lab komputer, inisiatif kepemimpinan, hingga simulasi microteaching."
-              />
-
-              {/* Category Filter */}
-              <div className="flex flex-wrap gap-2 shrink-0 self-start md:self-end">
-                {(["Semua", "Praktik Mengajar","Budaya Sekolah" ,"Projek Kepemimpinan", "Video Pembelajaran"] as const).map(cat => (
-                  <button
-                    key={cat}
-                    onClick={() => setGalleryCategory(cat)}
-                    className={`rounded-xl px-3.5 py-1.5 text-xs font-semibold transition ${galleryCategory === cat
-                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
-                      : "border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5"
-                      }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Gallery Grid */}
-            <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <AnimatePresence mode="popLayout">
-                {visibleGallery.map(item => (
-                  <motion.div
-                    layout
-                    key={item.id}
-                    initial={{ opacity: 0, scale: .95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: .95 }}
-                    transition={{ duration: .3 }}
-                    className="group glass flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 hover:border-indigo-400/40 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10"
-                  >
-                    <div>
-                      {/* Media Thumbnail Container */}
-                      <div
-                        onClick={() => setSelectedGallery(item)}
-                        className="relative aspect-video w-full overflow-hidden bg-zinc-900 cursor-pointer"
-                      >
-                        <img
-                          src={item.thumbnail}
-                          alt={item.title}
-                          className="size-full object-cover transition duration-500 group-hover:scale-105"
-                        />
-
-                        {/* Top Overlay Badges */}
-                        <div className="absolute inset-x-3 top-3 flex items-center justify-between">
-                          <span className="rounded-lg bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-zinc-200 backdrop-blur-md border border-white/10">
-                            {item.category}
-                          </span>
-                          <span className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md ${item.type === "video"
-                            ? "bg-rose-500/80 text-white"
-                            : "bg-indigo-500/80 text-white"
-                            }`}>
-                            {item.type === "video" ? <Play size={11} className="fill-white" /> : <Camera size={11} />}
-                            <span>{item.type === "video" ? "Video" : "Foto"}</span>
-                          </span>
+                    {/* Right Card: Kompetensi & Minat Utama */}
+                    <div className="space-y-4">
+                      <div className="glass rounded-3xl p-6 border border-white/10">
+                        <div className="flex items-center gap-3 mb-4">
+                          <BookOpen size={20} className="text-indigo-300" />
+                          <h4 className="font-display text-lg font-bold text-white">Kompetensi Pedagogik Unggulan</h4>
                         </div>
-
-                        {/* Video Play Icon Center Overlay */}
-                        {item.type === "video" && (
-                          <div className="absolute inset-0 grid place-items-center bg-black/30 group-hover:bg-black/10 transition">
-                            <div className="grid size-12 place-items-center rounded-full bg-rose-600 text-white shadow-xl shadow-rose-600/40 group-hover:scale-110 transition duration-300">
-                              <Play size={20} className="fill-white translate-x-0.5" />
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Hover Zoom Hint */}
-                        <div className="absolute inset-0 bg-indigo-950/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center pointer-events-none">
-                          <span className="rounded-xl bg-black/70 px-3 py-1.5 text-xs text-white backdrop-blur-md flex items-center gap-1.5 border border-white/10">
-                            <Maximize2 size={13} />
-                            <span>Buka Pratinjau</span>
-                          </span>
-                        </div>
+                        <ul className="space-y-3 text-sm text-zinc-300">
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
+                            <span><strong>Asesmen Diagnostik &amp; Profiling:</strong> Mengidentifikasi modalitas belajar, kesiapan logika, dan minat coding siswa sebelum memulai modul.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
+                            <span><strong>Desain Universal untuk Pembelajaran (DUP):</strong> Menyediakan ragam cara representasi materi (visual flowchart, starter code, studi kasus) dan opsi penugasan.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
+                            <span><strong>Pola Pikir Bertumbuh (Growth Mindset):</strong> Membiasakan <em>The Power of Yet</em> agar pesan error menjadi teman belajar, bukan kegagalan.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
+                            <span><strong>Penelitian Tindakan Kelas (PTK):</strong> Siklus terukur <em>Plan-Do-Observe-Reflect</em> untuk menyelesaikan kendala belajar siswa di kelas riil.</span>
+                          </li>
+                        </ul>
                       </div>
 
-                      {/* Card Content */}
-                      <div className="p-5">
-                        <div className="flex items-center gap-3 text-xs text-zinc-400 mb-2">
-                          <span className="flex items-center gap-1"><Calendar size={13} className="text-indigo-400" /> {item.date}</span>
-                          <span>•</span>
-                          <span className="truncate">{item.location}</span>
+                      <div className="glass rounded-3xl p-6 border border-white/10 bg-gradient-to-br from-indigo-950/30 to-purple-950/20">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-semibold uppercase tracking-wider text-indigo-300">Komitmen Pendidik</span>
+                          <Sparkles size={16} className="text-indigo-300" />
                         </div>
-
-                        <h4 className="font-display text-lg font-bold text-white leading-snug group-hover:text-indigo-200 transition">
-                          {item.title}
-                        </h4>
-
-                        <p className="mt-2 text-xs sm:text-sm leading-relaxed text-zinc-400 line-clamp-3">
-                          {item.description}
+                        <p className="text-sm italic leading-relaxed text-zinc-300">
+                          "Guru bukan sekadar penyampai materi kurikulum, melainkan arsitek ekosistem belajar yang menuntun kodrat alam dan zaman anak dengan cinta kasih dan rasa aman."
                         </p>
                       </div>
                     </div>
 
-                    {/* Card Footer */}
-                    <div className="p-5 pt-0">
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {item.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="rounded-md bg-white/5 px-2 py-0.5 text-[11px] text-zinc-400">
-                            #{tag}
-                          </span>
+                  </motion.div>
+                )}
+
+                {/* TAB CONTENT: VISI & MISI */}
+                {aboutTab === "visi-misi" && (
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
+                    className="space-y-8">
+
+                    {/* Visi Card */}
+                    <div className="relative overflow-hidden rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/60 via-zinc-900/90 to-purple-950/50 p-7 sm:p-10 shadow-2xl">
+                      <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                        <Compass size={180} />
+                      </div>
+                      <div className="relative max-w-3xl">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-300">
+                          <Target size={14} /> Visi Pendidik Informatika
+                        </div>
+                        <h3 className="mt-4 font-display text-2xl sm:text-4xl font-bold leading-tight text-white">
+                          "Mewujudkan pembelajaran Informatika yang transformatif, inklusif, dan humanis guna menuntun kodrat peserta didik menjadi pemecah masalah (*problem solver*) yang bernalar kritis, kreatif, berkarakter luhur, dan berdaya saing di era kecerdasan digital."
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Misi Section */}
+                    <div>
+                      <h4 className="font-display text-xl font-bold text-white mb-5 flex items-center gap-2">
+                        <Compass size={20} className="text-indigo-400" />
+                        <span>Misi Strategis &amp; Aksi Konkret Pembelajaran</span>
+                      </h4>
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        {[
+                          {
+                            num: "01",
+                            title: "Pembelajaran Bermakna & Computational Thinking",
+                            desc: "Menyajikan konsep algoritma, pemrograman, dan literasi digital yang berakar pada konteks kehidupan nyata siswa, sehingga materi tidak dirasakan abstrak melainkan aplikatif.",
+                            tag: "Kontekstual"
+                          },
+                          {
+                            num: "02",
+                            title: "Inklusivitas & Diferensiasi Melalui DUP",
+                            desc: "Menerapkan prinsip Desain Universal untuk Pembelajaran agar setiap siswa—dengan keragaman kesiapan awal dan modalitas belajarnya—memiliki akses dan tantangan yang berkeadilan.",
+                            tag: "Inklusif & Adaptif"
+                          },
+                          {
+                            num: "03",
+                            title: "Penguatan Karakter, Growth Mindset & CASEL",
+                            desc: "Membangun ruang kelas yang aman secara sosial-emosional, di mana kesalahan sintaks (*syntax error*) dipandang sebagai peluang belajar dan melatih ketangguhan mental siswa.",
+                            tag: "Sosial Emosional"
+                          },
+                          {
+                            num: "04",
+                            title: "Refleksi Berkelanjutan & Riset PTK Berbasis Data",
+                            desc: "Membiasakan evaluasi diri berbasis bukti (*evidence-based teaching*) melalui Penelitian Tindakan Kelas (PTK) demi perbaikan kualitas proses pembelajaran secara berkelanjutan.",
+                            tag: "Continuous Learning"
+                          }
+                        ].map(item => (
+                          <div key={item.num} className="glass rounded-2xl p-6 border border-white/10 hover:border-indigo-400/30 transition duration-300">
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono text-sm font-bold text-indigo-400">{item.num}</span>
+                              <span className="rounded-md bg-white/5 px-2.5 py-0.5 text-xs text-zinc-400">{item.tag}</span>
+                            </div>
+                            <h5 className="mt-3 font-display text-lg font-bold text-white leading-snug">{item.title}</h5>
+                            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.desc}</p>
+                          </div>
                         ))}
                       </div>
+                    </div>
 
-                      <button
-                        onClick={() => setSelectedGallery(item)}
-                        className="w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] py-2.5 text-xs font-semibold text-zinc-200 transition hover:bg-white hover:text-zinc-950 active:scale-95"
-                      >
-                        {item.type === "video" ? (
-                          <>
-                            <Play size={14} className="fill-current" />
-                            <span>Tonton Video</span>
-                          </>
-                        ) : (
-                          <>
-                            <Maximize2 size={14} />
-                            <span>Lihat Detail Foto</span>
-                          </>
-                        )}
-                      </button>
+                  </motion.div>
+                )}
+
+                {/* TAB CONTENT: FILOSOFI & NILAI INTI */}
+                {aboutTab === "nilai" && (
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
+                    className="space-y-6">
+                    <div className="grid gap-6 sm:grid-cols-3">
+                      {[
+                        {
+                          title: "Reflective",
+                          subtitle: "Belajar dari Pengalaman & Data",
+                          desc: "Setiap sesi mengajar dan praktikum coding dievaluasi melalui jurnal reflektif dan asesmen formatif. Data pembelajaran menjadi kompas perbaikan siklus berikutnya.",
+                          badge: "Siklus PTK"
+                        },
+                        {
+                          title: "Adaptive",
+                          subtitle: "Menyesuaikan dengan Kebutuhan",
+                          desc: "Tidak ada satu metode yang cocok untuk semua siswa. Scaffolding, starter code, dan tantangan bertingkat dirancang sesuai peta kesiapan (*learning readiness*) masing-masing siswa.",
+                          badge: "Diferensiasi"
+                        },
+                        {
+                          title: "Inclusive",
+                          subtitle: "Akses Belajar yang Adil",
+                          desc: "Informatika untuk semua. Setiap murid berhak mengeksplorasi potensi logika komputasinya tanpa diskriminasi, didukung lingkungan kelas yang empatik dan bebas perundungan.",
+                          badge: "DUP & CASEL"
+                        }
+                      ].map(val => (
+                        <div key={val.title} className="glass rounded-3xl p-6 border border-white/10 hover:border-indigo-400/40 transition duration-300 flex flex-col justify-between">
+                          <div>
+                            <span className="inline-block rounded-lg bg-indigo-500/10 px-2.5 py-1 text-xs font-semibold text-indigo-300 mb-3 border border-indigo-500/20">{val.badge}</span>
+                            <h4 className="font-display text-2xl font-bold text-white">{val.title}</h4>
+                            <p className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mt-1">{val.subtitle}</p>
+                            <p className="mt-4 text-sm leading-relaxed text-zinc-400">{val.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 text-zinc-400 text-sm sm:text-base leading-relaxed">
+                      <p>
+                        <strong>Fondasi Semester I</strong> membangun pemahaman tentang filosofi pendidikan Ki Hajar Dewantara, keberagaman peserta didik, prinsip asesmen, PPL Terbimbing, serta pembudayaan Growth Mindset dalam mengatasi coding anxiety.
+                      </p>
+                      <p className="mt-3">
+                        <strong>Semester II</strong> memperluas wawasan melalui integrasi Pembelajaran Sosial Emosional, asesmen multimoda lanjut, PPL Mandiri, Projek Kepemimpinan komunitas sekolah, serta Pengembangan Keprofesian Berkelanjutan melalui PTK.
+                      </p>
                     </div>
                   </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
-          </div>
-        </section>
+                )}
 
-        {/* CONTACT SECTION */}
-        <section id="contact" className="px-6 py-28">
-          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
-            <div>
-              <SectionHeading
-                kicker="05 · Contact"
-                title="Let's build better learning experiences."
-                copy="Tertarik berdiskusi tentang pembelajaran Informatika, praktik mengajar, atau kolaborasi pendidikan? Kirim pesan melalui formulir berikut."
-              />
-              <div className="mt-8 space-y-4 text-sm text-zinc-400">
-                <p className="flex items-center gap-3">
-                  <Mail size={17} className="text-indigo-400" />
-                  <span>Email: <strong className="text-zinc-200">resamartyaningsih.2025@student.uny.ac.id</strong></span>
-                </p>
-                <p className="flex items-center gap-3">
-                  <MapPin size={17} className="text-indigo-400" />
-                  <span>Lokasi: <strong className="text-zinc-200">Yogyakarta, Indonesia</strong></span>
-                </p>
-                <p className="flex items-center gap-3">
-                  <GraduationCap size={17} className="text-indigo-400" />
-                  <span>Afiliasi: <strong className="text-zinc-200">Universitas Negeri Yogyakarta (PPG Prajabatan)</strong></span>
-                </p>
               </div>
-            </div>
+            </section>
 
-            <form onSubmit={submit} noValidate className="glass rounded-3xl p-6 sm:p-8 border border-white/10">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="text-sm font-medium text-zinc-300">
-                  Nama Lengkap
-                  <input
-                    name="name"
-                    required
-                    className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
-                    placeholder="Nama Anda"
-                  />
-                </label>
-                <label className="text-sm font-medium text-zinc-300">
-                  Email
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
-                    placeholder="nama@email.com"
-                  />
-                </label>
-              </div>
-              <label className="mt-5 block text-sm font-medium text-zinc-300">
-                Pesan
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Ceritakan kebutuhan, ide kolaborasi, atau tanggapan Anda..."
+            {/* PROJECTS SECTION */}
+            <section id="projects" className="border-y border-white/5 bg-white/[0.015] px-6 py-28">
+              <div className="mx-auto max-w-6xl">
+                <SectionHeading
+                  kicker="02 · Selected work"
+                  title="Projects & learning artifacts"
+                  copy="Kumpulan karya yang merepresentasikan perjalanan dari analisis masalah, desain pembelajaran, praktik, hingga rencana perbaikan berbasis data."
                 />
-              </label>
-              {formError && <p className="mt-3 text-sm text-rose-400 font-medium" role="alert">{formError}</p>}
-              <button
-                type="submit"
-                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-zinc-950 transition hover:bg-zinc-200 active:scale-95 shadow-lg"
-              >
-                <Send size={17} />
-                <span>Send message</span>
-              </button>
-            </form>
+
+                <div className="mt-10 flex flex-wrap gap-2">
+                  {(["All", "Semester I", "Semester II"] as const).map(c => (
+                    <button
+                      key={c}
+                      onClick={() => setSemester(c)}
+                      className={`rounded-full px-4 py-2 text-sm transition font-medium ${semester === c
+                        ? "bg-white text-zinc-950 font-semibold"
+                        : "border border-white/10 text-zinc-400 hover:text-white"
+                        }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+
+                <motion.div layout className="mt-8 grid gap-5 md:grid-cols-2">
+                  <AnimatePresence mode="popLayout">
+                    {visibleProjects.map((project) => (
+                      <motion.article
+                        layout
+                        key={project.id}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: .98 }}
+                        className="group glass flex flex-col justify-between rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-xl hover:shadow-indigo-500/5 border border-white/10"
+                      >
+                        <div>
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <p className="text-xs font-semibold uppercase tracking-[.18em] text-indigo-300">{project.eyebrow}</p>
+                              <h3 className="mt-3 font-display text-2xl font-semibold text-white">{project.title}</h3>
+                            </div>
+                            <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.02] px-2.5 py-1 text-xs text-zinc-400">{project.semester}</span>
+                          </div>
+                          <p className="mt-4 leading-7 text-zinc-400">{project.description}</p>
+                          <div className="mt-5 flex flex-wrap gap-2">
+                            {project.tags.map(tag => (
+                              <span key={tag} className="rounded-lg bg-white/5 px-2.5 py-1 text-xs text-zinc-400">{tag}</span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
+                          <p className="max-w-[240px] text-sm leading-6 text-zinc-500 sm:max-w-xs">
+                            <span className="text-zinc-300">Fokus:</span> {project.focus}
+                          </p>
+                          <div className="flex items-center gap-2 shrink-0">
+                            {project.link && (
+                              <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 px-3.5 py-2 text-xs font-semibold text-indigo-200 transition duration-200 hover:border-indigo-400 hover:bg-indigo-600 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 active:scale-95"
+                                aria-label={`Buka link artefak ${project.title}`}
+                                title={`Buka tautan ${project.title}`}
+                              >
+                                <span>Buka Link</span>
+                                <ExternalLink size={14} />
+                              </a>
+                            )}
+                            {project.id === "s2-3" && (
+                              <button
+                                onClick={() => navigateToView("praktik-mandiri")}
+                                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-3 py-2 text-xs font-semibold text-white shadow-md shadow-indigo-500/20 hover:scale-105 transition"
+                                title="Buka 6 Analisis Praktik Mengajar Mandiri"
+                              >
+                                <Sparkles size={13} />
+                                <span>6 Analisis Mandiri</span>
+                              </button>
+                            )}
+                            <button
+                              onClick={() => setSelected(project)}
+                              className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-zinc-300 transition duration-200 hover:bg-white hover:text-zinc-950 active:scale-95"
+                              aria-label={`Lihat detail ${project.title}`}
+                              title="Lihat detail lengkap"
+                            >
+                              <span>Detail</span>
+                              <ArrowUpRight size={14} />
+                            </button>
+                          </div>
+                        </div>
+                      </motion.article>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
+              </div>
+            </section>
+
+            {/* SKILLS SECTION */}
+            <section id="skills" className="px-6 py-28">
+              <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[.9fr_1.1fr]">
+                <SectionHeading
+                  kicker="03 · Skills"
+                  title="Technical skills meet teaching craft."
+                  copy="Keahlian teknis saya menjadi lebih bermakna ketika dipakai untuk merancang pengalaman belajar yang manusiawi, terukur, dan relevan."
+                />
+                <div className="flex content-start flex-wrap gap-3">
+                  {skills.map((skill, i) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * .025 }}
+                      className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-zinc-300 transition hover:border-indigo-300/30 hover:bg-indigo-300/5 font-medium"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* NEW SECTION: GALERI & REKAP FOTO / VIDEO */}
+            {/* NEW SECTION: GALERI & DOKUMENTASI PPL (DUA TAB INTERAKTIF: SEMESTER 1 & SEMESTER 2) */}
+            <section id="gallery" className="border-y border-white/5 bg-white/[0.01] px-6 py-28">
+              <div className="mx-auto max-w-6xl">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8">
+                  <SectionHeading
+                    kicker="04 · Galeri &amp; Dokumentasi PPL"
+                    title="Dokumentasi Praktik Pengalaman Lapangan"
+                    copy="Rekap visual pengalaman nyata PPL PPG Prajabatan Informatika di SMAN 3 Yogyakarta. Beralih di antara dua tab interaktif untuk meninjau dokumentasi Semester 1 dan Semester 2 secara terarah."
+                  />
+
+                  <div className="flex items-center gap-2 self-start md:self-end text-xs text-zinc-400">
+                    <span className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5">
+                      <Camera size={13} className="text-indigo-400" />
+                      <span>Total {galleryItems.length} Dokumentasi</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* DUA TAB INTERAKTIF: SEMESTER 1 & SEMESTER 2 */}
+                <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 p-1.5 rounded-2xl sm:rounded-3xl bg-zinc-900/80 border border-white/10 backdrop-blur-md">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setGalleryTab("Semester 1");
+                      setGallerySubFilter("Semua");
+                    }}
+                    className={`relative flex items-center justify-between p-4 sm:p-5 rounded-xl sm:rounded-2xl transition duration-300 text-left cursor-pointer ${galleryTab === "Semester 1"
+                      ? "bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-xl shadow-indigo-600/30 border border-indigo-400/30"
+                      : "text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent"
+                      }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className={`grid size-11 place-items-center rounded-xl transition ${galleryTab === "Semester 1" ? "bg-white/20 text-white shadow-inner" : "bg-white/5 text-zinc-400"
+                        }`}>
+                        <BookOpen size={20} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-base sm:text-lg">Semester 1</span>
+                          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md ${galleryTab === "Semester 1" ? "bg-white/20 text-white" : "bg-white/10 text-zinc-400"
+                            }`}>
+                            PPL I
+                          </span>
+                        </div>
+                        <p className={`text-xs line-clamp-1 mt-0.5 ${galleryTab === "Semester 1" ? "text-indigo-100" : "text-zinc-400"}`}>
+                          Praktik Terbimbing &amp; Observasi Lingkungan
+                        </p>
+                      </div>
+                    </div>
+                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ${galleryTab === "Semester 1" ? "bg-white text-indigo-900 shadow-sm" : "bg-white/10 text-zinc-300"
+                      }`}>
+                      {semesterCounts["Semester 1"]} Item
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setGalleryTab("Semester 2");
+                      setGallerySubFilter("Semua");
+                    }}
+                    className={`relative flex items-center justify-between p-4 sm:p-5 rounded-xl sm:rounded-2xl transition duration-300 text-left cursor-pointer ${galleryTab === "Semester 2"
+                      ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 border border-purple-400/30"
+                      : "text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent"
+                      }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className={`grid size-11 place-items-center rounded-xl transition ${galleryTab === "Semester 2" ? "bg-white/20 text-white shadow-inner" : "bg-white/5 text-zinc-400"
+                        }`}>
+                        <Sparkles size={20} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-base sm:text-lg">Semester 2</span>
+                          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md ${galleryTab === "Semester 2" ? "bg-white/20 text-white" : "bg-white/10 text-zinc-400"
+                            }`}>
+                            PPL II
+                          </span>
+                        </div>
+                        <p className={`text-xs line-clamp-1 mt-0.5 ${galleryTab === "Semester 2" ? "text-purple-100" : "text-zinc-400"}`}>
+                          Praktik Mandiri &amp; Kegiatan Nonmengajar
+                        </p>
+                      </div>
+                    </div>
+                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ${galleryTab === "Semester 2" ? "bg-white text-purple-900 shadow-sm" : "bg-white/10 text-zinc-300"
+                      }`}>
+                      {semesterCounts["Semester 2"]} Item
+                    </span>
+                  </button>
+                </div>
+
+                {/* CONTEXT HIGHLIGHT BANNER SESUAI SEMESTER AKTIF */}
+                {galleryTab === "Semester 1" ? (
+                  <div className="mb-6 rounded-2xl border border-indigo-500/20 bg-gradient-to-r from-indigo-950/40 via-zinc-900/40 to-indigo-950/20 p-4 sm:p-5 backdrop-blur-md">
+                    <div className="flex items-start gap-3.5">
+                      <div className="grid size-9 place-items-center rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0 mt-0.5">
+                        <BookOpen size={18} />
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="text-xs font-bold uppercase tracking-wider text-indigo-300">
+                            Fokus Dokumentasi Semester 1
+                          </span>
+                          <span className="text-zinc-500">•</span>
+                          <span className="text-xs text-zinc-400">SMAN 3 Yogyakarta</span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                          Menampilkan dokumentasi PPL I, terutama <strong className="text-white">praktik mengajar terbimbing</strong> (simulasi IoT Tinkercad, peer debugging, diferensiasi proses, Kahoot!) dan <strong className="text-white">observasi lingkungan belajar</strong> (budaya 5S, disiplin positif, hari busana tradisional Jawa, serta bimbingan DPL &amp; Guru Pamong).
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-6 rounded-2xl border border-purple-500/20 bg-gradient-to-r from-purple-950/40 via-zinc-900/40 to-purple-950/20 p-4 sm:p-5 backdrop-blur-md">
+                    <div className="flex items-start gap-3.5">
+                      <div className="grid size-9 place-items-center rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0 mt-0.5">
+                        <Sparkles size={18} />
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="text-xs font-bold uppercase tracking-wider text-purple-300">
+                            Fokus Dokumentasi Semester 2
+                          </span>
+                          <span className="text-zinc-500">•</span>
+                          <span className="text-xs text-zinc-400">SMAN 3 Yogyakarta</span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                          Menampilkan dokumentasi PPL II, terutama <strong className="text-white">praktik mengajar mandiri &amp; kegiatan pembelajaran</strong> (mentoring 1-on-1 logika Python, penguatan growth mindset di lab komputer, bimbingan reflektif Guru Pamong) serta <strong className="text-white">kegiatan nonmengajar</strong> (Gelar Karya P5 stand kewirausahaan, pembiasaan karakter Salim pagi, dan Jalan Sehat Padmanaba).
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* SUB-FILTER KATEGORI */}
+                <div className="mb-8 flex flex-wrap items-center gap-2">
+                  <span className="text-xs text-zinc-400 font-medium mr-1 flex items-center gap-1.5">
+                    <Layers3 size={14} className="text-indigo-400" />
+                    <span>Filter Kategori:</span>
+                  </span>
+                  {currentSubCategories.map(cat => (
+                    <button
+                      key={cat.value}
+                      type="button"
+                      onClick={() => setGallerySubFilter(cat.value)}
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-semibold transition cursor-pointer ${gallerySubFilter === cat.value
+                        ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-indigo-400/30"
+                        : "border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5"
+                        }`}
+                    >
+                      <span>{cat.label}</span>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-md ${gallerySubFilter === cat.value ? "bg-white/20 text-white" : "bg-white/5 text-zinc-400"
+                        }`}>
+                        {cat.count}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* GALLERY GRID / EMPTY STATE */}
+                {visibleGallery.length === 0 ? (
+                  <div className="rounded-3xl border border-dashed border-white/15 bg-white/[0.01] p-12 text-center my-6">
+                    <div className="mx-auto mb-4 grid size-16 place-items-center rounded-2xl bg-white/5 text-zinc-500 border border-white/10">
+                      <Camera size={28} />
+                    </div>
+                    <h4 className="font-display text-lg font-bold text-white">Dokumentasi belum ditambahkan</h4>
+                    <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                      Belum ada foto atau video pada kategori penyaringan ini untuk {galleryTab}. Silakan pilih kategori lain atau beralih tab semester.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setGallerySubFilter("Semua")}
+                      className="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600/20 border border-indigo-500/30 px-4 py-2 text-xs font-semibold text-indigo-300 hover:bg-indigo-600/30 transition cursor-pointer"
+                    >
+                      <RefreshCw size={13} />
+                      <span>Tampilkan Semua Dokumentasi {galleryTab}</span>
+                    </button>
+                  </div>
+                ) : (
+                  <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <AnimatePresence mode="popLayout">
+                      {visibleGallery.map(item => (
+                        <motion.div
+                          layout
+                          key={item.id}
+                          initial={{ opacity: 0, scale: .95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: .95 }}
+                          transition={{ duration: .3 }}
+                          className="group glass flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 hover:border-indigo-400/40 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10"
+                        >
+                          <div>
+                            {/* Media Thumbnail Container */}
+                            <div
+                              onClick={() => setSelectedGallery(item)}
+                              className="relative aspect-video w-full overflow-hidden bg-zinc-900 cursor-pointer"
+                            >
+                              <img
+                                src={item.thumbnail}
+                                alt={item.title}
+                                className="size-full object-cover transition duration-500 group-hover:scale-105"
+                              />
+
+                              {/* Top Overlay Badges */}
+                              <div className="absolute inset-x-3 top-3 flex items-center justify-between">
+                                <span className="rounded-lg bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-zinc-200 backdrop-blur-md border border-white/10">
+                                  {item.category}
+                                </span>
+                                <span className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md ${item.type === "video"
+                                  ? "bg-rose-500/80 text-white"
+                                  : "bg-indigo-500/80 text-white"
+                                  }`}>
+                                  {item.type === "video" ? <Play size={11} className="fill-white" /> : <Camera size={11} />}
+                                  <span>{item.type === "video" ? "Video" : "Foto"}</span>
+                                </span>
+                              </div>
+
+                              {/* Video Play Icon Center Overlay */}
+                              {item.type === "video" && (
+                                <div className="absolute inset-0 grid place-items-center bg-black/30 group-hover:bg-black/10 transition">
+                                  <div className="grid size-12 place-items-center rounded-full bg-rose-600 text-white shadow-xl shadow-rose-600/40 group-hover:scale-110 transition duration-300">
+                                    <Play size={20} className="fill-white translate-x-0.5" />
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Hover Zoom Hint */}
+                              <div className="absolute inset-0 bg-indigo-950/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center pointer-events-none">
+                                <span className="rounded-xl bg-black/70 px-3 py-1.5 text-xs text-white backdrop-blur-md flex items-center gap-1.5 border border-white/10">
+                                  <Maximize2 size={13} />
+                                  <span>Buka Pratinjau</span>
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Card Content */}
+                            <div className="p-5">
+                              <div className="flex items-center gap-3 text-xs text-zinc-400 mb-2">
+                                <span className="flex items-center gap-1"><Calendar size={13} className="text-indigo-400" /> {item.date}</span>
+                                <span>•</span>
+                                <span className="truncate">{item.location}</span>
+                              </div>
+
+                              <h4 className="font-display text-lg font-bold text-white leading-snug group-hover:text-indigo-200 transition">
+                                {item.title}
+                              </h4>
+
+                              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-zinc-400 line-clamp-3">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Card Footer */}
+                          <div className="p-5 pt-0">
+                            <div className="flex flex-wrap gap-1.5 mb-4">
+                              {item.tags.slice(0, 3).map(tag => (
+                                <span key={tag} className="rounded-md bg-white/5 px-2 py-0.5 text-[11px] text-zinc-400">
+                                  #{tag}
+                                </span>
+                              ))}
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => setSelectedGallery(item)}
+                              className="w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] py-2.5 text-xs font-semibold text-zinc-200 transition hover:bg-white hover:text-zinc-950 active:scale-95 cursor-pointer"
+                            >
+                              {item.type === "video" ? (
+                                <>
+                                  <Play size={14} className="fill-current" />
+                                  <span>Tonton Video</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Maximize2 size={14} />
+                                  <span>Lihat Detail Foto</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </motion.div>
+                )}
+              </div>
+            </section>
+
+            {/* CONTACT SECTION */}
+            <section id="contact" className="px-6 py-28">
+              <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
+                <div>
+                  <SectionHeading
+                    kicker="05 · Contact"
+                    title="Let's build better learning experiences."
+                    copy="Tertarik berdiskusi tentang pembelajaran Informatika, praktik mengajar, atau kolaborasi pendidikan? Kirim pesan melalui formulir berikut."
+                  />
+                  <div className="mt-8 space-y-4 text-sm text-zinc-400">
+                    <p className="flex items-center gap-3">
+                      <Mail size={17} className="text-indigo-400" />
+                      <span>Email: <strong className="text-zinc-200">resamartyaningsih.2025@student.uny.ac.id</strong></span>
+                    </p>
+                    <p className="flex items-center gap-3">
+                      <MapPin size={17} className="text-indigo-400" />
+                      <span>Lokasi: <strong className="text-zinc-200">Yogyakarta, Indonesia</strong></span>
+                    </p>
+                    <p className="flex items-center gap-3">
+                      <GraduationCap size={17} className="text-indigo-400" />
+                      <span>Afiliasi: <strong className="text-zinc-200">Universitas Negeri Yogyakarta (PPG Prajabatan)</strong></span>
+                    </p>
+                  </div>
+                </div>
+
+                <form onSubmit={submit} noValidate className="glass rounded-3xl p-6 sm:p-8 border border-white/10">
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <label className="text-sm font-medium text-zinc-300">
+                      Nama Lengkap
+                      <input
+                        name="name"
+                        required
+                        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                        placeholder="Nama Anda"
+                      />
+                    </label>
+                    <label className="text-sm font-medium text-zinc-300">
+                      Email
+                      <input
+                        name="email"
+                        type="email"
+                        required
+                        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                        placeholder="nama@email.com"
+                      />
+                    </label>
+                  </div>
+                  <label className="mt-5 block text-sm font-medium text-zinc-300">
+                    Pesan
+                    <textarea
+                      name="message"
+                      required
+                      rows={5}
+                      className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                      placeholder="Ceritakan kebutuhan, ide kolaborasi, atau tanggapan Anda..."
+                    />
+                  </label>
+                  {formError && <p className="mt-3 text-sm text-rose-400 font-medium" role="alert">{formError}</p>}
+                  <button
+                    type="submit"
+                    className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-zinc-950 transition hover:bg-zinc-200 active:scale-95 shadow-lg"
+                  >
+                    <Send size={17} />
+                    <span>Send message</span>
+                  </button>
+                </form>
+              </div>
+            </section>
+          </>
+        ) : viewMode === "praktik-mandiri" ? (
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
+            <PraktikMandiriHub
+              onSelectSubpage={(subId) => navigateToView(subId)}
+              onBackToHome={() => navigateToView("home")}
+            />
           </div>
-        </section>
+        ) : (
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
+            <SubpageNav
+              currentSubpageId={viewMode}
+              onSelectSubpage={(subId) => navigateToView(subId)}
+              onBackToHub={() => navigateToView("praktik-mandiri")}
+              onBackToHome={() => navigateToView("home")}
+            />
+            {viewMode === "analisis-rancangan" && <SubpageRancangan />}
+            {viewMode === "analisis-materi" && <SubpageMateri />}
+            {viewMode === "analisis-media" && <SubpageMedia />}
+            {viewMode === "analisis-video" && <SubpageVideo />}
+            {viewMode === "analisis-nonmengajar" && <SubpageNonmengajar />}
+            {viewMode === "analisis-penilaian" && <SubpagePenilaian />}
+          </div>
+        )}
       </main>
 
       {/* FOOTER */}
       <footer className="border-t border-white/10 px-6 py-8 bg-zinc-950">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 text-sm text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Resa Martyaningsih, S.Kom. · Portofolio PPG Prajabatan Informatika UNY.</p>
-          <p className="text-zinc-500">Reflect · Adapt · Teach · Keep Learning.</p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm text-zinc-400">
+          <div>
+            <p>© {new Date().getFullYear()} Resa Martyaningsih, S.Kom. · Portofolio PPG Prajabatan Informatika UNY.</p>
+            <p className="text-zinc-500 text-xs mt-0.5">Reflect · Adapt · Teach · Keep Learning.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
+            <button onClick={() => navigateToView("home", "#about")} className="hover:text-white transition">About</button>
+            <button onClick={() => navigateToView("home", "#projects")} className="hover:text-white transition">Projects</button>
+            <button onClick={() => navigateToView("praktik-mandiri")} className="text-indigo-300 hover:text-white transition font-semibold">Praktik Mengajar Mandiri</button>
+            <button onClick={() => navigateToView("home", "#skills")} className="hover:text-white transition">Skills</button>
+            <button onClick={() => navigateToView("home", "#gallery")} className="hover:text-white transition">Galeri</button>
+            <button onClick={() => navigateToView("home", "#contact")} className="hover:text-white transition">Contact</button>
+          </div>
         </div>
       </footer>
 
@@ -1493,6 +2000,35 @@ function App() {
                   <span key={t} className="rounded-lg bg-white/5 px-3 py-1.5 text-xs text-zinc-400">{t}</span>
                 ))}
               </div>
+
+              {selected.id === "s2-3" && (
+                <div className="mt-6 rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-purple-950/40 to-pink-950/30 p-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2 text-indigo-300 font-semibold text-xs uppercase tracking-wider mb-1">
+                        <Sparkles size={14} />
+                        <span>Kajian Analisis Komprehensif</span>
+                      </div>
+                      <h4 className="font-display text-base font-bold text-white">
+                        Tersedia 6 Subhalaman Analisis Praktik Mengajar Mandiri
+                      </h4>
+                      <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
+                        Telaah produk modul ajar, materi Python, media interaktif, rekaman video KBM, kegiatan nonmengajar, dan rubrik asesmen secara rinci.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setSelected(null);
+                        navigateToView("praktik-mandiri");
+                      }}
+                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-indigo-500/25 hover:scale-[1.02] transition shrink-0"
+                    >
+                      <span>Buka 6 Analisis</span>
+                      <ArrowRight size={14} />
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {selected.link && (
                 <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
