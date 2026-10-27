@@ -84,7 +84,9 @@ export const PRAKTIK_MANDIRI_CONTEXT = {
   driveFolderPPL: "https://drive.google.com/drive/folders/1UcSDFEWR4IspIDIav12rId4XmA8UELky?usp=sharing",
   driveVideoPPL2: "https://drive.google.com/file/d/1NRh5Bbh-PnXsLHqT3Vt96xhnGNipoAuF/view?usp=sharing",
   driveMasterArtefak: "https://drive.google.com/drive/folders/1A1VAY5ZsSI7KOn3zEArSRGyPbVw3SfW5?usp=sharing",
-  driveFotoDokumentasi: "https://drive.google.com/drive/folders/1k5XueqpwL1ND6LBQ3lQMEU6LTsi2wjZH?usp=sharing"
+  driveFotoDokumentasi: "https://drive.google.com/drive/folders/1k5XueqpwL1ND6LBQ3lQMEU6LTsi2wjZH?usp=sharing",
+  jurnalHarianLink: "https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true",
+  jurnalHarianPreview: "https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/preview"
 };
 
 // DATA SUBHALAMAN 1: PERENCANAAN PEMBELAJARAN
@@ -94,9 +96,62 @@ export const rancanganPembelajaranData = {
     jenjangKelas: "SMA Kelas X (Fase E)",
     sekolah: "SMA Negeri 3 Yogyakarta",
     alokasiWaktu: "2 JP × 45 Menit (Siklus Praktik Mengajar Mandiri PPL II)",
-    elemenCP: "Algoritma dan Pemrograman (AP)",
-    capaianPembelajaran: "Peserta didik mampu menerapkan praktik baik konsep pemrograman prosedural dalam salah satu bahasa pemrograman tekstual (Python) untuk memecahkan persoalan komputasi terstruktur."
+    elemenCP: "Berpikir Komputasional (Computational Thinking) & Teknologi Informasi dan Komunikasi (TIK)",
+    materiUtama: "Computational Thinking (CT) dan TIK (Spreadsheet, Google Docs, & Mail Merge)",
+    capaianPembelajaran: "Peserta didik mampu menerapkan strategi berpikir komputasional (Computational Thinking) dalam pemecahan persoalan logika, serta memanfaatkan perkakas TIK secara integratif (aplikasi pengolah kata Google Docs, pengolah lembar kerja Spreadsheet, dan pembuatan surat massal Mail Merge) untuk efisiensi pengolahan dan penyajian informasi digital."
   },
+  // Materi Spesifik 1: Computational Thinking (Canva & Google Presentation)
+  materiComputationalThinking: [
+    {
+      judul: "Media Ajar Berpikir Komputasional (Canva Interaktif)",
+      format: "Canva Presentation Link",
+      link: "https://canva.link/lr5uq0urpj8byab",
+      keterangan: "Media ajar visual interaktif konsep 4 pilar Computational Thinking: Dekomposisi, Pengenalan Pola, Abstraksi, dan Perancangan Algoritma.",
+      badge: "Canva Interaktif"
+    },
+    {
+      judul: "Slide Paparan Pembelajaran Computational Thinking",
+      format: "Google Slides / Presentation",
+      link: "https://docs.google.com/presentation/d/1QvwNmU_kC1BkJ4-iziEjsYeObYPWdLuV/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true",
+      keterangan: "Bahan tayang presentasi kelas mencakup apersepsi, latihan pemecahan masalah logika, dan studi kasus komputasional Fase E.",
+      badge: "Google Presentation"
+    }
+  ],
+  // Materi Spesifik 2: Materi TIK (Spreadsheet, Google Docs, & Mail Merge)
+  materiTIK: [
+    {
+      no: 1,
+      judul: "Materi TIK 1 — Pengenalan Lingkungan Google Docs & Format Dokumen",
+      format: "Google Presentation",
+      link: "https://docs.google.com/presentation/d/1eq89Ko64QUtmj3VYKqXffE9nKtFjH4ke/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true",
+      keterangan: "Pembahasan fitur pengolah kata awan, kolaborasi daring, struktur dokumen standar, dan penataan gaya paragraf.",
+      topik: "Google Docs & Kolaborasi Digital"
+    },
+    {
+      no: 2,
+      judul: "Materi TIK 2 — Dasar Spreadsheet: Formula, Fungsi & Kalkulasi Data",
+      format: "Google Presentation",
+      link: "https://docs.google.com/presentation/d/1bcAVyDJ1_v-ugjgK-vJW0BRqgZWrut3t/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true",
+      keterangan: "Teknik pengolahan angka tabular, penggunaan formula dasar, fungsi kalkulasi logika, dan pembuatan grafik representasi data.",
+      topik: "Spreadsheet & Analisis Data"
+    },
+    {
+      no: 3,
+      judul: "Materi TIK 3 — Integrasi Data Dokumen: Pembuatan Mail Merge",
+      format: "Google Presentation",
+      link: "https://docs.google.com/presentation/d/1r9Th-yrYX06IZC5UDKUAkhNB0uhm71bN/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true",
+      keterangan: "Panduan teknis langkah demi langkah menghubungkan basis data spreadsheet ke templat surat/sertifikat pada Google Docs secara otomatis.",
+      topik: "Mail Merge Otomasi Dokumen"
+    },
+    {
+      no: 4,
+      judul: "Materi TIK 4 — Praktik Terpadu, Studi Kasus & Evaluasi Integrasi TIK",
+      format: "Google Presentation",
+      link: "https://docs.google.com/presentation/d/1gxxktkD6L6qjcT7HW4DUCoBbtJOq0yEl/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true",
+      keterangan: "Latihan pemecahan kasus terpadu di laboratorium komputer, verifikasi hasil Mail Merge, dan evaluasi ketercapaian kompetensi TIK.",
+      topik: "Praktikum Laboratorium Terpadu"
+    }
+  ],
   dokumenList: [
     {
       nama: "Modul Ajar Informatika Berdiferensiasi (PPL Mandiri)",
@@ -125,6 +180,13 @@ export const rancanganPembelajaranData = {
       status: "Tersedia di Google Drive",
       link: PRAKTIK_MANDIRI_CONTEXT.driveFolderPPL,
       keterangan: "Memuat kisi-kisi, indikator pencapaian kompetensi, lembar observasi partisipasi, kuis diagnostik, dan rubrik evaluasi hasil kode."
+    },
+    {
+      nama: "Jurnal Harian Praktik Pengalaman Lapangan (PPL)",
+      format: "Google Docs / Logbook Harian",
+      status: "Dokumen Resmi Terverifikasi",
+      link: PRAKTIK_MANDIRI_CONTEXT.jurnalHarianLink,
+      keterangan: "Logbook pencatatan harian seluruh aktivitas KBM terbimbing & mandiri, pembiasaan budaya sekolah, tugas nonmengajar, bimbingan berkala, dan refleksi pedagogik."
     }
   ],
   tujuanDanKegiatan: [
@@ -447,6 +509,38 @@ export const kegiatanNonmengajarData = {
       manfaat: "Peningkatan kualitas pembelajaran yang dirasakan langsung oleh siswa di kelas, serta terjalinnya kemitraan konstruktif antara LPTK UNY dan SMAN 3 Yogyakarta.",
       tantanganDanSolusi: "Tantangan: penyesuaian jadwal konsultasi di tengah padatnya agenda mengajar Guru Pamong. Solusi: menyusun daftar poin konsultasi ringkas dan terfokus terlebih dahulu agar sesi diskusi berjalan efektif dan efisien.",
       refleksiTindakLanjut: "Bimbingan Guru Pamong adalah cermin berharga yang membantu melihat area 'blind spot' dalam pengajaran. Pembelajaran terbesar seorang guru adalah kemauan untuk terus berefleksi dan menyempurnakan diri."
+    },
+    {
+      id: "nonajar-5",
+      namaKegiatan: "Partisipasi Apel Pagi dan Upacara Bendera Rutin Sekolah",
+      jenis: "Penguatan Nasionalisme & Kedisiplinan Budaya Sekolah",
+      waktu: "Setiap Senin Pagi & Peringatan Hari Besar Nasional",
+      tempat: "Halaman Upacara SMAN 3 Yogyakarta",
+      foto: "/dokumentasi/semester2/ds29.jpg",
+      fotoKeterangan: "Mahasiswa PPL berbaris rapi dalam upacara bendera bersama dewan guru dan peserta didik (ds29.jpg)",
+      tujuan: "Menumbuhkan jiwa nasionalisme, keteladanan kedisiplinan, dan kekhidmatan dalam pembiasaan upacara bendera serta penguatan nilai-nilai kebangsaan bagi seluruh warga sekolah.",
+      peranTanggungJawab: "Berbaris tertib bersama jajaran guru dan staf sekolah, mendampingi barisan peserta didik, dan turut serta memastikan kelancaran jalannya prosesi upacara bendera.",
+      proses: "Hadir tepat waktu sebelum bel tanda apel/upacara berbunyi, mengenakan seragam almamater resmi, mengikuti rangkaian pengibaran bendera merah putih, pembacaan Pancasila, dan menyimak amanat pembina upacara.",
+      kompetensiDikembangkan: "Kompetensi Kepribadian dan Sosial: menjadi teladan sikap disiplin, kesiapan mental, dan penguatan komitmen kebangsaan sebagai calon pendidik.",
+      manfaat: "Menciptakan keselarasan antara keteladanan guru dan kedisiplinan siswa, memperkuat budaya positif dan keteraturan di lingkungan sekolah.",
+      tantanganDanSolusi: "Tantangan: Menjaga kerapian barisan di bawah terik matahari pagi. Solusi: Sikap tegap dan fokus memberi contoh langsung bagi peserta didik untuk bersikap tertib selama upacara.",
+      refleksiTindakLanjut: "Keteladanan adalah bahasa yang paling mudah dipahami oleh murid. Berdiri di barisan upacara bendera bersama dewan guru mengingatkan kembali esensi pengabdian seorang guru bagi bangsa."
+    },
+    {
+      id: "nonajar-6",
+      namaKegiatan: "Pelaksanaan Tugas Non-Mengajar & Pengelolaan Administrasi Persekolahan",
+      jenis: "Manajemen Persekolahan & Tata Kelola Administrasi",
+      waktu: "Agustus - Oktober 2026 (Jam Kerja Non-KBM)",
+      tempat: "Ruang Administrasi & Tata Usaha SMAN 3 Yogyakarta",
+      foto: "/dokumentasi/semester2/ds32.jpg",
+      fotoKeterangan: "Koordinasi pengelolaan administrasi dan arsip KBM di ruang kerja sekolah (ds32.jpg)",
+      tujuan: "Mempelajari tata kelola administrasi pembelajaran, pengarsipan nilai dan presensi, serta mendukung operasional persuratan dan kebutuhan KBM sekolah.",
+      peranTanggungJawab: "Membantu inventarisasi perangkat ajar, pencatatan log harian, koordinasi data peserta didik, dan berkolaborasi bersama tenaga administrasi sekolah.",
+      proses: "Melakukan koordinasi dengan staf tata usaha, menginput dan merekap data kehadiran praktikum, serta menyusun kelengkapan berkas KBM di ruang administrasi.",
+      kompetensiDikembangkan: "Kompetensi Manajerial dan Sosial: ketelitian kerja, kemampuan bekerja sama dengan staf non-edukatif, dan pemahaman operasional kelembagaan sekolah.",
+      manfaat: "Mendukung kelancaran layanan administrasi akademik dan menciptakan sinergi positif antara civitas akademika di lingkungan SMAN 3 Yogyakarta.",
+      tantanganDanSolusi: "Tantangan: Membagi waktu antara persiapan modul ajar dan tugas administrasi. Solusi: Menyusun skala prioritas harian dan mencatat seluruh agenda ke dalam jurnal harian resmi.",
+      refleksiTindakLanjut: "Tugas seorang guru profesional tidak hanya di depan kelas, namun juga berakar pada integritas pengelolaan administrasi yang rapi, transparan, dan akuntabel."
     }
   ]
 };

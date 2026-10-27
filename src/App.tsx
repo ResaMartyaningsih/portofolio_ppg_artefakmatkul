@@ -1,11 +1,11 @@
 import { FormEvent, useMemo, useState, useEffect } from "react";
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
-  ArrowUpRight, ArrowRight, Check, ChevronRight, Code2, ExternalLink,
+  ArrowUpRight, ArrowRight, Check, ChevronRight, ChevronDown, Code2, ExternalLink,
   GraduationCap, Layers3, Mail, Menu, Send, Sparkles, X,
   Camera, Compass, Target, BookOpen, Heart, Award, Play,
   Maximize2, User, MapPin, Calendar, CheckCircle2, Film,
-  ChevronLeft, RefreshCw, Info
+  ChevronLeft, RefreshCw, Info, Leaf
 } from "lucide-react";
 
 import { PraktikMandiriHub } from "./components/praktik-mandiri/PraktikMandiriHub";
@@ -16,6 +16,10 @@ import { SubpageMedia } from "./components/praktik-mandiri/SubpageMedia";
 import { SubpageVideo } from "./components/praktik-mandiri/SubpageVideo";
 import { SubpageNonmengajar } from "./components/praktik-mandiri/SubpageNonmengajar";
 import { SubpagePenilaian } from "./components/praktik-mandiri/SubpagePenilaian";
+import { SiklusMengajarSection } from "./components/SiklusMengajarSection";
+import { KaryaInovatifSection } from "./components/KaryaInovatifSection";
+import { RefleksiMatkulSection } from "./components/RefleksiMatkulSection";
+import { GaleriPage } from "./components/GaleriPage";
 
 // Add the missing category strings to your union type
 export type category =
@@ -543,6 +547,76 @@ const galleryItems: GalleryItem[] = [
     reflection: "Bimbingan berkala bersama Guru Pamong membantu melihat area perbaikan pedagogik dan memperkaya wawasan metodologis guru calon profesional.",
     tags: ["Bimbingan Guru Pamong", "Refleksi Klinis", "PPL II Mandiri"]
   },
+  {
+    id: "ds28",
+    category: "Budaya Sekolah",
+    type: "photo",
+    title: "Kebersamaan Siswa & Guru PPL di Bawah Pohon Beringin Ikonik",
+    date: "Semester II",
+    semester: "Semester II",
+    location: "Pohon Beringin SMAN 3 Yogyakarta",
+    thumbnail: "/dokumentasi/semester2/ds28.jpg",
+    mediaUrl: "/dokumentasi/semester2/ds28.jpg",
+    description: "Dokumentasi kebersamaan penuh kehangatan antara guru model PPL bersama seluruh peserta didik di bawah pohon beringin ikonik SMA Negeri 3 Yogyakarta setelah menyelesaikan rangkaian siklus KBM.",
+    reflection: "Membangun iklim kelas yang bersahabat dan hubungan emosional yang tulus membuka ruang keterbukaan bagi peserta didik untuk aktif berdiskusi dan mencintai pembelajaran Informatika.",
+    tags: ["Kebersamaan Siswa", "Pohon Beringin", "Padmanaba", "CASEL", "PPL II"]
+  },
+  {
+    id: "ds29",
+    category: "Budaya Sekolah",
+    type: "photo",
+    title: "Partisipasi Apel Pagi dan Upacara Bendera Rutin Sekolah",
+    date: "Semester II",
+    semester: "Semester II",
+    location: "Halaman Upacara SMAN 3 Yogyakarta",
+    thumbnail: "/dokumentasi/semester2/ds29.jpg",
+    mediaUrl: "/dokumentasi/semester2/ds29.jpg",
+    description: "Mahasiswa PPG Prajabatan berbaris rapi mengikuti pembiasaan upacara bendera dan apel pagi bersama dewan guru serta seluruh peserta didik SMA Negeri 3 Yogyakarta.",
+    reflection: "Keteladanan kedisiplinan dan pembiasaan nilai-nilai kebangsaan secara langsung di lingkungan sekolah membentuk karakter dan integritas keprofesian pendidik yang utuh.",
+    tags: ["Apel Pagi", "Upacara Bendera", "Karakter Pendidik", "Budaya Sekolah"]
+  },
+  {
+    id: "ds30",
+    category: "Praktik Mengajar",
+    type: "photo",
+    title: "Penyampaian Tujuan Pembelajaran di Laboratorium Komputer",
+    date: "Semester II",
+    semester: "Semester II",
+    location: "Laboratorium Komputer SMAN 3 Yogyakarta",
+    thumbnail: "/dokumentasi/semester2/ds30.jpg",
+    mediaUrl: "/dokumentasi/semester2/ds30.jpg",
+    description: "Membuka sesi KBM di laboratorium komputer dengan memaparkan tujuan pembelajaran, alur logika komputasional, serta target capaian peserta didik melalui proyektor dan mikrofon.",
+    reflection: "Penyampaian tujuan pembelajaran yang terstruktur di awal pertemuan memberikan kejelasan arah belajar (roadmap) bagi siswa dalam menyelesaikan tugas praktikum mandiri.",
+    tags: ["Tujuan Pembelajaran", "Apersepsi", "Lab Informatika", "Praktik Mengajar"]
+  },
+  {
+    id: "ds31",
+    category: "Praktik Mengajar",
+    type: "photo",
+    title: "Penguatan Konsep 4 Pilar Berpikir Komputasional (CT)",
+    date: "Semester II",
+    semester: "Semester II",
+    location: "Laboratorium Komputer SMAN 3 Yogyakarta",
+    thumbnail: "/dokumentasi/semester2/ds31.jpg",
+    mediaUrl: "/dokumentasi/semester2/ds31.jpg",
+    description: "Penjelasan interaktif mengenai konsep empat pilar computational thinking (dekomposisi, pengenalan pola, abstraksi, dan perancangan algoritma) berbantuan media presentasi sebelum sesi simulasi komputer.",
+    reflection: "Menghubungkan konsep abstrak computational thinking ke dalam pemecahan masalah kontekstual nyata memicu nalar kritis siswa dan mempermudah transfer konsep ke dalam alur logika program.",
+    tags: ["Computational Thinking", "4 Pilar CT", "Informatika Fase E", "Praktik Mengajar"]
+  },
+  {
+    id: "ds32",
+    category: "Bimbingan & Diskusi",
+    type: "photo",
+    title: "Aktivitas Non-Mengajar & Koordinasi Administrasi Sekolah",
+    date: "Semester II",
+    semester: "Semester II",
+    location: "Ruang Kerja Administrasi SMAN 3 Yogyakarta",
+    thumbnail: "/dokumentasi/semester2/ds32.jpg",
+    mediaUrl: "/dokumentasi/semester2/ds32.jpg",
+    description: "Pelaksanaan tugas non-mengajar dan koordinasi administrasi persekolahan bersama rekan sejawat mahasiswa PPL PPG di ruang administrasi SMA Negeri 3 Yogyakarta.",
+    reflection: "Keterlibatan dalam kegiatan non-mengajar memperkaya pemahaman calon guru bahwa keberhasilan KBM ditopang oleh manajemen dan tata kelola administrasi sekolah yang tertib dan kolaboratif.",
+    tags: ["Aktivitas Non-Mengajar", "Administrasi Sekolah", "Kolaborasi Rekan Sejawat"]
+  },
 
   // VIDEO PEMBELAJARAN
   {
@@ -583,12 +657,53 @@ const skills = [
   "Pembelajaran Sosial Emosional", "Pair Programming", "Peer Debugging", "PTK", "Refleksi"
 ];
 
-function SectionHeading({ kicker, title, copy }: { kicker: string; title: string; copy: string }) {
+function MarqueeTicker() {
+  const items = [
+    "Informatika & Pemrograman",
+    "Python & Algoritma",
+    "Computational Thinking",
+    "Desain Universal untuk Pembelajaran (DUP)",
+    "Pola Pikir Bertumbuh (Growth Mindset)",
+    "Pembelajaran Sosial Emosional (CASEL)",
+    "Scaffolding & Starter Code",
+    "Penelitian Tindakan Kelas (PTK)",
+    "SMAN 3 Yogyakarta",
+    "PPG Prajabatan UNY"
+  ];
   return (
-    <div className="max-w-3xl">
-      <p className="mb-3 text-sm font-semibold uppercase tracking-[.24em] text-indigo-300">{kicker}</p>
-      <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">{title}</h2>
-      <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">{copy}</p>
+    <div className="relative w-full overflow-hidden border-y border-white/60 bg-white/75 py-4 backdrop-blur-md shadow-xs">
+      <div className="flex w-max animate-marquee gap-8 text-xs font-mono tracking-widest text-slate-800 uppercase font-semibold">
+        {[...items, ...items, ...items].map((item, idx) => (
+          <div key={idx} className="flex items-center gap-6">
+            <span className="hover:text-purple-700 transition cursor-default">{item}</span>
+            <span className="text-purple-600 font-bold">✦</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SectionHeading({
+  kicker,
+  title,
+  copy,
+  centered = false
+}: {
+  kicker: string;
+  title: string;
+  copy?: string;
+  centered?: boolean;
+}) {
+  return (
+    <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      <span className="inline-flex items-center gap-2 rounded-full border border-purple-300 bg-white/80 px-3.5 py-1 text-xs font-mono font-bold text-purple-800 uppercase tracking-widest mb-3 shadow-2xs backdrop-blur-sm">
+        // {kicker}
+      </span>
+      <h2 className="font-display text-3xl sm:text-5xl font-bold leading-[1.1] tracking-tight text-slate-900">
+        {title}
+      </h2>
+      {copy && <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-700 font-light">{copy}</p>}
     </div>
   );
 }
@@ -596,9 +711,25 @@ function SectionHeading({ kicker, title, copy }: { kicker: string; title: string
 function App() {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const y = useTransform(scrollYProgress, [0, 0.25], [0, 100]);
+  const y = useTransform(scrollYProgress, [0, 0.25], [0, 60]);
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<{ [key: string]: boolean }>({
+    pembelajaran: true,
+    ppl: true
+  });
+
+  let dropdownTimeout: any = null;
+  const handleDropdownEnter = (menu: string) => {
+    if (dropdownTimeout) clearTimeout(dropdownTimeout);
+    setOpenDropdown(menu);
+  };
+  const handleDropdownLeave = () => {
+    dropdownTimeout = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 180);
+  };
   const [semester, setSemester] = useState<"All" | Semester>("All");
   const [selected, setSelected] = useState<Project | null>(null);
 
@@ -610,7 +741,7 @@ function App() {
   // State About Tabs
   const [aboutTab, setAboutTab] = useState<"profil" | "visi-misi" | "nilai">("profil");
 
-  // State Foto Profil (Default ke Profil.png)
+  // State Foto Profil (Default ke profil_formal.jpg)
   const [profileImage, setProfileImage] = useState<string>(() => {
     const saved = localStorage.getItem("resa_profile_pic");
     if (saved && saved !== "/profile.jpg") return saved;
@@ -622,13 +753,21 @@ function App() {
   const [sent, setSent] = useState(false);
   const [formError, setFormError] = useState("");
 
-  // Routing / View state for Praktik Mengajar Mandiri
+  // Routing / View state for Portofolio (Home, Refleksi MK, Siklus Mengajar, Karya Inovatif, Galeri, Praktik Mandiri Hub & 6 Analisis)
   const [viewMode, setViewMode] = useState<string>(() => {
     const hash = typeof window !== "undefined" ? window.location.hash.replace("#", "") : "";
     if (
       hash === "praktik-mandiri" ||
+      hash === "karya-inovatif" ||
+      hash === "siklus-mengajar" ||
+      hash === "refleksi-matkul" ||
+      hash === "refleksi-mata-kuliah" ||
+      hash === "gallery" ||
+      hash === "galeri" ||
       hash.startsWith("analisis-")
     ) {
+      if (hash === "refleksi-mata-kuliah") return "refleksi-matkul";
+      if (hash === "galeri") return "gallery";
       return hash;
     }
     return "home";
@@ -658,6 +797,12 @@ function App() {
       const hash = window.location.hash.replace("#", "");
       if (
         hash === "praktik-mandiri" ||
+        hash === "karya-inovatif" ||
+        hash === "siklus-mengajar" ||
+        hash === "refleksi-matkul" ||
+        hash === "refleksi-mata-kuliah" ||
+        hash === "gallery" ||
+        hash === "galeri" ||
         hash === "analisis-rancangan" ||
         hash === "analisis-materi" ||
         hash === "analisis-media" ||
@@ -665,9 +810,15 @@ function App() {
         hash === "analisis-nonmengajar" ||
         hash === "analisis-penilaian"
       ) {
-        setViewMode(hash);
+        if (hash === "refleksi-mata-kuliah") {
+          setViewMode("refleksi-matkul");
+        } else if (hash === "galeri") {
+          setViewMode("gallery");
+        } else {
+          setViewMode(hash);
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (!hash || ["home", "about", "projects", "skills", "gallery", "contact"].includes(hash)) {
+      } else if (!hash || ["home", "about", "skills", "contact"].includes(hash)) {
         setViewMode("home");
       }
     };
@@ -677,34 +828,34 @@ function App() {
   }, []);
 
   const visibleProjects = useMemo(
-    () => semester === "All" ? projects : projects.filter(p => p.semester === semester),
+    () => (semester === "All" ? projects : projects.filter((p) => p.semester === semester)),
     [semester]
   );
 
   // Data Galeri per Semester (Dua Tab Interaktif)
   const semesterCounts = useMemo(() => {
     return {
-      "Semester 1": galleryItems.filter(g => g.semester === "Semester I").length,
-      "Semester 2": galleryItems.filter(g => g.semester === "Semester II").length,
+      "Semester 1": galleryItems.filter((g) => g.semester === "Semester I").length,
+      "Semester 2": galleryItems.filter((g) => g.semester === "Semester II").length,
     };
   }, []);
 
   const currentSemesterItems = useMemo(() => {
     const target = galleryTab === "Semester 1" ? "Semester I" : "Semester II";
-    return galleryItems.filter(item => item.semester === target);
+    return galleryItems.filter((item) => item.semester === target);
   }, [galleryTab]);
 
   const currentSubCategories = useMemo(() => {
     const isSem1 = galleryTab === "Semester 1";
     const semItems = isSem1
-      ? galleryItems.filter(g => g.semester === "Semester I")
-      : galleryItems.filter(g => g.semester === "Semester II");
+      ? galleryItems.filter((g) => g.semester === "Semester I")
+      : galleryItems.filter((g) => g.semester === "Semester II");
 
     const allCount = semItems.length;
-    const pmCount = semItems.filter(g => g.category === "Praktik Mengajar").length;
-    const bsCount = semItems.filter(g => g.category === "Budaya Sekolah").length;
-    const bdCount = semItems.filter(g => g.category === "Bimbingan & Diskusi").length;
-    const vidCount = semItems.filter(g => g.type === "video" || g.category === "Video Pembelajaran").length;
+    const pmCount = semItems.filter((g) => g.category === "Praktik Mengajar").length;
+    const bsCount = semItems.filter((g) => g.category === "Budaya Sekolah").length;
+    const bdCount = semItems.filter((g) => g.category === "Bimbingan & Diskusi").length;
+    const vidCount = semItems.filter((g) => g.type === "video" || g.category === "Video Pembelajaran").length;
 
     return [
       { label: "Semua", value: "Semua", count: allCount },
@@ -726,13 +877,13 @@ function App() {
   const visibleGallery = useMemo(() => {
     if (gallerySubFilter === "Semua") return currentSemesterItems;
     if (gallerySubFilter === "Video Pembelajaran") {
-      return currentSemesterItems.filter(g => g.type === "video" || g.category === "Video Pembelajaran");
+      return currentSemesterItems.filter((g) => g.type === "video" || g.category === "Video Pembelajaran");
     }
-    return currentSemesterItems.filter(g => g.category === gallerySubFilter);
+    return currentSemesterItems.filter((g) => g.category === gallerySubFilter);
   }, [currentSemesterItems, gallerySubFilter]);
 
   const currentGalleryIndex = useMemo(
-    () => visibleGallery.findIndex(item => item.id === selectedGallery?.id),
+    () => visibleGallery.findIndex((item) => item.id === selectedGallery?.id),
     [visibleGallery, selectedGallery]
   );
 
@@ -812,30 +963,51 @@ function App() {
   }, [selectedGallery, currentGalleryIndex, visibleGallery]);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-white">
-      {/* Scroll indicator */}
-      <motion.div className="fixed left-0 top-0 z-[60] h-1 origin-left bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" style={{ scaleX: progress, width: "100%" }} />
+    <div className="min-h-screen overflow-x-hidden text-slate-800 font-sans studio-grid relative selection:bg-purple-300/40 selection:text-purple-950">
+      {/* Scroll indicator with aurora gradient */}
+      <motion.div
+        className="fixed left-0 top-0 z-[60] h-1 origin-left bg-gradient-to-r from-[#d16ba5] via-[#ba83ca] to-[#41dfff] shadow-sm"
+        style={{ scaleX: progress, width: "100%" }}
+      />
 
-      {/* Navigation Bar */}
+      {/* Navigation Bar (Floating Island Pill with Frosted Glass) */}
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
-        <nav className="glass mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 shadow-2xl shadow-black/30 border border-white/10">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 sm:px-5 py-3 shadow-lg border border-white/85 bg-white/92 backdrop-blur-xl transition duration-300">
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               navigateToView("home", "#home");
             }}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer"
             aria-label="Resa Martyaningsih home"
           >
-            <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-tr from-indigo-500 to-fuchsia-500 text-sm font-bold text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition">RM</span>
-            <div className="hidden sm:block text-left">
-              <span className="block font-display text-sm font-semibold text-white leading-tight">Resa Martyaningsih</span>
-              <span className="block text-[11px] text-zinc-400 leading-tight">PPG Informatika UNY</span>
+            {/* Logo UNY & Logo PPG (Hanya di navbar, clean) */}
+            <div className="flex items-center gap-2 shrink-0">
+              <img
+                src="/logo-uny.png"
+                alt="Logo Universitas Negeri Yogyakarta"
+                className="size-7 sm:size-8 object-contain transition group-hover:scale-105"
+              />
+              <img
+                src="/logo-ppg.png"
+                alt="Logo PPG Calon Guru"
+                className="h-7 sm:h-8 w-auto object-contain rounded-sm transition group-hover:scale-105"
+              />
+            </div>
+            <div className="text-left">
+              <span className="block font-display text-xs sm:text-sm font-bold text-slate-900 tracking-wide leading-tight group-hover:text-purple-700 transition">
+                Resa Martyaningsih, S.Kom.
+              </span>
+              <span className="block text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-slate-600 font-semibold">
+                PPG Calon Guru · UNY
+              </span>
             </div>
           </a>
 
-          <div className="hidden items-center gap-5 text-sm font-medium text-zinc-400 lg:flex">
+          {/* Desktop Nav Links dengan Dropdown Menu Rapi */}
+          <div className="hidden items-center gap-1.5 sm:gap-2 text-xs font-semibold uppercase tracking-wider text-slate-700 lg:flex">
+            {/* 1. About */}
             <a
               href="#about"
               onClick={(e) => {
@@ -844,40 +1016,218 @@ function App() {
                   navigateToView("home", "#about");
                 }
               }}
-              className="transition duration-200 hover:text-white"
+              className="rounded-xl px-3 py-1.5 text-slate-700 hover:text-purple-700 hover:bg-white/70 transition duration-200 cursor-pointer"
             >
               About
             </a>
 
-            <a
-              href="#projects"
-              onClick={(e) => {
-                if (viewMode !== "home") {
-                  e.preventDefault();
-                  navigateToView("home", "#projects");
-                }
-              }}
-              className="transition duration-200 hover:text-white"
+            {/* 2. DROPDOWN SUBMENU: Pembelajaran ▾ */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleDropdownEnter("pembelajaran")}
+              onMouseLeave={handleDropdownLeave}
             >
-              Projects
-            </a>
-
-            {/* MENU UTAMA BARU: PRAKTIK MENGAJAR MANDIRI */}
-            <a
-              href="#praktik-mandiri"
-              onClick={(e) => {
-                e.preventDefault();
-                navigateToView("praktik-mandiri");
-              }}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-semibold transition duration-200 ${viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-")
-                ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-md shadow-indigo-500/25"
-                : "border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 hover:text-white hover:border-indigo-400"
+              <button
+                onClick={() => setOpenDropdown(openDropdown === "pembelajaran" ? null : "pembelajaran")}
+                className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 font-semibold transition cursor-pointer ${
+                  openDropdown === "pembelajaran" || viewMode === "refleksi-matkul" || viewMode === "karya-inovatif"
+                    ? "bg-purple-100/90 text-purple-950 font-bold shadow-2xs"
+                    : "text-slate-700 hover:text-purple-700 hover:bg-white/70"
                 }`}
-            >
-              <Sparkles size={13} className={viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-") ? "text-white" : "text-indigo-400"} />
-              <span>Praktik Mengajar Mandiri</span>
-            </a>
+              >
+                <span>Pembelajaran</span>
+                <ChevronDown
+                  size={13}
+                  className={`transition-transform duration-200 ${openDropdown === "pembelajaran" ? "rotate-180 text-purple-700" : ""}`}
+                />
+              </button>
 
+              <AnimatePresence>
+                {openDropdown === "pembelajaran" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-white/90 bg-white/95 p-2 shadow-2xl backdrop-blur-2xl z-50 space-y-1"
+                  >
+                    {/* Item 1: Refleksi Mata Kuliah */}
+                    <a
+                      href="#refleksi-matkul"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                        navigateToView("refleksi-matkul");
+                      }}
+                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-purple-50 transition text-left group/item cursor-pointer"
+                    >
+                      <div className="grid size-8 place-items-center rounded-lg bg-purple-100 text-purple-900 shrink-0 group-hover/item:bg-purple-600 group-hover/item:text-white transition">
+                        <BookOpen size={16} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="block font-display text-xs font-bold text-slate-900 group-hover/item:text-purple-800">
+                            Refleksi Mata Kuliah
+                          </span>
+                          <span className="rounded bg-purple-100 px-1 py-0.2 text-[9px] font-mono font-bold text-purple-900">
+                            11 MK
+                          </span>
+                        </div>
+                        <span className="block text-[10px] text-slate-500 font-normal">
+                          Halaman artefak &amp; modul Semester 1 &amp; 2
+                        </span>
+                      </div>
+                    </a>
+
+                    {/* Item 2: Karya Inovatif SinauPy */}
+                    <a
+                      href="#karya-inovatif"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                        navigateToView("karya-inovatif");
+                      }}
+                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-emerald-50 transition text-left group/item cursor-pointer"
+                    >
+                      <div className="grid size-8 place-items-center rounded-lg bg-emerald-100 text-emerald-900 shrink-0 group-hover/item:bg-emerald-600 group-hover/item:text-white transition">
+                        <Code2 size={16} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-emerald-800">
+                            Karya Inovatif
+                          </span>
+                          <span className="rounded bg-emerald-100 px-1 py-0.2 text-[9px] font-mono font-bold text-emerald-900">
+                            SinauPy
+                          </span>
+                        </div>
+                        <span className="block text-[10px] text-slate-500 font-normal">
+                          Halaman belajar Python interaktif live
+                        </span>
+                      </div>
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 3. DROPDOWN SUBMENU: Praktik PPL ▾ */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleDropdownEnter("ppl")}
+              onMouseLeave={handleDropdownLeave}
+            >
+              <button
+                onClick={() => setOpenDropdown(openDropdown === "ppl" ? null : "ppl")}
+                className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 font-semibold transition cursor-pointer ${
+                  openDropdown === "ppl" || viewMode === "siklus-mengajar" || viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-")
+                    ? "bg-purple-100/90 text-purple-950 font-bold shadow-2xs"
+                    : "text-slate-700 hover:text-purple-700 hover:bg-white/70"
+                }`}
+              >
+                <span>Praktik PPL</span>
+                <ChevronDown
+                  size={13}
+                  className={`transition-transform duration-200 ${openDropdown === "ppl" ? "rotate-180 text-purple-700" : ""}`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {openDropdown === "ppl" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute left-0 top-full mt-2 w-80 rounded-2xl border border-white/90 bg-white/95 p-2 shadow-2xl backdrop-blur-2xl z-50 space-y-1"
+                  >
+                    {/* Item 1: Siklus Praktik Mengajar */}
+                    <a
+                      href="#siklus-mengajar"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                        navigateToView("siklus-mengajar");
+                      }}
+                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-purple-50 transition text-left group/item cursor-pointer"
+                    >
+                      <div className="grid size-8 place-items-center rounded-lg bg-purple-100 text-purple-900 shrink-0 group-hover/item:bg-purple-600 group-hover/item:text-white transition">
+                        <Sparkles size={16} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-purple-800">
+                            Siklus Praktik Mengajar
+                          </span>
+                          <span className="rounded bg-purple-100 px-1 py-0.2 text-[9px] font-mono font-bold text-purple-900">
+                            7 Siklus
+                          </span>
+                        </div>
+                        <span className="block text-[10px] text-slate-500 font-normal">
+                          Halaman 3 Terbimbing (Sem 1) &amp; 4 Mandiri (Sem 2)
+                        </span>
+                      </div>
+                    </a>
+
+                    {/* Item 2: 6 Analisis Praktik Mandiri */}
+                    <a
+                      href="#praktik-mandiri"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                        navigateToView("praktik-mandiri");
+                      }}
+                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-indigo-50 transition text-left group/item cursor-pointer"
+                    >
+                      <div className="grid size-8 place-items-center rounded-lg bg-indigo-100 text-indigo-900 shrink-0 group-hover/item:bg-indigo-600 group-hover/item:text-white transition">
+                        <Layers3 size={16} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-indigo-800">
+                            Praktik Mandiri (PPL II)
+                          </span>
+                          <span className="rounded bg-indigo-100 px-1 py-0.2 text-[9px] font-mono font-bold text-indigo-900">
+                            6 Analisis
+                          </span>
+                        </div>
+                        <span className="block text-[10px] text-slate-500 font-normal">
+                          Halaman kajian modul, media, video, asesmen
+                        </span>
+                      </div>
+                    </a>
+
+                    {/* Item 3: Jurnal Harian PPL (Google Docs) */}
+                    <a
+                      href="https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpenDropdown(null)}
+                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-blue-50 transition text-left group/item cursor-pointer"
+                    >
+                      <div className="grid size-8 place-items-center rounded-lg bg-blue-100 text-blue-900 shrink-0 group-hover/item:bg-blue-600 group-hover/item:text-white transition">
+                        <FileText size={16} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-blue-800">
+                            Jurnal Harian PPL
+                          </span>
+                          <span className="rounded bg-blue-100 px-1 py-0.2 text-[9px] font-mono font-bold text-blue-900">
+                            Docs
+                          </span>
+                        </div>
+                        <span className="block text-[10px] text-slate-500 font-normal">
+                          Logbook harian KBM &amp; nonmengajar SMAN 3
+                        </span>
+                      </div>
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 4. Kompetensi & Skills (Menu Utama di Navbar) */}
             <a
               href="#skills"
               onClick={(e) => {
@@ -886,24 +1236,28 @@ function App() {
                   navigateToView("home", "#skills");
                 }
               }}
-              className="transition duration-200 hover:text-white"
+              className="rounded-xl px-3 py-1.5 text-slate-700 hover:text-purple-700 hover:bg-white/70 transition duration-200 cursor-pointer"
             >
-              Skills
+              Kompetensi &amp; Skills
             </a>
 
+            {/* 5. Galeri (Halaman Mandiri) */}
             <a
               href="#gallery"
               onClick={(e) => {
-                if (viewMode !== "home") {
-                  e.preventDefault();
-                  navigateToView("home", "#gallery");
-                }
+                e.preventDefault();
+                navigateToView("gallery");
               }}
-              className="transition duration-200 hover:text-white"
+              className={`rounded-xl px-3 py-1.5 font-semibold transition duration-200 cursor-pointer ${
+                viewMode === "gallery"
+                  ? "bg-purple-100/90 text-purple-950 font-bold shadow-2xs"
+                  : "text-slate-700 hover:text-purple-700 hover:bg-white/70"
+              }`}
             >
-              Galeri &amp; Rekap
+              Galeri
             </a>
 
+            {/* 6. Kontak */}
             <a
               href="#contact"
               onClick={(e) => {
@@ -912,35 +1266,46 @@ function App() {
                   navigateToView("home", "#contact");
                 }
               }}
-              className="transition duration-200 hover:text-white"
+              className="rounded-xl px-3 py-1.5 text-slate-700 hover:text-purple-700 hover:bg-white/70 transition duration-200 cursor-pointer"
             >
-              Contact
+              Kontak
             </a>
           </div>
 
-          <a
-            href="#contact"
-            onClick={(e) => {
-              if (viewMode !== "home") {
-                e.preventDefault();
-                navigateToView("home", "#contact");
-              }
-            }}
-            className="hidden rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:bg-zinc-200 sm:block"
-          >
-            Let's connect
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                if (viewMode !== "home") {
+                  e.preventDefault();
+                  navigateToView("home", "#contact");
+                }
+              }}
+              className="hidden rounded-xl bg-gradient-to-r from-[#d16ba5] via-[#ba83ca] to-[#79b3f4] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition hover:brightness-105 shadow-md sm:block cursor-pointer"
+            >
+              Let's connect
+            </a>
 
-          <button className="rounded-xl p-2 text-zinc-300 hover:text-white lg:hidden" onClick={() => setMenuOpen(v => !v)} aria-label={menuOpen ? "Tutup menu" : "Buka menu"}>
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            <button
+              className="rounded-xl p-2 text-slate-800 hover:bg-white/80 transition lg:hidden"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Navigation Dropdown */}
         <AnimatePresence>
           {menuOpen && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              className="glass mx-auto mt-2 max-w-6xl rounded-2xl p-4 lg:hidden border border-white/15 shadow-2xl space-y-1">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="mx-auto mt-2 max-w-6xl rounded-2xl p-4 lg:hidden border border-white/80 shadow-2xl space-y-2 bg-white/95 backdrop-blur-xl"
+            >
+              {/* Profil Link */}
               <a
                 href="#about"
                 onClick={(e) => {
@@ -951,73 +1316,130 @@ function App() {
                     closeMenu();
                   }
                 }}
-                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+                className="block rounded-xl px-4 py-2 text-slate-800 hover:bg-purple-50 font-display text-sm font-bold"
               >
-                About
+                About Profil &amp; Visi
               </a>
 
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  if (viewMode !== "home") {
-                    e.preventDefault();
-                    navigateToView("home", "#projects");
-                  } else {
-                    closeMenu();
-                  }
-                }}
-                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
-              >
-                Projects
-              </a>
-
-              {/* MENU UTAMA BARU DI MOBILE */}
-              <a
-                href="#praktik-mandiri"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateToView("praktik-mandiri");
-                }}
-                className={`flex items-center justify-between rounded-xl px-4 py-3 font-semibold text-sm transition ${viewMode === "praktik-mandiri" || viewMode.startsWith("analisis-")
-                  ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-indigo-500/20"
-                  : "border border-indigo-500/30 bg-indigo-500/10 text-indigo-300"
-                  }`}
-              >
-                <span className="flex items-center gap-2">
-                  <Sparkles size={15} />
-                  <span>Praktik Mengajar Mandiri</span>
+              {/* Mobile Submenu: Pembelajaran & Karya */}
+              <div className="rounded-xl border border-slate-200/90 bg-slate-50/80 p-2 space-y-1">
+                <span className="block px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-purple-900">
+                  // Pembelajaran &amp; Karya
                 </span>
-                <span className="text-[10px] bg-white/20 px-2.5 py-0.5 rounded-full font-bold">6 Analisis</span>
-              </a>
+                <a
+                  href="#refleksi-matkul"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToView("refleksi-matkul");
+                    closeMenu();
+                  }}
+                  className="flex items-center justify-between rounded-lg px-3 py-2 text-slate-800 hover:bg-white text-xs font-semibold"
+                >
+                  <span className="flex items-center gap-2">
+                    <BookOpen size={14} className="text-purple-700" />
+                    <span>Halaman Refleksi Mata Kuliah</span>
+                  </span>
+                  <span className="text-[10px] font-mono text-purple-900 bg-purple-100 px-1.5 py-0.2 rounded font-bold">11 MK</span>
+                </a>
+                <a
+                  href="#karya-inovatif"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToView("karya-inovatif");
+                    closeMenu();
+                  }}
+                  className="flex items-center justify-between rounded-lg px-3 py-2 text-slate-800 hover:bg-white text-xs font-semibold"
+                >
+                  <span className="flex items-center gap-2">
+                    <Code2 size={14} className="text-emerald-700" />
+                    <span>Halaman Karya Inovatif SinauPy</span>
+                  </span>
+                  <span className="text-[10px] font-mono text-emerald-900 bg-emerald-100 px-1.5 py-0.2 rounded font-bold">Live Web</span>
+                </a>
+              </div>
 
+              {/* Mobile Submenu: Praktik PPL */}
+              <div className="rounded-xl border border-slate-200/90 bg-slate-50/80 p-2 space-y-1">
+                <span className="block px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-900">
+                  // Praktik Lapangan (PPL)
+                </span>
+                <a
+                  href="#siklus-mengajar"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToView("siklus-mengajar");
+                    closeMenu();
+                  }}
+                  className="flex items-center justify-between rounded-lg px-3 py-2 text-slate-800 hover:bg-white text-xs font-semibold"
+                >
+                  <span className="flex items-center gap-2">
+                    <Sparkles size={14} className="text-indigo-700" />
+                    <span>Halaman Siklus Praktik Mengajar</span>
+                  </span>
+                  <span className="text-[10px] font-mono text-indigo-900 bg-indigo-100 px-1.5 py-0.2 rounded font-bold">7 Siklus</span>
+                </a>
+                <a
+                  href="#praktik-mandiri"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToView("praktik-mandiri");
+                    closeMenu();
+                  }}
+                  className="flex items-center justify-between rounded-lg px-3 py-2 text-slate-800 hover:bg-white text-xs font-semibold"
+                >
+                  <span className="flex items-center gap-2">
+                    <Layers3 size={14} className="text-purple-700" />
+                    <span>Halaman Praktik Mandiri (PPL II)</span>
+                  </span>
+                  <span className="text-[10px] font-mono text-purple-900 bg-purple-100 px-1.5 py-0.2 rounded font-bold">6 Analisis</span>
+                </a>
+                <a
+                  href="https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-lg px-3 py-2 text-slate-800 hover:bg-white text-xs font-semibold"
+                >
+                  <span className="flex items-center gap-2">
+                    <FileText size={14} className="text-blue-700" />
+                    <span>Jurnal Harian PPL (Google Docs)</span>
+                  </span>
+                  <span className="text-[10px] font-mono text-blue-900 bg-blue-100 px-1.5 py-0.2 rounded font-bold">Docs</span>
+                </a>
+              </div>
+
+              {/* Kompetensi & Skills */}
               <a
                 href="#skills"
                 onClick={(e) => {
                   if (viewMode !== "home") {
                     e.preventDefault();
                     navigateToView("home", "#skills");
-                  } else {
-                    closeMenu();
                   }
+                  closeMenu();
                 }}
-                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+                className="flex items-center gap-2.5 rounded-xl px-4 py-2 text-slate-800 hover:bg-purple-50 text-xs font-bold"
               >
-                Skills
+                <Layers3 size={16} className="text-slate-600" />
+                <span>Kompetensi &amp; Skills</span>
               </a>
 
+              {/* Galeri (Halaman Mandiri) */}
               <a
                 href="#gallery"
                 onClick={(e) => {
-                  if (viewMode !== "home") {
-                    e.preventDefault();
-                    navigateToView("home", "#gallery");
-                  } else {
-                    closeMenu();
-                  }
+                  e.preventDefault();
+                  navigateToView("gallery");
+                  closeMenu();
                 }}
-                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+                className={`flex items-center justify-between rounded-xl px-4 py-2 font-display text-sm font-bold ${
+                  viewMode === "gallery"
+                    ? "bg-purple-100 text-purple-950"
+                    : "text-slate-800 hover:bg-purple-50"
+                }`}
               >
-                Galeri &amp; Rekap Foto/Video
+                <span>Halaman Galeri &amp; Dokumentasi</span>
+                <span className="text-[10px] font-mono text-purple-900 bg-purple-100 px-1.5 py-0.2 rounded font-bold">{galleryItems.length} Item</span>
               </a>
 
               <a
@@ -1030,9 +1452,9 @@ function App() {
                     closeMenu();
                   }
                 }}
-                className="block rounded-xl px-4 py-2.5 text-zinc-300 hover:bg-white/5 hover:text-white font-medium"
+                className="block rounded-xl px-4 py-2 text-slate-800 hover:bg-purple-50 font-display text-sm font-bold"
               >
-                Contact
+                Kontak &amp; Diskusi
               </a>
             </motion.div>
           )}
@@ -1043,78 +1465,87 @@ function App() {
         {viewMode === "home" ? (
           <>
             {/* HERO SECTION */}
-            <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-32">
-              <div className="grid-bg absolute inset-0 -z-20" />
-              <div className="absolute left-1/2 top-0 -z-10 size-[45rem] -translate-x-1/2 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
-              <motion.div style={{ y }} className="absolute right-[-12rem] top-1/3 -z-10 size-[28rem] rounded-full bg-fuchsia-500/10 blur-3xl pointer-events-none" />
-
-              <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
-
+            <section id="home" className="relative isolate flex min-h-[92vh] items-center overflow-hidden px-6 pb-16 pt-32">
+              <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
                 {/* Left Column: Headline & Intro */}
-                <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}>
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-indigo-300 backdrop-blur-md">
-                    <Sparkles size={15} className="text-indigo-300" />
-                    <span>PPG Prajabatan · Pendidikan Informatika UNY</span>
+                <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+                  <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/85 bg-white/92 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-purple-900 shadow-sm backdrop-blur-md">
+                    <Sparkles size={14} className="text-purple-700" />
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    </span>
+                    <span>PPG Calon Guru · Pendidikan Informatika UNY</span>
                   </div>
 
-                  <h1 className="max-w-5xl font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.06] tracking-tight text-white">
-                    Mendidik melalui <span className="bg-gradient-to-r from-indigo-300 via-purple-200 to-fuchsia-300 bg-clip-text text-transparent">Informatika.</span>
+                  <h1 className="max-w-5xl font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-slate-900">
+                    Mendidik melalui <br className="hidden sm:inline" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#9b2c6b] via-[#6a3594] to-[#0284c7]">
+                      Informatika.
+                    </span>
                   </h1>
 
-                  <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-400">
+                  <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-900 font-normal">
                     Resa Martyaningsih, S.Kom. — calon guru Informatika profesional yang mengintegrasikan computational thinking, pedagogi berpusat pada murid, growth mindset dalam coding, dan refleksi berkelanjutan berbasis data.
                   </p>
 
                   <div className="mt-8 flex flex-wrap gap-3">
                     <button
                       onClick={() => navigateToView("praktik-mandiri")}
-                      className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-5 py-3 font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:scale-[1.02]"
+                      className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#d16ba5] via-[#ba83ca] to-[#79b3f4] hover:brightness-105 px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md transition hover:scale-[1.02] cursor-pointer"
                     >
-                      <Sparkles size={17} />
+                      <Sparkles size={16} className="text-purple-100" />
                       <span>Praktik Mengajar Mandiri</span>
                     </button>
-                    <a href="#projects" className="group inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10">
-                      <span>Explore Work</span>
-                      <ArrowUpRight size={17} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
-                    <a href="#gallery" className="inline-flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-5 py-3 font-semibold text-indigo-200 transition hover:bg-indigo-500/20 hover:border-indigo-400">
-                      <Film size={17} />
+                    <button
+                      onClick={() => navigateToView("refleksi-matkul")}
+                      className="group inline-flex items-center gap-2 rounded-xl border border-white/85 bg-white/92 hover:bg-white px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-900 transition hover:-translate-y-0.5 shadow-sm cursor-pointer"
+                    >
+                      <span>Refleksi Mata Kuliah</span>
+                      <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-purple-700" />
+                    </button>
+                    <button
+                      onClick={() => navigateToView("gallery")}
+                      className="inline-flex items-center gap-2 rounded-xl border border-white/85 bg-white/92 hover:bg-white px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-900 transition hover:border-purple-300 shadow-sm cursor-pointer"
+                    >
+                      <Film size={16} className="text-purple-700" />
                       <span>Galeri Kegiatan</span>
-                    </a>
-                    <a href="#about" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/5">
+                    </button>
+                    <button
+                      onClick={() => navigateToView("home", "#about")}
+                      className="inline-flex items-center gap-2 rounded-xl border border-white/80 bg-white/80 hover:bg-white px-4 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-900 transition shadow-2xs cursor-pointer"
+                    >
                       <span>Profil &amp; Visi</span>
-                      <ChevronRight size={17} />
-                    </a>
+                      <ChevronRight size={16} />
+                    </button>
                   </div>
 
-                  <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-zinc-400">
+                  <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-xs sm:text-sm text-slate-900 font-mono font-bold">
                     <span className="flex items-center gap-2">
-                      <GraduationCap size={16} className="text-indigo-400" />
+                      <GraduationCap size={16} className="text-purple-800" />
                       Universitas Negeri Yogyakarta
                     </span>
                     <span className="flex items-center gap-2">
-                      <Code2 size={16} className="text-indigo-400" />
+                      <Code2 size={16} className="text-indigo-800" />
                       Python · Computational Thinking · DUP
                     </span>
                   </div>
                 </motion.div>
 
                 {/* Right Column: Hero Profile Picture Frame & Showcase */}
-                <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .15 }}
-                  className="relative mx-auto w-full max-w-md">
-                  <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-fuchsia-500/15 blur-2xl pointer-events-none" />
-
-                  <div className="glass relative rounded-[2.2rem] p-6 shadow-glow border border-white/15">
-
-                    {/* Profile Photo Frame with Glowing Border */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.15 }}
+                  className="relative mx-auto w-full max-w-md"
+                >
+                  <div className="studio-card relative rounded-[2.2rem] p-6 shadow-xl border border-white/85 bg-white/92 backdrop-blur-xl">
+                    {/* Profile Photo Frame */}
                     <div className="relative mb-5 text-center">
                       <div className="relative mx-auto w-44 sm:w-52 group">
-                        {/* Outer Ambient Glow Ring */}
-                        <div className="absolute -inset-1 rounded-[2.2rem] bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 opacity-70 blur-md transition duration-500 group-hover:opacity-100" />
-
-                        {/* Outer Multi-layered Border Frame */}
-                        <div className="relative overflow-hidden rounded-[2.1rem] border-2 border-indigo-300/40 bg-zinc-900 p-1.5 shadow-2xl shadow-black/50">
-                          <div className="relative aspect-square overflow-hidden rounded-[1.8rem] bg-zinc-950">
+                        {/* Outer Border Frame */}
+                        <div className="relative overflow-hidden rounded-[2.1rem] border border-white/80 bg-white/70 p-1.5 shadow-md">
+                          <div className="relative aspect-square overflow-hidden rounded-[1.8rem] bg-white">
                             <img
                               src={profileImage}
                               alt="Foto Profil Resa Martyaningsih"
@@ -1127,23 +1558,23 @@ function App() {
                             />
 
                             {/* Floating Status Badge inside Photo */}
-                            <div className="absolute inset-x-2 bottom-2 flex items-center justify-between rounded-xl bg-zinc-950/80 px-2.5 py-1.5 backdrop-blur-md border border-white/10 text-[11px]">
+                            <div className="absolute inset-x-2 bottom-2 flex items-center justify-between rounded-xl bg-white/95 px-2.5 py-1.5 backdrop-blur-md border border-white/80 text-[11px] shadow-sm">
                               <div className="flex items-center gap-1.5">
                                 <span className="relative flex h-2 w-2">
                                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
                                 </span>
-                                <span className="font-medium text-emerald-300">PPG Calon Guru</span>
+                                <span className="font-mono text-slate-800 font-semibold">PPG Calon Guru</span>
                               </div>
                               <button
                                 onClick={() => {
                                   setTempPhotoUrl(profileImage === "/profile.jpg" ? "" : profileImage);
                                   setShowPhotoModal(true);
                                 }}
-                                className="flex items-center gap-1 rounded px-1.5 py-0.5 text-zinc-300 hover:text-white hover:bg-white/10 transition"
+                                className="flex items-center gap-1 rounded px-1.5 py-0.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer"
                                 title="Klik untuk mengganti tautan foto profil"
                               >
-                                <Camera size={12} className="text-indigo-300" />
+                                <Camera size={12} className="text-purple-700" />
                                 <span>Ganti</span>
                               </button>
                             </div>
@@ -1152,68 +1583,141 @@ function App() {
                       </div>
 
                       {/* Name and Tagline Under Photo Frame */}
-                      <div className="mt-3">
-                        <h2 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight">Resa Martyaningsih, S.Kom.</h2>
-                        <p className="text-xs font-medium text-indigo-300 mt-0.5">Guru Informatika · Fasilitator Pembelajaran</p>
+                      <div className="mt-4">
+                        <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                          Resa Martyaningsih, S.Kom.
+                        </h2>
+                        <p className="text-xs font-mono uppercase tracking-[0.2em] font-bold text-purple-800 mt-1">
+                          Guru Informatika · Fasilitator Pembelajaran
+                        </p>
                       </div>
                     </div>
 
                     {/* Focus Pillars */}
-                    <div className="border-t border-white/10 pt-4">
+                    <div className="border-t border-slate-200/80 pt-4">
                       <div className="mb-3 flex items-center justify-between">
-                        <p className="text-xs font-semibold uppercase tracking-[.2em] text-zinc-400">Pedagogical Focus</p>
-                        <Layers3 size={16} className="text-indigo-300" />
+                        <p className="text-xs font-mono font-bold uppercase tracking-[0.24em] text-slate-700">
+                          // Pedagogical Focus
+                        </p>
+                        <Layers3 size={16} className="text-purple-700" />
                       </div>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2.5">
                         {[
                           ["01", "Understand learners", "Profiling & kesiapan"],
                           ["02", "Design access", "DUP & diferensiasi"],
                           ["03", "Build confidence", "Growth mindset & CASEL"],
                           ["04", "Improve continuously", "Refleksi data & PTK"]
                         ].map(([n, t, d]) => (
-                          <div key={n} className="rounded-xl border border-white/10 bg-black/30 p-2.5 transition hover:border-indigo-400/30">
-                            <span className="font-mono text-[10px] font-bold text-indigo-300">{n}</span>
-                            <p className="text-xs font-semibold text-zinc-200 leading-tight mt-0.5">{t}</p>
-                            <p className="text-[10px] text-zinc-400 leading-snug mt-1">{d}</p>
+                          <div
+                            key={n}
+                            className="rounded-xl border border-slate-200/90 bg-white/90 p-2.5 transition hover:bg-white hover:border-purple-300 shadow-2xs"
+                          >
+                            <span className="font-mono text-sm font-bold text-purple-700 leading-none block">{n}</span>
+                            <p className="text-xs font-bold text-slate-800 leading-tight mt-1">{t}</p>
+                            <p className="text-[10px] text-slate-700 leading-snug mt-0.5 font-medium">{d}</p>
                           </div>
                         ))}
                       </div>
                     </div>
-
                   </div>
                 </motion.div>
               </div>
             </section>
 
+            {/* METRICS QUICK STATS BENTO STRIP (Portal Langsung ke Halaman Tersendiri) */}
+            <div className="mx-auto max-w-6xl px-6 pb-12">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
+                <div
+                  onClick={() => navigateToView("refleksi-matkul")}
+                  className="studio-card rounded-2xl border border-white/85 bg-white/92 p-5 backdrop-blur-md shadow-md hover:border-purple-300 hover:shadow-lg transition cursor-pointer group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="block font-mono text-[10px] uppercase tracking-widest text-purple-700 font-bold">01 / REFLEKSI MK</span>
+                    <ArrowUpRight size={14} className="text-purple-600 opacity-0 group-hover:opacity-100 transition" />
+                  </div>
+                  <span className="mt-2 block font-display text-3xl font-bold text-slate-900">11 MK</span>
+                  <span className="mt-1 block text-xs text-purple-800 font-semibold group-hover:underline">Buka Refleksi →</span>
+                </div>
+                <div
+                  onClick={() => navigateToView("siklus-mengajar")}
+                  className="studio-card rounded-2xl border border-white/85 bg-white/92 p-5 backdrop-blur-md shadow-md hover:border-indigo-300 hover:shadow-lg transition cursor-pointer group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="block font-mono text-[10px] uppercase tracking-widest text-indigo-700 font-bold">02 / SIKLUS</span>
+                    <ArrowUpRight size={14} className="text-indigo-600 opacity-0 group-hover:opacity-100 transition" />
+                  </div>
+                  <span className="mt-2 block font-display text-3xl font-bold text-slate-900">7 Siklus</span>
+                  <span className="mt-1 block text-xs text-indigo-800 font-semibold group-hover:underline">Buka Siklus →</span>
+                </div>
+                <div
+                  onClick={() => navigateToView("praktik-mandiri")}
+                  className="studio-card rounded-2xl border border-white/85 bg-white/92 p-5 backdrop-blur-md shadow-md hover:border-emerald-300 hover:shadow-lg transition cursor-pointer group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="block font-mono text-[10px] uppercase tracking-widest text-emerald-700 font-bold">03 / PPL MANDIRI</span>
+                    <ArrowUpRight size={14} className="text-emerald-600 opacity-0 group-hover:opacity-100 transition" />
+                  </div>
+                  <span className="mt-2 block font-display text-3xl font-bold text-slate-900">6 Analisis</span>
+                  <span className="mt-1 block text-xs text-emerald-800 font-semibold group-hover:underline">Buka PPL II →</span>
+                </div>
+                <div
+                  onClick={() => navigateToView("karya-inovatif")}
+                  className="studio-card rounded-2xl border border-white/85 bg-white/92 p-5 backdrop-blur-md shadow-md hover:border-amber-300 hover:shadow-lg transition cursor-pointer group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="block font-mono text-[10px] uppercase tracking-widest text-amber-700 font-bold">04 / INOVASI</span>
+                    <ArrowUpRight size={14} className="text-amber-600 opacity-0 group-hover:opacity-100 transition" />
+                  </div>
+                  <span className="mt-2 block font-display text-3xl font-bold text-slate-900">SinauPy</span>
+                  <span className="mt-1 block text-xs text-amber-800 font-semibold group-hover:underline">Buka SinauPy →</span>
+                </div>
+                <div
+                  onClick={() => navigateToView("gallery")}
+                  className="studio-card rounded-2xl border border-white/85 bg-white/92 p-5 backdrop-blur-md shadow-md hover:border-pink-300 hover:shadow-lg transition cursor-pointer group col-span-2 sm:col-span-1"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="block font-mono text-[10px] uppercase tracking-widest text-pink-700 font-bold">05 / GALERI</span>
+                    <ArrowUpRight size={14} className="text-pink-600 opacity-0 group-hover:opacity-100 transition" />
+                  </div>
+                  <span className="mt-2 block font-display text-3xl font-bold text-slate-900">{galleryItems.length} Item</span>
+                  <span className="mt-1 block text-xs text-pink-800 font-semibold group-hover:underline">Buka Galeri →</span>
+                </div>
+              </div>
+            </div>
+
+            {/* MARQUEE TICKER */}
+            <MarqueeTicker />
+
             {/* ABOUT SECTION (Profil Pribadi, Visi & Misi, Nilai Inti) */}
-            <section id="about" className="px-6 py-28 border-t border-white/5">
+            <section id="about" className="px-6 py-28 border-t border-white/50 bg-white/50 backdrop-blur-md">
               <div className="mx-auto max-w-6xl">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
                   <SectionHeading
-                    kicker="01 · About"
+                    kicker="01 · ABOUT"
                     title="Profil, Visi & Filosofi Pendidik"
                     copy="Memadukan kompetensi teknis teknologi informasi dengan kepekaan pedagogik untuk menumbuhkan potensi setiap peserta didik."
                   />
 
                   {/* Navigation Tabs inside About */}
-                  <div className="flex items-center gap-1.5 rounded-2xl border border-white/10 bg-black/40 p-1.5 shrink-0 self-start md:self-end">
+                  <div className="flex items-center gap-1.5 rounded-2xl border border-white/85 bg-white/92 p-1.5 shrink-0 self-start md:self-end shadow-md backdrop-blur-xl">
                     {[
                       { id: "profil", label: "Profil Pribadi", icon: User },
                       { id: "visi-misi", label: "Visi & Misi", icon: Target },
                       { id: "nilai", label: "Filosofi Mengajar", icon: Heart }
-                    ].map(tab => {
+                    ].map((tab) => {
                       const Icon = tab.icon;
                       const isActive = aboutTab === tab.id;
                       return (
                         <button
                           key={tab.id}
                           onClick={() => setAboutTab(tab.id as typeof aboutTab)}
-                          className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-semibold transition duration-200 ${isActive
-                            ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
-                            : "text-zinc-400 hover:text-white hover:bg-white/5"
-                            }`}
+                          className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-medium transition duration-200 cursor-pointer ${
+                            isActive
+                              ? "bg-gradient-to-r from-[#ba83ca] to-[#79b3f4] text-slate-950 shadow-md font-bold"
+                              : "text-slate-800 hover:text-slate-950 hover:bg-white/90 font-semibold"
+                          }`}
                         >
-                          <Icon size={15} />
+                          <Icon size={14} className={isActive ? "text-white" : "text-slate-500"} />
                           <span>{tab.label}</span>
                         </button>
                       );
@@ -1223,163 +1727,226 @@ function App() {
 
                 {/* TAB CONTENT: PROFIL PRIBADI */}
                 {aboutTab === "profil" && (
-                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
-                    className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
-
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]"
+                  >
                     {/* Left Card: Biodata & Refleksi Personal */}
-                    <div className="glass rounded-3xl p-6 sm:p-8 space-y-6 border border-white/10">
+                    <div className="studio-card rounded-3xl p-6 sm:p-8 space-y-6 bg-white/92 border border-white/85 shadow-lg">
                       <div className="flex items-start gap-4">
-                        <div className="grid size-12 place-items-center rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
+                        <div className="grid size-12 place-items-center rounded-2xl bg-purple-100 text-purple-800 border border-purple-200 shrink-0">
                           <User size={24} />
                         </div>
                         <div>
-                          <h3 className="font-display text-2xl font-bold text-white">Resa Martyaningsih, S.Kom.</h3>
-                          <p className="text-sm text-indigo-300">Calon Guru Profesional · Mahasiswa PPG Prajabatan Informatik</p>
+                          <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900">
+                            Resa Martyaningsih, S.Kom.
+                          </h3>
+                          <p className="text-xs font-mono uppercase tracking-wider font-bold text-purple-800 mt-0.5">
+                            Calon Guru Profesional · Mahasiswa PPG Prajabatan Informatika
+                          </p>
                         </div>
                       </div>
 
-                      <p className="text-base sm:text-lg leading-relaxed text-zinc-300">
-                        Saya merupakan lulusan kependidikan bidang Informatika yang berdedikasi untuk menciptakan pengalaman belajar komputasi yang menyenangkan, inklusif, dan relevan. Bagi saya, pembelajaran Informatika bukan sekadar transfer sintaks pemrograman, melainkan wahana melatih kemampuan bernalar kritis, memecahkan masalah (*problem solving*), dan membangun karakter tangguh.
+                      <p className="text-base sm:text-lg leading-relaxed text-slate-800 font-normal">
+                        Perkenalkan, saya Resa Martyaningsih, mahasiswa yang berasal dari Gunungkidul, Yogyakarta. Daerah ini dikenal dengan keindahan alamnya serta masyarakat yang menjunjung tinggi nilai kesederhanaan dan gotong royong. Lingkungan tersebut membentuk saya menjadi pribadi yang tangguh, mandiri, dan terus berusaha berkembang.
                       </p>
 
-                      <p className="text-base leading-relaxed text-zinc-400">
-                        Selama menjalani perkuliahan dan PPL di PPG Prajabatan Universitas Negeri Yogyakarta, saya mendalami perancangan modul ajar berbasis <strong>Desain Universal untuk Pembelajaran (DUP)</strong>, asesmen diagnostik, serta integrasi <strong>Pembelajaran Sosial Emosional (CASEL)</strong> agar siswa tidak merasa terintimidasi oleh baris kode maupun eror logika.
+                      <p className="text-base leading-relaxed text-slate-800 font-normal">
+                        Ketertarikan saya pada dunia pendidikan tumbuh dari pengalaman belajar dan inspirasi dari para guru yang berdampak dalam hidup saya. Saya percaya bahwa guru memiliki peran penting dalam membimbing dan menginspirasi generasi masa depan. Seiring dengan perkembangan zaman, saya juga memiliki minat dalam bidang informatika dan teknologi, khususnya dalam pemanfaatannya untuk mendukung proses pembelajaran yang lebih efektif dan interaktif.
+                      </p>
+
+                      <p className="text-base leading-relaxed text-slate-800 font-normal">
+                        Saya memiliki tujuan untuk menjadi guru profesional yang tidak hanya menguasai materi, tetapi juga mampu menciptakan pembelajaran yang inovatif, menyenangkan, dan sesuai dengan kebutuhan peserta didik. Saya berkomitmen untuk terus belajar, mengembangkan kompetensi di bidang pendidikan dan teknologi, serta beradaptasi dengan perubahan di era digital agar dapat memberikan kontribusi terbaik dalam dunia pendidikan.
                       </p>
 
                       {/* Biodata Quick Facts */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 text-sm">
-                        <div className="flex items-center gap-2.5 text-zinc-400">
-                          <GraduationCap size={16} className="text-indigo-400 shrink-0" />
-                          <span><strong>LPTK:</strong> UNY (PPG Prajabatan)</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200 text-sm">
+                        <div className="flex items-center gap-2.5 text-slate-700">
+                          <GraduationCap size={16} className="text-purple-700 shrink-0" />
+                          <span><strong className="text-slate-900 font-semibold">LPTK:</strong> UNY (PPG Prajabatan)</span>
                         </div>
-                        <div className="flex items-center gap-2.5 text-zinc-400">
-                          <Award size={16} className="text-indigo-400 shrink-0" />
-                          <span><strong>Keahlian:</strong> Informatika &amp; Pemrograman</span>
+                        <div className="flex items-center gap-2.5 text-slate-700">
+                          <Award size={16} className="text-indigo-700 shrink-0" />
+                          <span><strong className="text-slate-900 font-semibold">Keahlian:</strong> Informatika &amp; Pemrograman</span>
                         </div>
-                        <div className="flex items-center gap-2.5 text-zinc-400">
-                          <MapPin size={16} className="text-indigo-400 shrink-0" />
-                          <span><strong>Domisili:</strong> Gunungkidul, D.I. Yogyakarta, Indonesia</span>
+                        <div className="flex items-center gap-2.5 text-slate-700">
+                          <MapPin size={16} className="text-emerald-700 shrink-0" />
+                          <span><strong className="text-slate-900 font-semibold">Domisili:</strong> Gunungkidul, D.I. Yogyakarta, Indonesia</span>
                         </div>
-                        <div className="flex items-center gap-2.5 text-zinc-400">
-                          <Mail size={16} className="text-indigo-400 shrink-0" />
-                          <span className="truncate"><strong>Email:</strong> resamartyaningsih.2025@student.uny.ac.id</span>
+                        <div className="flex items-center gap-2.5 text-slate-700">
+                          <Mail size={16} className="text-purple-700 shrink-0" />
+                          <span className="truncate"><strong className="text-slate-900 font-semibold">Email:</strong> resamartyaningsih.2025@student.uny.ac.id</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Right Card: Kompetensi & Minat Utama */}
                     <div className="space-y-4">
-                      <div className="glass rounded-3xl p-6 border border-white/10">
+                      <div className="studio-card rounded-3xl p-6 bg-white/92 border border-white/85 shadow-lg">
                         <div className="flex items-center gap-3 mb-4">
-                          <BookOpen size={20} className="text-indigo-300" />
-                          <h4 className="font-display text-lg font-bold text-white">Kompetensi Pedagogik Unggulan</h4>
+                          <BookOpen size={20} className="text-purple-700" />
+                          <h4 className="font-display text-xl font-bold text-slate-900">Kompetensi Pedagogik Unggulan</h4>
                         </div>
-                        <ul className="space-y-3 text-sm text-zinc-300">
+                        <ul className="space-y-3 text-sm text-slate-800 font-normal">
                           <li className="flex items-start gap-2.5">
-                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                            <span><strong>Asesmen Diagnostik &amp; Profiling:</strong> Mengidentifikasi modalitas belajar, kesiapan logika, dan minat coding siswa sebelum memulai modul.</span>
+                            <CheckCircle2 size={16} className="text-emerald-600 mt-1 shrink-0" />
+                            <span><strong className="text-slate-900 font-semibold">Asesmen Diagnostik &amp; Profiling:</strong> Mengidentifikasi modalitas belajar, kesiapan logika, dan minat coding siswa sebelum memulai modul.</span>
                           </li>
                           <li className="flex items-start gap-2.5">
-                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                            <span><strong>Desain Universal untuk Pembelajaran (DUP):</strong> Menyediakan ragam cara representasi materi (visual flowchart, starter code, studi kasus) dan opsi penugasan.</span>
+                            <CheckCircle2 size={16} className="text-emerald-600 mt-1 shrink-0" />
+                            <span><strong className="text-slate-900 font-semibold">Desain Universal untuk Pembelajaran (DUP):</strong> Menyediakan ragam cara representasi materi (visual flowchart, starter code, studi kasus) dan opsi penugasan.</span>
                           </li>
                           <li className="flex items-start gap-2.5">
-                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                            <span><strong>Pola Pikir Bertumbuh (Growth Mindset):</strong> Membiasakan <em>The Power of Yet</em> agar pesan error menjadi teman belajar, bukan kegagalan.</span>
+                            <CheckCircle2 size={16} className="text-emerald-600 mt-1 shrink-0" />
+                            <span><strong className="text-slate-900 font-semibold">Pola Pikir Bertumbuh (Growth Mindset):</strong> Membiasakan <em>The Power of Yet</em> agar pesan error menjadi teman belajar, bukan kegagalan.</span>
                           </li>
                           <li className="flex items-start gap-2.5">
-                            <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
-                            <span><strong>Penelitian Tindakan Kelas (PTK):</strong> Siklus terukur <em>Plan-Do-Observe-Reflect</em> untuk menyelesaikan kendala belajar siswa di kelas riil.</span>
+                            <CheckCircle2 size={16} className="text-emerald-600 mt-1 shrink-0" />
+                            <span><strong className="text-slate-900 font-semibold">Penelitian Tindakan Kelas (PTK):</strong> Siklus terukur <em>Plan-Do-Observe-Reflect</em> untuk menyelesaikan kendala belajar siswa di kelas riil.</span>
                           </li>
                         </ul>
                       </div>
 
-                      <div className="glass rounded-3xl p-6 border border-white/10 bg-gradient-to-br from-indigo-950/30 to-purple-950/20">
+                      <div className="studio-card rounded-3xl p-6 bg-white/90 border border-purple-300 shadow-md">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs font-semibold uppercase tracking-wider text-indigo-300">Komitmen Pendidik</span>
-                          <Sparkles size={16} className="text-indigo-300" />
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-800">
+                            // Komitmen Pendidik
+                          </span>
+                          <Sparkles size={16} className="text-purple-700" />
                         </div>
-                        <p className="text-sm italic leading-relaxed text-zinc-300">
+                        <blockquote className="font-display italic text-base leading-relaxed text-slate-800">
                           "Guru bukan sekadar penyampai materi kurikulum, melainkan arsitek ekosistem belajar yang menuntun kodrat alam dan zaman anak dengan cinta kasih dan rasa aman."
-                        </p>
+                        </blockquote>
                       </div>
                     </div>
-
                   </motion.div>
                 )}
 
                 {/* TAB CONTENT: VISI & MISI */}
                 {aboutTab === "visi-misi" && (
-                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
-                    className="space-y-8">
-
-                    {/* Visi Card */}
-                    <div className="relative overflow-hidden rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/60 via-zinc-900/90 to-purple-950/50 p-7 sm:p-10 shadow-2xl">
-                      <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                        <Compass size={180} />
-                      </div>
-                      <div className="relative max-w-3xl">
-                        <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-300">
-                          <Target size={14} /> Visi Pendidik Informatika
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="space-y-8"
+                  >
+                    {/* Dua Kartu Visi: Visi Pendidikan Indonesia & Visi Calon Guru */}
+                    <div className="grid gap-6 lg:grid-cols-2">
+                      {/* Visi Pribadi untuk Pendidikan Indonesia */}
+                      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1e1b4b] via-[#2e1065] to-[#0f172a] border border-white/20 text-white p-7 sm:p-9 shadow-xl flex flex-col justify-between">
+                        <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none text-purple-300">
+                          <Compass size={140} />
                         </div>
-                        <h3 className="mt-4 font-display text-2xl sm:text-4xl font-bold leading-tight text-white">
-                          "Mewujudkan pembelajaran Informatika yang transformatif, inklusif, dan humanis guna menuntun kodrat peserta didik menjadi pemecah masalah (*problem solver*) yang bernalar kritis, kreatif, berkarakter luhur, dan berdaya saing di era kecerdasan digital."
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* Misi Section */}
-                    <div>
-                      <h4 className="font-display text-xl font-bold text-white mb-5 flex items-center gap-2">
-                        <Compass size={20} className="text-indigo-400" />
-                        <span>Misi Strategis &amp; Aksi Konkret Pembelajaran</span>
-                      </h4>
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        {[
-                          {
-                            num: "01",
-                            title: "Pembelajaran Bermakna & Computational Thinking",
-                            desc: "Menyajikan konsep algoritma, pemrograman, dan literasi digital yang berakar pada konteks kehidupan nyata siswa, sehingga materi tidak dirasakan abstrak melainkan aplikatif.",
-                            tag: "Kontekstual"
-                          },
-                          {
-                            num: "02",
-                            title: "Inklusivitas & Diferensiasi Melalui DUP",
-                            desc: "Menerapkan prinsip Desain Universal untuk Pembelajaran agar setiap siswa—dengan keragaman kesiapan awal dan modalitas belajarnya—memiliki akses dan tantangan yang berkeadilan.",
-                            tag: "Inklusif & Adaptif"
-                          },
-                          {
-                            num: "03",
-                            title: "Penguatan Karakter, Growth Mindset & CASEL",
-                            desc: "Membangun ruang kelas yang aman secara sosial-emosional, di mana kesalahan sintaks (*syntax error*) dipandang sebagai peluang belajar dan melatih ketangguhan mental siswa.",
-                            tag: "Sosial Emosional"
-                          },
-                          {
-                            num: "04",
-                            title: "Refleksi Berkelanjutan & Riset PTK Berbasis Data",
-                            desc: "Membiasakan evaluasi diri berbasis bukti (*evidence-based teaching*) melalui Penelitian Tindakan Kelas (PTK) demi perbaikan kualitas proses pembelajaran secara berkelanjutan.",
-                            tag: "Continuous Learning"
-                          }
-                        ].map(item => (
-                          <div key={item.num} className="glass rounded-2xl p-6 border border-white/10 hover:border-indigo-400/30 transition duration-300">
-                            <div className="flex items-center justify-between">
-                              <span className="font-mono text-sm font-bold text-indigo-400">{item.num}</span>
-                              <span className="rounded-md bg-white/5 px-2.5 py-0.5 text-xs text-zinc-400">{item.tag}</span>
-                            </div>
-                            <h5 className="mt-3 font-display text-lg font-bold text-white leading-snug">{item.title}</h5>
-                            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.desc}</p>
+                        <div className="relative">
+                          <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/20 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-widest text-purple-300 mb-4">
+                            <Target size={14} /> Visi Pribadi untuk Pendidikan Indonesia
                           </div>
-                        ))}
+                          <h4 className="font-display text-lg sm:text-xl font-bold text-white mb-3">
+                            Mewujudkan Pendidikan Berkualitas, Inklusif &amp; Adaptif
+                          </h4>
+                          <p className="text-sm sm:text-base leading-relaxed text-slate-200 font-normal">
+                            "Visi pribadi saya untuk pendidikan di Indonesia adalah berkontribusi dalam mewujudkan pendidikan yang berkualitas, inklusif, dan adaptif melalui praktik pembelajaran yang berpusat pada peserta didik serta pengembangan guru yang profesional dan berintegritas. Saya meyakini bahwa pendidikan tidak hanya membekali peserta didik dengan pengetahuan, tetapi juga menumbuhkan karakter, kemampuan berpikir kritis, kreativitas, kolaborasi, dan kemandirian belajar agar mereka mampu menjadi pembelajar sepanjang hayat dan berkontribusi positif bagi masyarakat."
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Visi Pribadi Sebagai Calon Guru */}
+                      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#2e1065] border border-white/20 text-white p-7 sm:p-9 shadow-xl flex flex-col justify-between">
+                        <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none text-cyan-300">
+                          <Sparkles size={140} />
+                        </div>
+                        <div className="relative">
+                          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/20 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-widest text-cyan-300 mb-4">
+                            <Sparkles size={14} /> Visi Pribadi Sebagai Calon Guru
+                          </div>
+                          <h4 className="font-display text-lg sm:text-xl font-bold text-white mb-3">
+                            Guru Profesional, Berintegritas, Reflektif &amp; Inovatif
+                          </h4>
+                          <p className="text-sm sm:text-base leading-relaxed text-slate-200 font-normal">
+                            "Sebagai calon guru, visi saya adalah menjadi guru profesional yang berintegritas, reflektif, inovatif, dan berorientasi pada pembelajaran yang berpusat pada peserta didik. Saya ingin menciptakan lingkungan belajar yang aman, inklusif, dan bermakna sehingga setiap peserta didik memperoleh kesempatan berkembang sesuai potensinya, memiliki karakter yang kuat, mampu berpikir kritis, kreatif, berkolaborasi, serta siap menghadapi perubahan zaman."
+                          </p>
+                        </div>
                       </div>
                     </div>
 
+                    {/* Misi Strategis dan Aksi Konkret */}
+                    <div className="studio-card rounded-3xl p-6 sm:p-8 bg-white/92 border border-white/85 shadow-md space-y-6">
+                      <div>
+                        <div className="flex items-center gap-2.5 mb-2">
+                          <Compass size={22} className="text-purple-700" />
+                          <h4 className="font-display text-2xl font-bold text-slate-900">
+                            Misi Strategis &amp; Aksi Konkret Pembelajaran
+                          </h4>
+                        </div>
+                        <div className="rounded-xl border border-purple-200 bg-purple-50/70 p-4 mt-3">
+                          <p className="text-sm sm:text-base text-slate-800 font-semibold leading-relaxed">
+                            "Terus meningkatkan kompetensi melalui pendidikan profesi, pelatihan, seminar, membaca literatur, dan mengikuti komunitas belajar guru sebagai bentuk pengembangan profesional berkelanjutan."
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* 3 Butir Aksi Konkret */}
+                      <div className="grid gap-4 sm:grid-cols-3">
+                        <div className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <span className="font-mono text-2xl font-bold text-purple-700 leading-none">01</span>
+                            <span className="block mt-1 text-[11px] font-mono font-bold uppercase tracking-wider text-purple-900 bg-purple-100 px-2 py-0.5 rounded w-max">
+                              Pembelajaran Berpusat pada Murid
+                            </span>
+                            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-800 font-normal">
+                              Dalam pembelajaran, saya akan menerapkan pendekatan yang berpusat pada peserta didik dengan menggunakan model pembelajaran yang sesuai, memanfaatkan teknologi secara efektif, serta menerapkan pembelajaran berdiferensiasi sesuai kebutuhan peserta didik.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <span className="font-mono text-2xl font-bold text-indigo-700 leading-none">02</span>
+                            <span className="block mt-1 text-[11px] font-mono font-bold uppercase tracking-wider text-indigo-900 bg-indigo-100 px-2 py-0.5 rounded w-max">
+                              Komunikasi &amp; Kolaborasi Kemitraan
+                            </span>
+                            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-800 font-normal">
+                              Saya juga akan membangun komunikasi dan kolaborasi yang baik dengan peserta didik, orang tua, rekan sejawat, dan masyarakat untuk mendukung proses belajar.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs flex flex-col justify-between">
+                          <div>
+                            <span className="font-mono text-2xl font-bold text-emerald-700 leading-none">03</span>
+                            <span className="block mt-1 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-900 bg-emerald-100 px-2 py-0.5 rounded w-max">
+                              Nalar Kritis &amp; Refleksi Belajar
+                            </span>
+                            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-800 font-normal">
+                              Saya akan merancang pembelajaran yang mendorong peserta didik berpikir kritis, kreatif, mampu berkolaborasi, serta melakukan refleksi terhadap proses belajarnya.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Komitmen Asesmen, Integritas & Kode Etik */}
+                      <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-5 text-slate-800 text-xs sm:text-sm leading-relaxed">
+                        <strong className="text-emerald-950 block mb-1 font-bold font-mono text-xs uppercase tracking-wider">
+                          Komitmen Evaluasi &amp; Kode Etik Profesi Guru:
+                        </strong>
+                        <p className="font-normal text-slate-800">
+                          Selain itu, saya akan melakukan asesmen dan refleksi secara berkala guna memperbaiki kualitas pembelajaran, menjaga integritas serta menjunjung tinggi kode etik profesi guru agar dapat memberikan layanan pendidikan yang berkualitas dan berdampak positif bagi peserta didik.
+                        </p>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
 
                 {/* TAB CONTENT: FILOSOFI & NILAI INTI */}
                 {aboutTab === "nilai" && (
-                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .4 }}
-                    className="space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="space-y-6"
+                  >
                     <div className="grid gap-6 sm:grid-cols-3">
                       {[
                         {
@@ -1391,7 +1958,7 @@ function App() {
                         {
                           title: "Adaptive",
                           subtitle: "Menyesuaikan dengan Kebutuhan",
-                          desc: "Tidak ada satu metode yang cocok untuk semua siswa. Scaffolding, starter code, dan tantangan bertingkat dirancang sesuai peta kesiapan (*learning readiness*) masing-masing siswa.",
+                          desc: "Tidak ada satu metode yang cocok untuk semua siswa. Scaffolding, starter code, dan tantangan bertingkat dirancang sesuai peta kesiapan (learning readiness) masing-masing siswa.",
                           badge: "Diferensiasi"
                         },
                         {
@@ -1400,146 +1967,50 @@ function App() {
                           desc: "Informatika untuk semua. Setiap murid berhak mengeksplorasi potensi logika komputasinya tanpa diskriminasi, didukung lingkungan kelas yang empatik dan bebas perundungan.",
                           badge: "DUP & CASEL"
                         }
-                      ].map(val => (
-                        <div key={val.title} className="glass rounded-3xl p-6 border border-white/10 hover:border-indigo-400/40 transition duration-300 flex flex-col justify-between">
+                      ].map((val) => (
+                        <div key={val.title} className="studio-card rounded-3xl p-6 bg-white/92 border border-white/85 shadow-md flex flex-col justify-between">
                           <div>
-                            <span className="inline-block rounded-lg bg-indigo-500/10 px-2.5 py-1 text-xs font-semibold text-indigo-300 mb-3 border border-indigo-500/20">{val.badge}</span>
-                            <h4 className="font-display text-2xl font-bold text-white">{val.title}</h4>
-                            <p className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mt-1">{val.subtitle}</p>
-                            <p className="mt-4 text-sm leading-relaxed text-zinc-400">{val.desc}</p>
+                            <span className="inline-block rounded-lg bg-purple-100 px-2.5 py-1 text-xs font-mono font-bold text-purple-900 mb-3 border border-purple-200">
+                              {val.badge}
+                            </span>
+                            <h4 className="font-display text-2xl font-bold text-slate-900">{val.title}</h4>
+                            <p className="text-xs font-mono uppercase tracking-wider text-slate-600 mt-1 font-semibold">{val.subtitle}</p>
+                            <p className="mt-4 text-sm leading-relaxed text-slate-800 font-normal">{val.desc}</p>
                           </div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 text-zinc-400 text-sm sm:text-base leading-relaxed">
+                    <div className="rounded-3xl border border-white/85 bg-white/92 p-6 sm:p-8 text-slate-800 text-sm sm:text-base leading-relaxed shadow-md font-normal">
                       <p>
-                        <strong>Fondasi Semester I</strong> membangun pemahaman tentang filosofi pendidikan Ki Hajar Dewantara, keberagaman peserta didik, prinsip asesmen, PPL Terbimbing, serta pembudayaan Growth Mindset dalam mengatasi coding anxiety.
+                        <strong className="text-slate-900">Fondasi Semester I</strong> membangun pemahaman tentang filosofi pendidikan Ki Hajar Dewantara, keberagaman peserta didik, prinsip asesmen, PPL Terbimbing, serta pembudayaan Growth Mindset dalam mengatasi coding anxiety.
                       </p>
                       <p className="mt-3">
-                        <strong>Semester II</strong> memperluas wawasan melalui integrasi Pembelajaran Sosial Emosional, asesmen multimoda lanjut, PPL Mandiri, Projek Kepemimpinan komunitas sekolah, serta Pengembangan Keprofesian Berkelanjutan melalui PTK.
+                        <strong className="text-slate-900">Semester II</strong> memperluas wawasan melalui integrasi Pembelajaran Sosial Emosional, asesmen multimoda lanjut, PPL Mandiri, Projek Kepemimpinan komunitas sekolah, serta Pengembangan Keprofesian Berkelanjutan melalui PTK.
                       </p>
                     </div>
                   </motion.div>
                 )}
-
-              </div>
-            </section>
-
-            {/* PROJECTS SECTION */}
-            <section id="projects" className="border-y border-white/5 bg-white/[0.015] px-6 py-28">
-              <div className="mx-auto max-w-6xl">
-                <SectionHeading
-                  kicker="02 · Selected work"
-                  title="Projects & learning artifacts"
-                  copy="Kumpulan karya yang merepresentasikan perjalanan dari analisis masalah, desain pembelajaran, praktik, hingga rencana perbaikan berbasis data."
-                />
-
-                <div className="mt-10 flex flex-wrap gap-2">
-                  {(["All", "Semester I", "Semester II"] as const).map(c => (
-                    <button
-                      key={c}
-                      onClick={() => setSemester(c)}
-                      className={`rounded-full px-4 py-2 text-sm transition font-medium ${semester === c
-                        ? "bg-white text-zinc-950 font-semibold"
-                        : "border border-white/10 text-zinc-400 hover:text-white"
-                        }`}
-                    >
-                      {c}
-                    </button>
-                  ))}
-                </div>
-
-                <motion.div layout className="mt-8 grid gap-5 md:grid-cols-2">
-                  <AnimatePresence mode="popLayout">
-                    {visibleProjects.map((project) => (
-                      <motion.article
-                        layout
-                        key={project.id}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: .98 }}
-                        className="group glass flex flex-col justify-between rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-xl hover:shadow-indigo-500/5 border border-white/10"
-                      >
-                        <div>
-                          <div className="flex items-start justify-between gap-4">
-                            <div>
-                              <p className="text-xs font-semibold uppercase tracking-[.18em] text-indigo-300">{project.eyebrow}</p>
-                              <h3 className="mt-3 font-display text-2xl font-semibold text-white">{project.title}</h3>
-                            </div>
-                            <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.02] px-2.5 py-1 text-xs text-zinc-400">{project.semester}</span>
-                          </div>
-                          <p className="mt-4 leading-7 text-zinc-400">{project.description}</p>
-                          <div className="mt-5 flex flex-wrap gap-2">
-                            {project.tags.map(tag => (
-                              <span key={tag} className="rounded-lg bg-white/5 px-2.5 py-1 text-xs text-zinc-400">{tag}</span>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
-                          <p className="max-w-[240px] text-sm leading-6 text-zinc-500 sm:max-w-xs">
-                            <span className="text-zinc-300">Fokus:</span> {project.focus}
-                          </p>
-                          <div className="flex items-center gap-2 shrink-0">
-                            {project.link && (
-                              <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 px-3.5 py-2 text-xs font-semibold text-indigo-200 transition duration-200 hover:border-indigo-400 hover:bg-indigo-600 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 active:scale-95"
-                                aria-label={`Buka link artefak ${project.title}`}
-                                title={`Buka tautan ${project.title}`}
-                              >
-                                <span>Buka Link</span>
-                                <ExternalLink size={14} />
-                              </a>
-                            )}
-                            {project.id === "s2-3" && (
-                              <button
-                                onClick={() => navigateToView("praktik-mandiri")}
-                                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-3 py-2 text-xs font-semibold text-white shadow-md shadow-indigo-500/20 hover:scale-105 transition"
-                                title="Buka 6 Analisis Praktik Mengajar Mandiri"
-                              >
-                                <Sparkles size={13} />
-                                <span>6 Analisis Mandiri</span>
-                              </button>
-                            )}
-                            <button
-                              onClick={() => setSelected(project)}
-                              className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-zinc-300 transition duration-200 hover:bg-white hover:text-zinc-950 active:scale-95"
-                              aria-label={`Lihat detail ${project.title}`}
-                              title="Lihat detail lengkap"
-                            >
-                              <span>Detail</span>
-                              <ArrowUpRight size={14} />
-                            </button>
-                          </div>
-                        </div>
-                      </motion.article>
-                    ))}
-                  </AnimatePresence>
-                </motion.div>
               </div>
             </section>
 
             {/* SKILLS SECTION */}
-            <section id="skills" className="px-6 py-28">
-              <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[.9fr_1.1fr]">
+            <section id="skills" className="px-6 py-28 border-t border-white/50 bg-white/50 backdrop-blur-md">
+              <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.9fr_1.1fr] items-center">
                 <SectionHeading
-                  kicker="03 · Skills"
+                  kicker="03 · SKILLS"
                   title="Technical skills meet teaching craft."
                   copy="Keahlian teknis saya menjadi lebih bermakna ketika dipakai untuk merancang pengalaman belajar yang manusiawi, terukur, dan relevan."
                 />
-                <div className="flex content-start flex-wrap gap-3">
+                <div className="flex content-start flex-wrap gap-2.5">
                   {skills.map((skill, i) => (
                     <motion.span
                       key={skill}
                       initial={{ opacity: 0, y: 8 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * .025 }}
-                      className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-zinc-300 transition hover:border-indigo-300/30 hover:bg-indigo-300/5 font-medium"
+                      transition={{ delay: i * 0.025 }}
+                      className="studio-card rounded-full px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-900 bg-white/95 border border-white/85 transition hover:border-purple-400 hover:text-purple-800 hover:scale-105 shadow-sm cursor-default"
                     >
                       {skill}
                     </motion.span>
@@ -1548,370 +2019,135 @@ function App() {
               </div>
             </section>
 
-            {/* NEW SECTION: GALERI & REKAP FOTO / VIDEO */}
-            {/* NEW SECTION: GALERI & DOKUMENTASI PPL (DUA TAB INTERAKTIF: SEMESTER 1 & SEMESTER 2) */}
-            <section id="gallery" className="border-y border-white/5 bg-white/[0.01] px-6 py-28">
-              <div className="mx-auto max-w-6xl">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8">
-                  <SectionHeading
-                    kicker="04 · Galeri &amp; Dokumentasi PPL"
-                    title="Dokumentasi Praktik Pengalaman Lapangan"
-                    copy="Rekap visual pengalaman nyata PPL PPG Prajabatan Informatika di SMAN 3 Yogyakarta. Beralih di antara dua tab interaktif untuk meninjau dokumentasi Semester 1 dan Semester 2 secara terarah."
-                  />
-
-                  <div className="flex items-center gap-2 self-start md:self-end text-xs text-zinc-400">
-                    <span className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5">
-                      <Camera size={13} className="text-indigo-400" />
-                      <span>Total {galleryItems.length} Dokumentasi</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* DUA TAB INTERAKTIF: SEMESTER 1 & SEMESTER 2 */}
-                <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 p-1.5 rounded-2xl sm:rounded-3xl bg-zinc-900/80 border border-white/10 backdrop-blur-md">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setGalleryTab("Semester 1");
-                      setGallerySubFilter("Semua");
-                    }}
-                    className={`relative flex items-center justify-between p-4 sm:p-5 rounded-xl sm:rounded-2xl transition duration-300 text-left cursor-pointer ${galleryTab === "Semester 1"
-                      ? "bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-xl shadow-indigo-600/30 border border-indigo-400/30"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent"
-                      }`}
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className={`grid size-11 place-items-center rounded-xl transition ${galleryTab === "Semester 1" ? "bg-white/20 text-white shadow-inner" : "bg-white/5 text-zinc-400"
-                        }`}>
-                        <BookOpen size={20} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-base sm:text-lg">Semester 1</span>
-                          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md ${galleryTab === "Semester 1" ? "bg-white/20 text-white" : "bg-white/10 text-zinc-400"
-                            }`}>
-                            PPL I
-                          </span>
-                        </div>
-                        <p className={`text-xs line-clamp-1 mt-0.5 ${galleryTab === "Semester 1" ? "text-indigo-100" : "text-zinc-400"}`}>
-                          Praktik Terbimbing &amp; Observasi Lingkungan
-                        </p>
-                      </div>
-                    </div>
-                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ${galleryTab === "Semester 1" ? "bg-white text-indigo-900 shadow-sm" : "bg-white/10 text-zinc-300"
-                      }`}>
-                      {semesterCounts["Semester 1"]} Item
-                    </span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setGalleryTab("Semester 2");
-                      setGallerySubFilter("Semua");
-                    }}
-                    className={`relative flex items-center justify-between p-4 sm:p-5 rounded-xl sm:rounded-2xl transition duration-300 text-left cursor-pointer ${galleryTab === "Semester 2"
-                      ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 border border-purple-400/30"
-                      : "text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent"
-                      }`}
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className={`grid size-11 place-items-center rounded-xl transition ${galleryTab === "Semester 2" ? "bg-white/20 text-white shadow-inner" : "bg-white/5 text-zinc-400"
-                        }`}>
-                        <Sparkles size={20} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-base sm:text-lg">Semester 2</span>
-                          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md ${galleryTab === "Semester 2" ? "bg-white/20 text-white" : "bg-white/10 text-zinc-400"
-                            }`}>
-                            PPL II
-                          </span>
-                        </div>
-                        <p className={`text-xs line-clamp-1 mt-0.5 ${galleryTab === "Semester 2" ? "text-purple-100" : "text-zinc-400"}`}>
-                          Praktik Mandiri &amp; Kegiatan Nonmengajar
-                        </p>
-                      </div>
-                    </div>
-                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ${galleryTab === "Semester 2" ? "bg-white text-purple-900 shadow-sm" : "bg-white/10 text-zinc-300"
-                      }`}>
-                      {semesterCounts["Semester 2"]} Item
-                    </span>
-                  </button>
-                </div>
-
-                {/* CONTEXT HIGHLIGHT BANNER SESUAI SEMESTER AKTIF */}
-                {galleryTab === "Semester 1" ? (
-                  <div className="mb-6 rounded-2xl border border-indigo-500/20 bg-gradient-to-r from-indigo-950/40 via-zinc-900/40 to-indigo-950/20 p-4 sm:p-5 backdrop-blur-md">
-                    <div className="flex items-start gap-3.5">
-                      <div className="grid size-9 place-items-center rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0 mt-0.5">
-                        <BookOpen size={18} />
-                      </div>
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="text-xs font-bold uppercase tracking-wider text-indigo-300">
-                            Fokus Dokumentasi Semester 1
-                          </span>
-                          <span className="text-zinc-500">•</span>
-                          <span className="text-xs text-zinc-400">SMAN 3 Yogyakarta</span>
-                        </div>
-                        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                          Menampilkan dokumentasi PPL I, terutama <strong className="text-white">praktik mengajar terbimbing</strong> (simulasi IoT Tinkercad, peer debugging, diferensiasi proses, Kahoot!) dan <strong className="text-white">observasi lingkungan belajar</strong> (budaya 5S, disiplin positif, hari busana tradisional Jawa, serta bimbingan DPL &amp; Guru Pamong).
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="mb-6 rounded-2xl border border-purple-500/20 bg-gradient-to-r from-purple-950/40 via-zinc-900/40 to-purple-950/20 p-4 sm:p-5 backdrop-blur-md">
-                    <div className="flex items-start gap-3.5">
-                      <div className="grid size-9 place-items-center rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30 shrink-0 mt-0.5">
-                        <Sparkles size={18} />
-                      </div>
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="text-xs font-bold uppercase tracking-wider text-purple-300">
-                            Fokus Dokumentasi Semester 2
-                          </span>
-                          <span className="text-zinc-500">•</span>
-                          <span className="text-xs text-zinc-400">SMAN 3 Yogyakarta</span>
-                        </div>
-                        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                          Menampilkan dokumentasi PPL II, terutama <strong className="text-white">praktik mengajar mandiri &amp; kegiatan pembelajaran</strong> (mentoring 1-on-1 logika Python, penguatan growth mindset di lab komputer, bimbingan reflektif Guru Pamong) serta <strong className="text-white">kegiatan nonmengajar</strong> (Gelar Karya P5 stand kewirausahaan, pembiasaan karakter Salim pagi, dan Jalan Sehat Padmanaba).
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* SUB-FILTER KATEGORI */}
-                <div className="mb-8 flex flex-wrap items-center gap-2">
-                  <span className="text-xs text-zinc-400 font-medium mr-1 flex items-center gap-1.5">
-                    <Layers3 size={14} className="text-indigo-400" />
-                    <span>Filter Kategori:</span>
-                  </span>
-                  {currentSubCategories.map(cat => (
-                    <button
-                      key={cat.value}
-                      type="button"
-                      onClick={() => setGallerySubFilter(cat.value)}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-semibold transition cursor-pointer ${gallerySubFilter === cat.value
-                        ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-indigo-400/30"
-                        : "border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5"
-                        }`}
-                    >
-                      <span>{cat.label}</span>
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded-md ${gallerySubFilter === cat.value ? "bg-white/20 text-white" : "bg-white/5 text-zinc-400"
-                        }`}>
-                        {cat.count}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-
-                {/* GALLERY GRID / EMPTY STATE */}
-                {visibleGallery.length === 0 ? (
-                  <div className="rounded-3xl border border-dashed border-white/15 bg-white/[0.01] p-12 text-center my-6">
-                    <div className="mx-auto mb-4 grid size-16 place-items-center rounded-2xl bg-white/5 text-zinc-500 border border-white/10">
-                      <Camera size={28} />
-                    </div>
-                    <h4 className="font-display text-lg font-bold text-white">Dokumentasi belum ditambahkan</h4>
-                    <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                      Belum ada foto atau video pada kategori penyaringan ini untuk {galleryTab}. Silakan pilih kategori lain atau beralih tab semester.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => setGallerySubFilter("Semua")}
-                      className="mt-5 inline-flex items-center gap-2 rounded-xl bg-indigo-600/20 border border-indigo-500/30 px-4 py-2 text-xs font-semibold text-indigo-300 hover:bg-indigo-600/30 transition cursor-pointer"
-                    >
-                      <RefreshCw size={13} />
-                      <span>Tampilkan Semua Dokumentasi {galleryTab}</span>
-                    </button>
-                  </div>
-                ) : (
-                  <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <AnimatePresence mode="popLayout">
-                      {visibleGallery.map(item => (
-                        <motion.div
-                          layout
-                          key={item.id}
-                          initial={{ opacity: 0, scale: .95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: .95 }}
-                          transition={{ duration: .3 }}
-                          className="group glass flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 hover:border-indigo-400/40 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/10"
-                        >
-                          <div>
-                            {/* Media Thumbnail Container */}
-                            <div
-                              onClick={() => setSelectedGallery(item)}
-                              className="relative aspect-video w-full overflow-hidden bg-zinc-900 cursor-pointer"
-                            >
-                              <img
-                                src={item.thumbnail}
-                                alt={item.title}
-                                className="size-full object-cover transition duration-500 group-hover:scale-105"
-                              />
-
-                              {/* Top Overlay Badges */}
-                              <div className="absolute inset-x-3 top-3 flex items-center justify-between">
-                                <span className="rounded-lg bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-zinc-200 backdrop-blur-md border border-white/10">
-                                  {item.category}
-                                </span>
-                                <span className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md ${item.type === "video"
-                                  ? "bg-rose-500/80 text-white"
-                                  : "bg-indigo-500/80 text-white"
-                                  }`}>
-                                  {item.type === "video" ? <Play size={11} className="fill-white" /> : <Camera size={11} />}
-                                  <span>{item.type === "video" ? "Video" : "Foto"}</span>
-                                </span>
-                              </div>
-
-                              {/* Video Play Icon Center Overlay */}
-                              {item.type === "video" && (
-                                <div className="absolute inset-0 grid place-items-center bg-black/30 group-hover:bg-black/10 transition">
-                                  <div className="grid size-12 place-items-center rounded-full bg-rose-600 text-white shadow-xl shadow-rose-600/40 group-hover:scale-110 transition duration-300">
-                                    <Play size={20} className="fill-white translate-x-0.5" />
-                                  </div>
-                                </div>
-                              )}
-
-                              {/* Hover Zoom Hint */}
-                              <div className="absolute inset-0 bg-indigo-950/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center pointer-events-none">
-                                <span className="rounded-xl bg-black/70 px-3 py-1.5 text-xs text-white backdrop-blur-md flex items-center gap-1.5 border border-white/10">
-                                  <Maximize2 size={13} />
-                                  <span>Buka Pratinjau</span>
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Card Content */}
-                            <div className="p-5">
-                              <div className="flex items-center gap-3 text-xs text-zinc-400 mb-2">
-                                <span className="flex items-center gap-1"><Calendar size={13} className="text-indigo-400" /> {item.date}</span>
-                                <span>•</span>
-                                <span className="truncate">{item.location}</span>
-                              </div>
-
-                              <h4 className="font-display text-lg font-bold text-white leading-snug group-hover:text-indigo-200 transition">
-                                {item.title}
-                              </h4>
-
-                              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-zinc-400 line-clamp-3">
-                                {item.description}
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Card Footer */}
-                          <div className="p-5 pt-0">
-                            <div className="flex flex-wrap gap-1.5 mb-4">
-                              {item.tags.slice(0, 3).map(tag => (
-                                <span key={tag} className="rounded-md bg-white/5 px-2 py-0.5 text-[11px] text-zinc-400">
-                                  #{tag}
-                                </span>
-                              ))}
-                            </div>
-
-                            <button
-                              type="button"
-                              onClick={() => setSelectedGallery(item)}
-                              className="w-full flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] py-2.5 text-xs font-semibold text-zinc-200 transition hover:bg-white hover:text-zinc-950 active:scale-95 cursor-pointer"
-                            >
-                              {item.type === "video" ? (
-                                <>
-                                  <Play size={14} className="fill-current" />
-                                  <span>Tonton Video</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Maximize2 size={14} />
-                                  <span>Lihat Detail Foto</span>
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
-                  </motion.div>
-                )}
-              </div>
-            </section>
-
             {/* CONTACT SECTION */}
-            <section id="contact" className="px-6 py-28">
-              <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
+            <section id="contact" className="px-6 py-28 border-t border-white/40 bg-white/40 backdrop-blur-md">
+              <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.85fr_1.15fr] items-start">
                 <div>
                   <SectionHeading
-                    kicker="05 · Contact"
+                    kicker="05 · CONTACT"
                     title="Let's build better learning experiences."
                     copy="Tertarik berdiskusi tentang pembelajaran Informatika, praktik mengajar, atau kolaborasi pendidikan? Kirim pesan melalui formulir berikut."
                   />
-                  <div className="mt-8 space-y-4 text-sm text-zinc-400">
-                    <p className="flex items-center gap-3">
-                      <Mail size={17} className="text-indigo-400" />
-                      <span>Email: <strong className="text-zinc-200">resamartyaningsih.2025@student.uny.ac.id</strong></span>
-                    </p>
-                    <p className="flex items-center gap-3">
-                      <MapPin size={17} className="text-indigo-400" />
-                      <span>Lokasi: <strong className="text-zinc-200">Yogyakarta, Indonesia</strong></span>
-                    </p>
-                    <p className="flex items-center gap-3">
-                      <GraduationCap size={17} className="text-indigo-400" />
-                      <span>Afiliasi: <strong className="text-zinc-200">Universitas Negeri Yogyakarta (PPG Prajabatan)</strong></span>
-                    </p>
+
+                  {/* Deep Aurora Accent Contact Card */}
+                  <div className="mt-8 rounded-3xl bg-gradient-to-br from-[#1e1b4b] via-[#2e1065] to-[#0f172a] text-white border border-white/20 p-7 sm:p-9 shadow-xl space-y-5">
+                    <div>
+                      <span className="font-mono text-xs font-bold uppercase tracking-widest text-purple-300">
+                        // CONNECT &amp; REACH OUT
+                      </span>
+                      <h3 className="font-display text-2xl font-bold mt-1">Mari Berdiskusi</h3>
+                    </div>
+
+                    <div className="space-y-3.5 text-xs sm:text-sm text-slate-200">
+                      <p className="flex items-center gap-3">
+                        <Mail size={16} className="text-cyan-300 shrink-0" />
+                        <span className="truncate">resamartyaningsih.2025@student.uny.ac.id</span>
+                      </p>
+                      <p className="flex items-center gap-3">
+                        <MapPin size={16} className="text-cyan-300 shrink-0" />
+                        <span>Yogyakarta, Indonesia</span>
+                      </p>
+                      <p className="flex items-center gap-3">
+                        <GraduationCap size={16} className="text-cyan-300 shrink-0" />
+                        <span>Universitas Negeri Yogyakarta (PPG Prajabatan)</span>
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/10 text-xs italic font-display text-slate-300">
+                      "Pendidikan bermakna berawal dari dialog terbuka dan kolaborasi reflektif antar pendidik."
+                    </div>
+
+                    <div className="pt-2 flex items-center gap-2 text-xs font-mono text-emerald-400 font-semibold">
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                      </span>
+                      <span>Terbuka untuk kolaborasi pedagogik &amp; KBM Informatika</span>
+                    </div>
                   </div>
                 </div>
 
-                <form onSubmit={submit} noValidate className="glass rounded-3xl p-6 sm:p-8 border border-white/10">
+                {/* Form Card */}
+                <form onSubmit={submit} noValidate className="studio-card rounded-3xl p-6 sm:p-9 bg-white/90 border border-white/80 shadow-xl">
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <label className="text-sm font-medium text-zinc-300">
+                    <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
                       Nama Lengkap
                       <input
                         name="name"
                         required
-                        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                        className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-purple-600 text-sm font-sans shadow-2xs"
                         placeholder="Nama Anda"
                       />
                     </label>
-                    <label className="text-sm font-medium text-zinc-300">
+                    <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
                       Email
                       <input
                         name="email"
                         type="email"
                         required
-                        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                        className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-purple-600 text-sm font-sans shadow-2xs"
                         placeholder="nama@email.com"
                       />
                     </label>
                   </div>
-                  <label className="mt-5 block text-sm font-medium text-zinc-300">
+                  <label className="mt-5 block text-xs font-mono font-bold uppercase tracking-wider text-slate-800">
                     Pesan
                     <textarea
                       name="message"
                       required
                       rows={5}
-                      className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                      className="mt-2 w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-purple-600 text-sm font-sans shadow-2xs"
                       placeholder="Ceritakan kebutuhan, ide kolaborasi, atau tanggapan Anda..."
                     />
                   </label>
-                  {formError && <p className="mt-3 text-sm text-rose-400 font-medium" role="alert">{formError}</p>}
+                  {formError && <p className="mt-3 text-xs text-rose-600 font-semibold" role="alert">{formError}</p>}
                   <button
                     type="submit"
-                    className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-zinc-950 transition hover:bg-zinc-200 active:scale-95 shadow-lg"
+                    className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#d16ba5] via-[#ba83ca] to-[#79b3f4] hover:brightness-105 px-7 py-3.5 font-bold text-xs uppercase tracking-wider text-white transition active:scale-95 shadow-md cursor-pointer"
                   >
-                    <Send size={17} />
+                    <Send size={15} />
                     <span>Send message</span>
                   </button>
                 </form>
               </div>
             </section>
           </>
+        ) : viewMode === "refleksi-matkul" ? (
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
+            <RefleksiMatkulSection
+              projects={projects}
+              onSelectProject={(project) => setSelected(project)}
+              onNavigateToMandiri={() => navigateToView("praktik-mandiri")}
+              onBackToHome={() => navigateToView("home")}
+              isStandalonePage={true}
+            />
+          </div>
+        ) : viewMode === "siklus-mengajar" ? (
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
+            <SiklusMengajarSection
+              onNavigateToMandiri={() => navigateToView("praktik-mandiri")}
+              onBackToHome={() => navigateToView("home")}
+              isStandalonePage={true}
+            />
+          </div>
+        ) : viewMode === "karya-inovatif" ? (
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
+            <KaryaInovatifSection onBackToHome={() => navigateToView("home")} isStandalonePage={true} />
+          </div>
         ) : viewMode === "praktik-mandiri" ? (
           <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
             <PraktikMandiriHub
               onSelectSubpage={(subId) => navigateToView(subId)}
               onBackToHome={() => navigateToView("home")}
+            />
+          </div>
+        ) : viewMode === "gallery" ? (
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-24 pb-20">
+            <GaleriPage
+              galleryItems={galleryItems}
+              onSelectGallery={(item) => setSelectedGallery(item)}
+              onBackToHome={() => navigateToView("home")}
+              isStandalonePage={true}
             />
           </div>
         ) : (
@@ -1933,19 +2169,53 @@ function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/10 px-6 py-8 bg-zinc-950">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm text-zinc-400">
-          <div>
-            <p>© {new Date().getFullYear()} Resa Martyaningsih, S.Kom. · Portofolio PPG Prajabatan Informatika UNY.</p>
-            <p className="text-zinc-500 text-xs mt-0.5">Reflect · Adapt · Teach · Keep Learning.</p>
+      <footer className="border-t border-white/30 px-6 py-12 bg-gradient-to-br from-[#1e1b4b] via-[#2e1065] to-[#0f172a] text-white">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-white/10 text-sm">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 font-display text-xl font-bold tracking-wider text-white">
+                <div className="grid size-9 place-items-center rounded-xl bg-white/10 text-white font-mono font-bold text-sm border border-white/20">
+                  RM
+                </div>
+                <span>RESA MARTYANINGSIH, S.KOM.</span>
+              </div>
+              <p className="mt-2 text-xs font-mono uppercase tracking-[0.2em] text-cyan-300 font-semibold">
+                Portofolio PPG Prajabatan Informatika UNY
+              </p>
+              <p className="mt-3 text-xs text-slate-300 max-w-sm leading-relaxed font-light">
+                Mendokumentasikan perjalanan belajar, refleksi pedagogik, dan praktik nyata pembelajaran Informatika di SMA Negeri 3 Yogyakarta.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-purple-300 mb-3">Navigasi Halaman</h4>
+              <div className="space-y-2 text-xs text-slate-300">
+                <div><button onClick={() => navigateToView("home", "#home")} className="hover:text-white transition cursor-pointer">Beranda &amp; Profil</button></div>
+                <div><button onClick={() => navigateToView("refleksi-matkul")} className="text-purple-300 hover:text-white transition cursor-pointer font-semibold">Halaman Refleksi MK (11 Modul)</button></div>
+                <div><button onClick={() => navigateToView("siklus-mengajar")} className="text-indigo-300 hover:text-white transition cursor-pointer font-semibold">Halaman Siklus Mengajar (7 Siklus)</button></div>
+                <div><button onClick={() => navigateToView("karya-inovatif")} className="text-emerald-300 hover:text-white transition cursor-pointer font-semibold">Halaman Karya Inovatif (SinauPy)</button></div>
+                <div><button onClick={() => navigateToView("praktik-mandiri")} className="text-cyan-300 hover:text-white transition cursor-pointer font-semibold">Halaman Praktik Mandiri (PPL II)</button></div>
+                <div><button onClick={() => navigateToView("home", "#skills")} className="hover:text-white transition cursor-pointer">Kompetensi &amp; Skills</button></div>
+                <div><button onClick={() => navigateToView("gallery")} className="text-pink-300 hover:text-white transition cursor-pointer font-semibold">Halaman Galeri ({galleryItems.length} Item)</button></div>
+                <div><a href="https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white transition cursor-pointer font-semibold inline-flex items-center gap-1.5"><span>Jurnal Harian PPL (Google Docs)</span><ExternalLink size={12} /></a></div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-300 mb-3">PPL II Mandiri</h4>
+              <div className="space-y-2 text-xs text-slate-300">
+                <div><button onClick={() => navigateToView("praktik-mandiri")} className="text-cyan-300 hover:text-white font-medium transition cursor-pointer">Hub Praktik Mandiri</button></div>
+                <div><button onClick={() => navigateToView("analisis-rancangan")} className="hover:text-white transition cursor-pointer">Analisis Modul Ajar</button></div>
+                <div><button onClick={() => navigateToView("analisis-materi")} className="hover:text-white transition cursor-pointer">Materi Pemrograman</button></div>
+                <div><button onClick={() => navigateToView("analisis-media")} className="hover:text-white transition cursor-pointer">Media Pembelajaran</button></div>
+                <div><button onClick={() => navigateToView("analisis-video")} className="hover:text-white transition cursor-pointer">Video KBM</button></div>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
-            <button onClick={() => navigateToView("home", "#about")} className="hover:text-white transition">About</button>
-            <button onClick={() => navigateToView("home", "#projects")} className="hover:text-white transition">Projects</button>
-            <button onClick={() => navigateToView("praktik-mandiri")} className="text-indigo-300 hover:text-white transition font-semibold">Praktik Mengajar Mandiri</button>
-            <button onClick={() => navigateToView("home", "#skills")} className="hover:text-white transition">Skills</button>
-            <button onClick={() => navigateToView("home", "#gallery")} className="hover:text-white transition">Galeri</button>
-            <button onClick={() => navigateToView("home", "#contact")} className="hover:text-white transition">Contact</button>
+
+          <div className="pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-slate-400 font-mono">
+            <p>© {new Date().getFullYear()} Resa Martyaningsih, S.Kom. All rights reserved.</p>
+            <p className="text-slate-300">Reflect · Adapt · Teach · Keep Learning.</p>
           </div>
         </div>
       </footer>
@@ -1954,65 +2224,69 @@ function App() {
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-[70] grid place-items-center bg-black/75 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[70] grid place-items-center bg-black/60 p-4 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onMouseDown={(e) => { if (e.target === e.currentTarget) setSelected(null); }}
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) setSelected(null);
+            }}
           >
             <motion.div
-              initial={{ y: 20, opacity: 0, scale: .98 }}
+              initial={{ y: 20, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 10, opacity: 0 }}
-              className="glass max-h-[90vh] w-full max-w-2xl overflow-auto rounded-3xl p-7 border border-white/15 shadow-2xl"
+              className="studio-card max-h-[90vh] w-full max-w-2xl overflow-auto rounded-3xl p-7 sm:p-8 border border-white/90 shadow-2xl bg-white text-slate-900"
             >
               <div className="flex items-start justify-between gap-6">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[.18em] text-indigo-300">{selected.eyebrow}</p>
-                  <h3 className="mt-2 font-display text-3xl font-semibold text-white">{selected.title}</h3>
+                  <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-purple-800">{selected.eyebrow}</p>
+                  <h3 className="mt-2 font-display text-3xl font-bold text-slate-900">{selected.title}</h3>
                 </div>
                 <button
                   onClick={() => setSelected(null)}
-                  className="rounded-xl border border-white/10 p-2 text-zinc-400 hover:text-white transition"
+                  className="rounded-xl border border-slate-200 p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer"
                   aria-label="Tutup detail"
                 >
                   <X size={18} />
                 </button>
               </div>
 
-              <p className="mt-5 leading-relaxed text-zinc-300">{selected.description}</p>
+              <p className="mt-5 leading-relaxed text-slate-800 font-normal">{selected.description}</p>
 
-              <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-7 text-zinc-400">
-                <span className="font-semibold text-zinc-200">Fokus pembelajaran:</span> {selected.focus}
+              <div className="mt-5 rounded-2xl border border-purple-200 bg-purple-50/70 p-4 text-sm leading-relaxed text-slate-700">
+                <span className="font-semibold text-slate-900">Fokus pembelajaran:</span> {selected.focus}
               </div>
 
               <ul className="mt-6 space-y-3">
-                {selected.details.map(d => (
-                  <li key={d} className="flex gap-3 text-sm leading-relaxed text-zinc-300">
-                    <Check className="mt-0.5 shrink-0 text-indigo-400" size={17} />
+                {selected.details.map((d) => (
+                  <li key={d} className="flex gap-3 text-sm leading-relaxed text-slate-800">
+                    <Check className="mt-0.5 shrink-0 text-emerald-600" size={17} />
                     <span>{d}</span>
                   </li>
                 ))}
               </ul>
 
               <div className="mt-7 flex flex-wrap gap-2">
-                {selected.tags.map(t => (
-                  <span key={t} className="rounded-lg bg-white/5 px-3 py-1.5 text-xs text-zinc-400">{t}</span>
+                {selected.tags.map((t) => (
+                  <span key={t} className="rounded-md bg-purple-100 border border-purple-200 px-3 py-1 text-xs font-mono text-purple-900 font-semibold">
+                    {t}
+                  </span>
                 ))}
               </div>
 
               {selected.id === "s2-3" && (
-                <div className="mt-6 rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-purple-950/40 to-pink-950/30 p-5">
+                <div className="mt-6 rounded-2xl border border-emerald-300 bg-emerald-50 p-5">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <div className="flex items-center gap-2 text-indigo-300 font-semibold text-xs uppercase tracking-wider mb-1">
+                      <div className="flex items-center gap-2 text-emerald-700 font-mono font-bold text-xs uppercase tracking-wider mb-1">
                         <Sparkles size={14} />
                         <span>Kajian Analisis Komprehensif</span>
                       </div>
-                      <h4 className="font-display text-base font-bold text-white">
+                      <h4 className="font-display text-lg font-bold text-slate-900">
                         Tersedia 6 Subhalaman Analisis Praktik Mengajar Mandiri
                       </h4>
-                      <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
+                      <p className="text-xs text-slate-700 mt-1 leading-relaxed font-light">
                         Telaah produk modul ajar, materi Python, media interaktif, rekaman video KBM, kegiatan nonmengajar, dan rubrik asesmen secara rinci.
                       </p>
                     </div>
@@ -2021,7 +2295,7 @@ function App() {
                         setSelected(null);
                         navigateToView("praktik-mandiri");
                       }}
-                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-indigo-500/25 hover:scale-[1.02] transition shrink-0"
+                      className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition shrink-0 cursor-pointer"
                     >
                       <span>Buka 6 Analisis</span>
                       <ArrowRight size={14} />
@@ -2031,19 +2305,19 @@ function App() {
               )}
 
               {selected.link && (
-                <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
+                <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-indigo-300">Artefak &amp; Modul Mata Kuliah</p>
-                    <p className="mt-0.5 text-xs text-zinc-400">Buka dokumen, tugas, atau repositori modul ini di Google Drive</p>
+                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-purple-800">Artefak &amp; Modul Mata Kuliah</p>
+                    <p className="mt-0.5 text-xs text-slate-600">Buka dokumen, tugas, atau repositori modul ini di Google Drive</p>
                   </div>
                   <a
                     href={selected.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition duration-200 hover:bg-indigo-500 hover:-translate-y-0.5 active:scale-95"
+                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#ba83ca] via-[#79b3f4] to-[#41dfff] hover:brightness-105 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm transition duration-200 active:scale-95"
                   >
                     <span>Buka Link Mata Kuliah</span>
-                    <ExternalLink size={16} />
+                    <ExternalLink size={15} />
                   </a>
                 </div>
               )}
@@ -2056,31 +2330,33 @@ function App() {
       <AnimatePresence>
         {selectedGallery && (
           <motion.div
-            className="fixed inset-0 z-[75] grid place-items-center bg-black/80 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[75] grid place-items-center bg-black/60 p-4 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onMouseDown={(e) => { if (e.target === e.currentTarget) setSelectedGallery(null); }}
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) setSelectedGallery(null);
+            }}
           >
             <motion.div
-              initial={{ y: 20, opacity: 0, scale: .97 }}
+              initial={{ y: 20, opacity: 0, scale: 0.97 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 10, opacity: 0 }}
-              className="glass max-h-[92vh] w-full max-w-3xl overflow-auto rounded-3xl border border-white/15 p-6 sm:p-8 shadow-2xl"
+              className="studio-card max-h-[92vh] w-full max-w-3xl overflow-auto rounded-3xl border border-white/90 p-6 sm:p-8 shadow-2xl bg-white text-slate-900"
             >
               <div className="flex items-start justify-between gap-4 mb-5">
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="rounded-lg bg-indigo-500/20 px-2.5 py-0.5 text-xs font-semibold text-indigo-300 border border-indigo-500/30">
+                  <div className="flex items-center gap-2 mb-2 font-mono">
+                    <span className="rounded-md bg-purple-100 px-2.5 py-0.5 text-xs font-bold text-purple-900 border border-purple-200">
                       {selectedGallery.category}
                     </span>
-                    <span className="text-xs text-zinc-400">{selectedGallery.semester}</span>
+                    <span className="text-xs text-slate-600 font-semibold">{selectedGallery.semester}</span>
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">{selectedGallery.title}</h3>
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900">{selectedGallery.title}</h3>
                 </div>
                 <button
                   onClick={() => setSelectedGallery(null)}
-                  className="rounded-xl border border-white/10 p-2 text-zinc-400 hover:text-white transition"
+                  className="rounded-xl border border-slate-200 p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer"
                   aria-label="Tutup galeri"
                 >
                   <X size={20} />
@@ -2088,7 +2364,7 @@ function App() {
               </div>
 
               {/* Media Display */}
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 mb-6">
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 mb-6">
                 {selectedGallery.type === "video" ? (
                   <div className="aspect-video w-full">
                     {selectedGallery.mediaUrl && selectedGallery.mediaUrl.includes("embed") ? (
@@ -2100,19 +2376,19 @@ function App() {
                         allowFullScreen
                       />
                     ) : (
-                      <div className="grid size-full place-items-center p-8 text-center bg-zinc-900">
+                      <div className="grid size-full place-items-center p-8 text-center bg-slate-100">
                         <div>
-                          <Play size={48} className="mx-auto text-rose-500 mb-3" />
-                          <p className="font-semibold text-white">Video Pembelajaran</p>
-                          <p className="text-xs text-zinc-400 mt-1 max-w-sm">
-                            Tautan video dapat disematkan (embed YouTube atau Google Drive).
+                          <Play size={48} className="mx-auto text-purple-700 mb-3" />
+                          <p className="font-display text-xl font-bold text-slate-900">Video Pembelajaran</p>
+                          <p className="text-xs text-slate-600 mt-1 max-w-sm">
+                            Tautan video dapat disematkan atau dibuka melalui Google Drive.
                           </p>
                           {selectedGallery.mediaUrl && (
                             <a
                               href={selectedGallery.mediaUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-rose-600 px-4 py-2 text-xs font-semibold text-white"
+                              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#ba83ca] via-[#79b3f4] to-[#41dfff] hover:brightness-105 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm"
                             >
                               <span>Buka Video Eksternal</span>
                               <ExternalLink size={14} />
@@ -2133,22 +2409,33 @@ function App() {
 
               {/* Meta & Descriptions */}
               <div className="space-y-4">
-                <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400 border-b border-white/10 pb-3">
-                  <span className="flex items-center gap-1.5"><Calendar size={14} className="text-indigo-400" /> {selectedGallery.date}</span>
-                  <span className="flex items-center gap-1.5"><MapPin size={14} className="text-indigo-400" /> {selectedGallery.location}</span>
+                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-600 border-b border-slate-200 pb-3 font-medium">
+                  <span className="flex items-center gap-1.5 font-bold text-slate-800">
+                    <MapPin size={14} className="text-purple-700" /> {selectedGallery.location}
+                  </span>
+                  <span className="flex items-center gap-1.5 font-bold text-purple-900">
+                    <Sparkles size={14} className="text-purple-700" /> {selectedGallery.category}
+                  </span>
                 </div>
 
-                <p className="text-base leading-relaxed text-zinc-300">{selectedGallery.description}</p>
+                <p className="text-base leading-relaxed text-slate-800 font-normal">{selectedGallery.description}</p>
 
                 {/* Reflection Highlight */}
-                <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/10 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-1">Refleksi Pedagogik</p>
-                  <p className="text-sm leading-relaxed text-zinc-300 italic">"{selectedGallery.reflection}"</p>
+                <div className="rounded-2xl border-l-4 border-purple-500 bg-purple-50 p-4">
+                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-purple-900 mb-1">
+                    // Refleksi Pedagogik
+                  </p>
+                  <p className="text-base leading-relaxed text-slate-900 italic font-display">"{selectedGallery.reflection}"</p>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {selectedGallery.tags.map(t => (
-                    <span key={t} className="rounded-lg bg-white/5 px-2.5 py-1 text-xs text-zinc-400">#{t}</span>
+                  {selectedGallery.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-md bg-purple-100 border border-purple-200 px-2.5 py-1 text-xs font-mono text-purple-900 font-semibold"
+                    >
+                      #{t}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -2161,49 +2448,62 @@ function App() {
       <AnimatePresence>
         {showPhotoModal && (
           <motion.div
-            className="fixed inset-0 z-[80] grid place-items-center bg-black/80 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[80] grid place-items-center bg-black/60 p-4 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onMouseDown={(e) => { if (e.target === e.currentTarget) setShowPhotoModal(false); }}
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) setShowPhotoModal(false);
+            }}
           >
             <motion.div
-              initial={{ y: 20, opacity: 0, scale: .98 }}
+              initial={{ y: 20, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 10, opacity: 0 }}
-              className="glass w-full max-w-lg rounded-3xl border border-white/15 p-6 sm:p-7 shadow-2xl"
+              className="studio-card w-full max-w-lg rounded-3xl border border-white/90 p-6 sm:p-7 shadow-2xl bg-white text-slate-900"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="grid size-10 place-items-center rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <div className="grid size-10 place-items-center rounded-xl bg-purple-100 text-purple-800 border border-purple-200">
                     <Camera size={20} />
                   </div>
                   <div>
-                    <h3 className="font-display text-xl font-bold text-white">Atur Foto Profil</h3>
-                    <p className="text-xs text-zinc-400">Pilih metode termudah untuk memasang foto Anda</p>
+                    <h3 className="font-display text-2xl font-bold text-slate-900">Atur Foto Profil</h3>
+                    <p className="text-xs text-slate-600">Pilih metode termudah untuk memasang foto Anda</p>
                   </div>
                 </div>
-                <button onClick={() => setShowPhotoModal(false)} className="rounded-xl border border-white/10 p-1.5 text-zinc-400 hover:text-white">
+                <button
+                  onClick={() => setShowPhotoModal(false)}
+                  className="rounded-xl border border-slate-200 p-1.5 text-slate-500 hover:text-slate-900 cursor-pointer"
+                >
                   <X size={18} />
                 </button>
               </div>
 
               {/* Instructions */}
-              <div className="space-y-4 text-sm text-zinc-300">
-                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-4">
-                  <p className="font-semibold text-emerald-300 flex items-center gap-1.5 mb-1">
+              <div className="space-y-4 text-sm text-slate-700">
+                <div className="rounded-2xl border border-emerald-300 bg-emerald-50 p-4">
+                  <p className="font-bold text-emerald-800 flex items-center gap-1.5 mb-1 text-xs font-mono uppercase tracking-wider">
                     <CheckCircle2 size={16} /> Cara 1: Taruh File Foto Lokal (Rekomendasi)
                   </p>
-                  <p className="text-xs leading-relaxed text-zinc-300">
-                    Cukup salin file foto Anda dan beri nama <code className="rounded bg-black/50 px-1.5 py-0.5 text-emerald-300 font-mono">profile.jpg</code> lalu letakkan di folder <code className="rounded bg-black/50 px-1.5 py-0.5 text-emerald-300 font-mono">public/</code> pada project ini. Website akan otomatis memuat foto tersebut.
+                  <p className="text-xs leading-relaxed text-slate-600">
+                    Cukup salin file foto Anda dan beri nama{" "}
+                    <code className="rounded bg-white px-1.5 py-0.5 text-purple-800 font-mono border border-slate-200 font-bold">
+                      profile.jpg
+                    </code>{" "}
+                    lalu letakkan di folder{" "}
+                    <code className="rounded bg-white px-1.5 py-0.5 text-purple-800 font-mono border border-slate-200 font-bold">
+                      public/
+                    </code>{" "}
+                    pada project ini. Website akan otomatis memuat foto tersebut.
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                  <p className="font-semibold text-white flex items-center gap-1.5 mb-2">
-                    <Info size={16} className="text-indigo-400" /> Cara 2: Tempel Tautan Gambar Langsung (URL)
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="font-bold text-slate-900 flex items-center gap-1.5 mb-2 text-xs font-mono uppercase tracking-wider">
+                    <Info size={16} className="text-purple-700" /> Cara 2: Tempel Tautan Gambar Langsung (URL)
                   </p>
-                  <p className="text-xs text-zinc-400 mb-2">
+                  <p className="text-xs text-slate-600 mb-2">
                     Anda juga dapat memasukkan tautan gambar online (Google Drive direct link, Imgur, GitHub, dsb.):
                   </p>
                   <div className="flex gap-2">
@@ -2212,11 +2512,11 @@ function App() {
                       value={tempPhotoUrl}
                       onChange={(e) => setTempPhotoUrl(e.target.value)}
                       placeholder="https://example.com/foto-anda.jpg"
-                      className="w-full rounded-xl border border-white/10 bg-zinc-900 px-3 py-2 text-xs text-white outline-none focus:border-indigo-400"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 outline-none focus:border-purple-600"
                     />
                     <button
                       onClick={() => handleSavePhotoUrl(tempPhotoUrl)}
-                      className="shrink-0 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition"
+                      className="shrink-0 rounded-xl bg-gradient-to-r from-[#ba83ca] to-[#79b3f4] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition cursor-pointer shadow-2xs"
                     >
                       Terapkan
                     </button>
@@ -2230,14 +2530,14 @@ function App() {
                       setProfileImage("/profile.jpg");
                       setShowPhotoModal(false);
                     }}
-                    className="text-xs text-zinc-400 hover:text-white flex items-center gap-1.5"
+                    className="text-xs text-slate-600 hover:text-slate-950 flex items-center gap-1.5 cursor-pointer font-mono font-medium"
                   >
                     <RefreshCw size={12} />
                     <span>Reset ke default</span>
                   </button>
                   <button
                     onClick={() => setShowPhotoModal(false)}
-                    className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white hover:bg-white/10 transition"
+                    className="rounded-xl border border-slate-200 bg-slate-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-800 hover:bg-slate-200 transition cursor-pointer"
                   >
                     Selesai
                   </button>
@@ -2255,16 +2555,19 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-[80] max-w-sm rounded-2xl border border-emerald-300/30 bg-zinc-900 px-5 py-4 shadow-2xl"
+            className="fixed bottom-6 right-6 z-[80] max-w-sm rounded-2xl border border-emerald-300 bg-white px-5 py-4 shadow-2xl text-slate-900"
           >
             <div className="flex items-start gap-3">
-              <CheckCircle2 size={20} className="text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 size={20} className="text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-white">Pesan siap dikirim ✓</p>
-                <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
+                <p className="font-display text-lg font-bold text-slate-900">Pesan siap dikirim ✓</p>
+                <p className="mt-1 text-xs text-slate-600 leading-relaxed font-light">
                   Formulir divalidasi dengan baik. Hubungkan ke layanan email (misal Formspree atau EmailJS) untuk pengiriman riil.
                 </p>
-                <button onClick={() => setSent(false)} className="mt-3 text-xs font-semibold text-indigo-300 hover:text-indigo-200">
+                <button
+                  onClick={() => setSent(false)}
+                  className="mt-3 text-xs font-mono font-bold text-purple-700 hover:underline uppercase tracking-wider cursor-pointer"
+                >
                   Tutup Notifikasi
                 </button>
               </div>

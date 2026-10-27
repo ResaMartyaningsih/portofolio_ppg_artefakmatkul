@@ -21,27 +21,26 @@ export function EvidenceCard({
   const getIcon = () => {
     switch (type) {
       case "video":
-        return <Video size={18} className="text-pink-400" />;
+        return <Video size={16} className="text-pink-700" />;
       case "image":
-        return <ImageIcon size={18} className="text-emerald-400" />;
+        return <ImageIcon size={16} className="text-emerald-700" />;
       case "folder":
-        return <FolderGit2 size={18} className="text-amber-400" />;
+        return <FolderGit2 size={16} className="text-amber-700" />;
       default:
-        return <FileText size={18} className="text-indigo-400" />;
+        return <FileText size={16} className="text-indigo-700" />;
     }
   };
 
   return (
-    <div className="glass rounded-2xl border border-white/10 p-5 shadow-lg hover:border-indigo-500/30 transition duration-300 flex flex-col justify-between group">
+    <div className="studio-card rounded-2xl border border-white/80 p-5 bg-white/95 shadow-sm hover:border-purple-300 hover:shadow-md transition duration-300 flex flex-col justify-between group">
       <div>
         {imageUrl && (
-          <div className="relative mb-4 overflow-hidden rounded-xl border border-white/10 aspect-video bg-zinc-900">
+          <div className="relative mb-4 overflow-hidden rounded-xl border border-slate-200 aspect-video bg-slate-100">
             <img
               src={imageUrl}
               alt={title}
               className="h-full w-full object-cover group-hover:scale-105 transition duration-500"
               onError={(e) => {
-                // fallback to placeholder icon if image path fails
                 (e.target as HTMLElement).style.display = "none";
               }}
             />
@@ -49,38 +48,38 @@ export function EvidenceCard({
         )}
 
         <div className="flex items-center gap-2 mb-2">
-          <span className="grid size-7 place-items-center rounded-lg bg-white/5 border border-white/10">
+          <span className="grid size-7 place-items-center rounded-lg bg-slate-100 border border-slate-200">
             {getIcon()}
           </span>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600">
             {type === "document" ? "Dokumen Perencanaan" : type === "video" ? "Rekaman Video" : type === "image" ? "Dokumentasi Foto" : "Folder Sumber"}
           </span>
         </div>
 
-        <h4 className="font-display text-base font-semibold text-white leading-snug group-hover:text-indigo-200 transition">
+        <h4 className="font-display text-base font-bold text-slate-900 leading-snug group-hover:text-purple-700 transition">
           {title}
         </h4>
 
         {description && (
-          <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+          <p className="mt-2 text-xs leading-relaxed text-slate-700 font-normal">
             {description}
           </p>
         )}
       </div>
 
-      <div className="mt-4 pt-3 border-t border-white/5">
+      <div className="mt-4 pt-3 border-t border-slate-200">
         {link ? (
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-white/5 px-3.5 py-2 text-xs font-semibold text-indigo-300 border border-indigo-500/20 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition"
+            className="inline-flex items-center gap-2 rounded-xl bg-purple-50 hover:bg-gradient-to-r hover:from-[#ba83ca] hover:to-[#79b3f4] text-purple-900 hover:text-white px-3.5 py-2 text-xs font-bold uppercase tracking-wider border border-purple-200 transition shadow-2xs cursor-pointer"
           >
             <span>{actionText}</span>
             <ExternalLink size={13} />
           </a>
         ) : (
-          <span className="text-[11px] text-zinc-500 italic">Tersedia secara lokal di laboratorium</span>
+          <span className="text-[11px] text-slate-500 italic font-medium">Tersedia secara lokal di laboratorium</span>
         )}
       </div>
     </div>
@@ -95,12 +94,12 @@ export function EvidencePlaceholder({
   note?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-dashed border-zinc-800 bg-white/[0.02] p-6 text-center">
-      <div className="mx-auto mb-3 grid size-10 place-items-center rounded-xl bg-zinc-900 border border-white/10 text-zinc-500">
+    <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-6 text-center backdrop-blur-sm">
+      <div className="mx-auto mb-3 grid size-10 place-items-center rounded-xl bg-purple-50 border border-purple-200 text-purple-700">
         <AlertCircle size={20} />
       </div>
-      <p className="text-sm font-semibold text-zinc-300">{label}</p>
-      <p className="mt-1 text-xs text-zinc-500 max-w-md mx-auto">{note}</p>
+      <p className="font-display text-sm font-bold text-slate-900">{label}</p>
+      <p className="mt-1 text-xs text-slate-600 max-w-sm mx-auto font-normal">{note}</p>
     </div>
   );
 }
