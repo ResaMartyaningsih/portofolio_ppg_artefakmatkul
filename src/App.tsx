@@ -1,11 +1,11 @@
-import { FormEvent, useMemo, useState, useEffect } from "react";
+import { FormEvent, useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   ArrowUpRight, ArrowRight, Check, ChevronRight, ChevronDown, Code2, ExternalLink,
   GraduationCap, Layers3, Mail, Menu, Send, Sparkles, X,
   Camera, Compass, Target, BookOpen, Heart, Award, Play,
   Maximize2, User, MapPin, Calendar, CheckCircle2, Film,
-  ChevronLeft, RefreshCw, Info, Leaf
+  ChevronLeft, RefreshCw, Info, Leaf, FileText
 } from "lucide-react";
 
 import { PraktikMandiriHub } from "./components/praktik-mandiri/PraktikMandiriHub";
@@ -720,15 +720,21 @@ function App() {
     ppl: true
   });
 
-  let dropdownTimeout: any = null;
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const handleDropdownEnter = (menu: string) => {
-    if (dropdownTimeout) clearTimeout(dropdownTimeout);
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
     setOpenDropdown(menu);
   };
   const handleDropdownLeave = () => {
-    dropdownTimeout = setTimeout(() => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    dropdownTimeoutRef.current = setTimeout(() => {
       setOpenDropdown(null);
-    }, 180);
+    }, 320);
   };
   const [semester, setSemester] = useState<"All" | Semester>("All");
   const [selected, setSelected] = useState<Project | null>(null);
@@ -1049,63 +1055,67 @@ function App() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute left-0 top-full mt-2 w-72 rounded-2xl border border-white/90 bg-white/95 p-2 shadow-2xl backdrop-blur-2xl z-50 space-y-1"
+                    onMouseEnter={() => handleDropdownEnter("pembelajaran")}
+                    onMouseLeave={handleDropdownLeave}
+                    className="absolute left-0 top-full pt-2 w-72 z-50 before:absolute before:-top-2 before:left-0 before:right-0 before:h-4 before:content-['']"
                   >
-                    {/* Item 1: Refleksi Mata Kuliah */}
-                    <a
-                      href="#refleksi-matkul"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setOpenDropdown(null);
-                        navigateToView("refleksi-matkul");
-                      }}
-                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-purple-50 transition text-left group/item cursor-pointer"
-                    >
-                      <div className="grid size-8 place-items-center rounded-lg bg-purple-100 text-purple-900 shrink-0 group-hover/item:bg-purple-600 group-hover/item:text-white transition">
-                        <BookOpen size={16} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="block font-display text-xs font-bold text-slate-900 group-hover/item:text-purple-800">
-                            Refleksi Mata Kuliah
-                          </span>
-                          <span className="rounded bg-purple-100 px-1 py-0.2 text-[9px] font-mono font-bold text-purple-900">
-                            11 MK
+                    <div className="rounded-2xl border border-white/90 bg-white/95 p-2 shadow-2xl backdrop-blur-2xl space-y-1">
+                      {/* Item 1: Refleksi Mata Kuliah */}
+                      <a
+                        href="#refleksi-matkul"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setOpenDropdown(null);
+                          navigateToView("refleksi-matkul");
+                        }}
+                        className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-purple-50 transition text-left group/item cursor-pointer"
+                      >
+                        <div className="grid size-8 place-items-center rounded-lg bg-purple-100 text-purple-900 shrink-0 group-hover/item:bg-purple-600 group-hover/item:text-white transition">
+                          <BookOpen size={16} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="block font-display text-xs font-bold text-slate-900 group-hover/item:text-purple-800">
+                              Refleksi Mata Kuliah
+                            </span>
+                            <span className="rounded bg-purple-100 px-1 py-0.2 text-[9px] font-mono font-bold text-purple-900">
+                              11 MK
+                            </span>
+                          </div>
+                          <span className="block text-[10px] text-slate-500 font-normal">
+                            Halaman artefak &amp; modul Semester 1 &amp; 2
                           </span>
                         </div>
-                        <span className="block text-[10px] text-slate-500 font-normal">
-                          Halaman artefak &amp; modul Semester 1 &amp; 2
-                        </span>
-                      </div>
-                    </a>
+                      </a>
 
-                    {/* Item 2: Karya Inovatif SinauPy */}
-                    <a
-                      href="#karya-inovatif"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setOpenDropdown(null);
-                        navigateToView("karya-inovatif");
-                      }}
-                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-emerald-50 transition text-left group/item cursor-pointer"
-                    >
-                      <div className="grid size-8 place-items-center rounded-lg bg-emerald-100 text-emerald-900 shrink-0 group-hover/item:bg-emerald-600 group-hover/item:text-white transition">
-                        <Code2 size={16} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-emerald-800">
-                            Karya Inovatif
-                          </span>
-                          <span className="rounded bg-emerald-100 px-1 py-0.2 text-[9px] font-mono font-bold text-emerald-900">
-                            SinauPy
+                      {/* Item 2: Karya Inovatif SinauPy */}
+                      <a
+                        href="#karya-inovatif"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setOpenDropdown(null);
+                          navigateToView("karya-inovatif");
+                        }}
+                        className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-emerald-50 transition text-left group/item cursor-pointer"
+                      >
+                        <div className="grid size-8 place-items-center rounded-lg bg-emerald-100 text-emerald-900 shrink-0 group-hover/item:bg-emerald-600 group-hover/item:text-white transition">
+                          <Code2 size={16} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-emerald-800">
+                              Karya Inovatif
+                            </span>
+                            <span className="rounded bg-emerald-100 px-1 py-0.2 text-[9px] font-mono font-bold text-emerald-900">
+                              SinauPy
+                            </span>
+                          </div>
+                          <span className="block text-[10px] text-slate-500 font-normal">
+                            Halaman belajar Python interaktif live
                           </span>
                         </div>
-                        <span className="block text-[10px] text-slate-500 font-normal">
-                          Halaman belajar Python interaktif live
-                        </span>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -1139,89 +1149,93 @@ function App() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute left-0 top-full mt-2 w-80 rounded-2xl border border-white/90 bg-white/95 p-2 shadow-2xl backdrop-blur-2xl z-50 space-y-1"
+                    onMouseEnter={() => handleDropdownEnter("ppl")}
+                    onMouseLeave={handleDropdownLeave}
+                    className="absolute left-0 top-full pt-2 w-80 z-50 before:absolute before:-top-2 before:left-0 before:right-0 before:h-4 before:content-['']"
                   >
-                    {/* Item 1: Siklus Praktik Mengajar */}
-                    <a
-                      href="#siklus-mengajar"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setOpenDropdown(null);
-                        navigateToView("siklus-mengajar");
-                      }}
-                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-purple-50 transition text-left group/item cursor-pointer"
-                    >
-                      <div className="grid size-8 place-items-center rounded-lg bg-purple-100 text-purple-900 shrink-0 group-hover/item:bg-purple-600 group-hover/item:text-white transition">
-                        <Sparkles size={16} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-purple-800">
-                            Siklus Praktik Mengajar
-                          </span>
-                          <span className="rounded bg-purple-100 px-1 py-0.2 text-[9px] font-mono font-bold text-purple-900">
-                            7 Siklus
+                    <div className="rounded-2xl border border-white/90 bg-white/95 p-2 shadow-2xl backdrop-blur-2xl space-y-1">
+                      {/* Item 1: Siklus Praktik Mengajar */}
+                      <a
+                        href="#siklus-mengajar"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setOpenDropdown(null);
+                          navigateToView("siklus-mengajar");
+                        }}
+                        className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-purple-50 transition text-left group/item cursor-pointer"
+                      >
+                        <div className="grid size-8 place-items-center rounded-lg bg-purple-100 text-purple-900 shrink-0 group-hover/item:bg-purple-600 group-hover/item:text-white transition">
+                          <Sparkles size={16} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-purple-800">
+                              Siklus Praktik Mengajar
+                            </span>
+                            <span className="rounded bg-purple-100 px-1 py-0.2 text-[9px] font-mono font-bold text-purple-900">
+                              7 Siklus
+                            </span>
+                          </div>
+                          <span className="block text-[10px] text-slate-500 font-normal">
+                            Halaman 3 Terbimbing (Sem 1) &amp; 4 Mandiri (Sem 2)
                           </span>
                         </div>
-                        <span className="block text-[10px] text-slate-500 font-normal">
-                          Halaman 3 Terbimbing (Sem 1) &amp; 4 Mandiri (Sem 2)
-                        </span>
-                      </div>
-                    </a>
+                      </a>
 
-                    {/* Item 2: 6 Analisis Praktik Mandiri */}
-                    <a
-                      href="#praktik-mandiri"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setOpenDropdown(null);
-                        navigateToView("praktik-mandiri");
-                      }}
-                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-indigo-50 transition text-left group/item cursor-pointer"
-                    >
-                      <div className="grid size-8 place-items-center rounded-lg bg-indigo-100 text-indigo-900 shrink-0 group-hover/item:bg-indigo-600 group-hover/item:text-white transition">
-                        <Layers3 size={16} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-indigo-800">
-                            Praktik Mandiri (PPL II)
-                          </span>
-                          <span className="rounded bg-indigo-100 px-1 py-0.2 text-[9px] font-mono font-bold text-indigo-900">
-                            6 Analisis
+                      {/* Item 2: 6 Analisis Praktik Mandiri */}
+                      <a
+                        href="#praktik-mandiri"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setOpenDropdown(null);
+                          navigateToView("praktik-mandiri");
+                        }}
+                        className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-indigo-50 transition text-left group/item cursor-pointer"
+                      >
+                        <div className="grid size-8 place-items-center rounded-lg bg-indigo-100 text-indigo-900 shrink-0 group-hover/item:bg-indigo-600 group-hover/item:text-white transition">
+                          <Layers3 size={16} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-indigo-800">
+                              Praktik Mandiri (PPL II)
+                            </span>
+                            <span className="rounded bg-indigo-100 px-1 py-0.2 text-[9px] font-mono font-bold text-indigo-900">
+                              6 Analisis
+                            </span>
+                          </div>
+                          <span className="block text-[10px] text-slate-500 font-normal">
+                            Halaman kajian modul, media, video, asesmen
                           </span>
                         </div>
-                        <span className="block text-[10px] text-slate-500 font-normal">
-                          Halaman kajian modul, media, video, asesmen
-                        </span>
-                      </div>
-                    </a>
+                      </a>
 
-                    {/* Item 3: Jurnal Harian PPL (Google Docs) */}
-                    <a
-                      href="https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setOpenDropdown(null)}
-                      className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-blue-50 transition text-left group/item cursor-pointer"
-                    >
-                      <div className="grid size-8 place-items-center rounded-lg bg-blue-100 text-blue-900 shrink-0 group-hover/item:bg-blue-600 group-hover/item:text-white transition">
-                        <FileText size={16} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-blue-800">
-                            Jurnal Harian PPL
-                          </span>
-                          <span className="rounded bg-blue-100 px-1 py-0.2 text-[9px] font-mono font-bold text-blue-900">
-                            Docs
+                      {/* Item 3: Jurnal Harian PPL (Google Docs) */}
+                      <a
+                        href="https://docs.google.com/document/d/1Eb4ajPsX3ADq_q53zvMD0x4GR61zzo9p/edit?usp=sharing&ouid=109235945935102899444&rtpof=true&sd=true"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setOpenDropdown(null)}
+                        className="flex items-start gap-3 rounded-xl p-2.5 hover:bg-blue-50 transition text-left group/item cursor-pointer"
+                      >
+                        <div className="grid size-8 place-items-center rounded-lg bg-blue-100 text-blue-900 shrink-0 group-hover/item:bg-blue-600 group-hover/item:text-white transition">
+                          <FileText size={16} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-display text-xs font-bold text-slate-900 group-hover/item:text-blue-800">
+                              Jurnal Harian PPL
+                            </span>
+                            <span className="rounded bg-blue-100 px-1 py-0.2 text-[9px] font-mono font-bold text-blue-900">
+                              Docs
+                            </span>
+                          </div>
+                          <span className="block text-[10px] text-slate-500 font-normal">
+                            Logbook harian KBM &amp; nonmengajar SMAN 3
                           </span>
                         </div>
-                        <span className="block text-[10px] text-slate-500 font-normal">
-                          Logbook harian KBM &amp; nonmengajar SMAN 3
-                        </span>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
